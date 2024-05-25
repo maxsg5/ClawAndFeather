@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b62d4327fb918bd4eb9af948efeb759b
+guid: 0c953864cebbd4d43b61bb7569279d50
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_Idle_Test_0
+      name: Character_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 421ddbda7f4c5c640a130776793316a8
-      internalID: -1623653716
+      spriteID: ba99258d847e1ab44b513ef767b9ddd8
+      internalID: -809738443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_Idle_Test_1
+      name: Character_Idle_1
       rect:
         serializedVersion: 2
         x: 100
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6d1fb623748e564682ad63ec63b9b11
-      internalID: 1443644658
+      spriteID: 9c0765ae060ad774a9d55477924f9ce5
+      internalID: -731584794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_Idle_Test_2
+      name: Character_Idle_2
       rect:
         serializedVersion: 2
         x: 200
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 304b59edac4661548bd6929c97047c6f
-      internalID: 517904900
+      spriteID: 277b0f62cb1b5ee4883377fca0a72fb8
+      internalID: -413990924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_Idle_Test_3
+      name: Character_Idle_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccbb27f283d31124a996af2674f8385a
-      internalID: 841601905
+      spriteID: 0b015283e42de504e95a4c8ce19e2442
+      internalID: 2039221958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_Idle_Test_4
+      name: Character_Idle_4
       rect:
         serializedVersion: 2
         x: 100
@@ -208,8 +208,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 358c29b17d24c1643a5434ab96d3b9e2
-      internalID: 1072186254
+      spriteID: 4203df93358690243ac3f7c60a766781
+      internalID: -702337224
       vertices: []
       indices: 
       edges: []
@@ -225,11 +225,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Character_Idle_Test_0: -1623653716
-      Character_Idle_Test_1: 1443644658
-      Character_Idle_Test_2: 517904900
-      Character_Idle_Test_3: 841601905
-      Character_Idle_Test_4: 1072186254
+      Character_Idle_0: -809738443
+      Character_Idle_1: -731584794
+      Character_Idle_2: -413990924
+      Character_Idle_3: 2039221958
+      Character_Idle_4: -702337224
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
