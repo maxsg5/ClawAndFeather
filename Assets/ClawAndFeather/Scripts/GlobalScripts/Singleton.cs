@@ -7,6 +7,7 @@ public class Singleton : MonoBehaviour
 {
     public static Singleton Global { get; private set; }
     public GameState State { get; private set; }
+    public AudioManager Audio { get; private set; }
     void Awake()
     {
         if (Global != null && Global != this)
@@ -17,5 +18,6 @@ public class Singleton : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         State = GetComponentInChildren<GameState>();
+        Audio = GetComponentInChildren<AudioManager>();
     }
 }
