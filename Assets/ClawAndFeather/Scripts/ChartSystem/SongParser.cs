@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class SongParser : MonoBehaviour
@@ -14,7 +15,6 @@ public class SongParser : MonoBehaviour
         if (nonRepeatingData.Length != 3)
         {
             Debug.LogError("Length of BPM,ToleranceEarly,ToleranceLate does not meet format.");
-            
             return false;
         }
 
@@ -46,15 +46,23 @@ public class SongParser : MonoBehaviour
                 int numberOfBeats = int.Parse(row[0]);
                 string[] timeSignatureString = row[1].Split("/");
                 float timeSignature = int.Parse(timeSignatureString[0]) / float.Parse(timeSignatureString[1]);
-                
                 float beatDelay = 0;
-                if (numberOfBeats == 0)
-                { beatDelay = beatDelay = 60 * timeSignature / bpm; }
-                else
-                { beatDelay = beatDelay = 60 * timeSignature / (numberOfBeats * bpm); }
 
-                notes.Add(new Note(beatDelay, totalBeatTime, numberOfBeats == 0 ? true : false ));
-                totalBeatTime += beatDelay;
+                if (numberOfBeats == 0)
+                {
+                    beatDelay = beatDelay = 60 * timeSignature / bpm;
+                    notes.Add(new Note(beatDelay, totalBeatTime, true));
+                    totalBeatTime += beatDelay;
+                }
+                else
+                {
+                    for (int j = 0; j < numberOfBeats; j++)
+                    {
+                        beatDelay = beatDelay = 60 * timeSignature / (numberOfBeats * bpm);
+                        notes.Add(new Note(beatDelay, totalBeatTime, false));
+                        totalBeatTime += beatDelay;
+                    }
+                }
             }
             catch (Exception e)
             {
