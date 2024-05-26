@@ -15,5 +15,10 @@ public class AudioManager : MonoBehaviour
             { _songCharts.Add(chart); }  
         }
     }
+
+    /// <summary>
+    /// Gets the current chart being used.
+    /// </summary>
+    /// <returns></returns>
     public SongChart GetCurrentChart() => _songCharts[_currentChartID];
 }
