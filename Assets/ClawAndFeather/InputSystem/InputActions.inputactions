@@ -2,7 +2,7 @@
     "name": "InputActions",
     "maps": [
         {
-            "name": "Buttons",
+            "name": "Player",
             "id": "4ba5d4f2-a261-476d-b729-b20b4fa3c918",
             "actions": [
                 {
