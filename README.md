@@ -98,3 +98,88 @@ To get a local copy up and running follow these simple steps.
 1. Clone the repo
    ```sh
    git clone https://github.com/maxsg5/ClawAndFeather.git
+
+## How to Contribute
+1. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+2. Make your Changes
+3. **TEST YOUR CHANGES** (run the game and make sure everything works)
+4. Add your changes (`git add .`)
+5. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+6. Push to the Branch (`git push origin feature/AmazingFeature`)
+7. Open a Pull Request
+8. Request a review from the project maintainers
+9.  Make sure your code is up to the project's [coding standards](#coding-standards).
+
+## Coding Standards
+- Use  `camelCase` for public and local variables.
+- Use `_camelCase` for private variables.
+- Use `PascalCase` for class, property, and method names.
+- Use `ALL_CAPS` for constants.
+- Only one `return` statement per method.
+### Example class
+<!-- make this a drop down expandable element -->
+<details>
+<summary>Click to expand!</summary>
+
+```csharp
+public class Player
+{
+    // Constants (using ALL_CAPS_WITH_UNDERSCORES)
+    private const int MAX_HEALTH_INCREMENT = 100;
+
+    // Private fields (using underscores and CamelCase)
+    private int _currentHealth;
+    private int _maxHealth;
+
+    // Public property (using PascalCase for methods and properties)
+    public string Name { get; set; }
+
+    // Constructor (using PascalCase)
+    public Player(string name, int initialHealth)
+    {
+        Name = name;
+        _maxHealth = initialHealth;
+        _currentHealth = initialHealth;
+    }
+
+    // Method to display player info (using PascalCase)
+    public void DisplayHealth()
+    {
+        Console.WriteLine($"{Name} has {_currentHealth} out of {_maxHealth} health points remaining.");
+    }
+
+    // Method to apply damage (using PascalCase)
+    public void ApplyDamage(int damageAmount)
+    {
+        if (damageAmount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(damageAmount), "Damage amount cannot be negative.");
+        }
+
+        _currentHealth -= damageAmount;
+        _currentHealth = Math.Max(_currentHealth, 0);
+        Console.WriteLine($"{Name} took {damageAmount} points of damage.");
+    }
+
+    // Method to heal the player (using PascalCase)
+    public void Heal(int healAmount)
+    {
+        if (healAmount < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(healAmount), "Heal amount cannot be negative.");
+        }
+
+        _currentHealth += healAmount;
+        _currentHealth = Math.Min(_currentHealth, _maxHealth);
+        Console.WriteLine($"{Name} has been healed by {healAmount} points.");
+    }
+
+    // Method to increase max health (using PascalCase)
+    public void IncreaseMaxHealth()
+    {
+        _maxHealth += MAX_HEALTH_INCREMENT;
+        Console.WriteLine($"{Name}'s maximum health has been increased to {_maxHealth}.");
+    }
+}
+```
+</details>
