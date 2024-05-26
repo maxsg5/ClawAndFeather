@@ -5,11 +5,11 @@ public struct Note
     public bool IsRest { get; private set; }
     public bool WasPlayed { get; private set; }
 
-    public Note(float beatDelay, float beatTime, bool isRest, bool wasPlayed)
+    public Note(float beatDelay, float beatTime, bool isRest)
     {
         BeatDelay = beatDelay;
         BeatTime = beatTime;
         IsRest = isRest;
-        WasPlayed = wasPlayed;
+        WasPlayed = false;
     }
 }
