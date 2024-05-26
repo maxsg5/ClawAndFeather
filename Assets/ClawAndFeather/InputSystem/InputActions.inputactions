@@ -1,0 +1,90 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Buttons",
+            "id": "4ba5d4f2-a261-476d-b729-b20b4fa3c918",
+            "actions": [
+                {
+                    "name": "Button",
+                    "type": "Button",
+                    "id": "2f8d24b4-7d1b-423c-b341-526a6adb84b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "18a624a6-cc74-42a8-a015-30800701e613",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Tap,Hold",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "374bd000-ad71-468f-b995-d69ca43f5dca",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap,Hold",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d28ca386-7d9b-4200-875f-76845b9c3931",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "Tap,Hold",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Controller",
+            "bindingGroup": "Controller",
+            "devices": [
+                {
+                    "devicePath": "<Joystick>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Mobile",
+            "bindingGroup": "Mobile",
+            "devices": [
+                {
+                    "devicePath": "<Touchscreen>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
