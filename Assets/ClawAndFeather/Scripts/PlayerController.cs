@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     #region Movement
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        _body.AddForce(_direction * Vector2.right * Speed);
+        _body.AddForce(_direction * Speed * Vector2.right);
 
         if (_body.velocity.magnitude > Speed) 
         { _body.velocity = Vector2.ClampMagnitude(_body.velocity, Speed); }
