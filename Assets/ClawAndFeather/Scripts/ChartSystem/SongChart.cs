@@ -19,8 +19,6 @@ public class SongChart
 
     public bool CheckTolerance(float inputTime, out float accuracy)
     {
-        accuracy = 0f;
-
         Note previousNote = Notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
         Note nextNote = Notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
 
@@ -37,7 +35,9 @@ public class SongChart
 
         float timeDiff = inputTime - checkNote.BeatTime;
 
-        accuracy = 2 * ((timeDiff - ToleranceEarly) / (ToleranceLate - ToleranceEarly));
+        accuracy = timeDiff < 0
+            ? timeDiff / ToleranceEarly
+            : timeDiff / ToleranceLate;
 
         bool hitNote = ToleranceEarly <= timeDiff & timeDiff <= ToleranceLate;
 
