@@ -5,6 +5,7 @@ public class AudioManager : MonoBehaviour
 {
     private SongParser _parser;
     private List<SongChart> _songCharts = new List<SongChart>();
+    private int _currentChartID = 0;
     void Awake()
     {
         _parser = GetComponent<SongParser>();
@@ -14,8 +15,5 @@ public class AudioManager : MonoBehaviour
             { _songCharts.Add(chart); }  
         }
     }
-    void Update()
-    {
-        
-    }
+    public SongChart GetCurrentChart() => _songCharts[_currentChartID];
 }

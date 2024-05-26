@@ -33,16 +33,3 @@ public class TimeKeeper : MonoBehaviour
         }
     }
 }
-
-public static class TemporaryExtensions // This class only exists to fix the compile errors.
-{
-    public static SongChart GetCurrentChart(this AudioManager manager)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public static void SetScore(this GameState gameState, float score)
-    {
-        throw new System.NotImplementedException();
-    }
-}
