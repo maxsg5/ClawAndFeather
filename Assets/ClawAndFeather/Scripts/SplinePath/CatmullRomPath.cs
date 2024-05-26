@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-[AddComponentMenu("Path/Catmull-Rom")]
+[AddComponentMenu("Spline Path/Catmull-Rom")]
 public class CatmullRomPath : Path
 {
     public override bool PathIsValid

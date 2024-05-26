@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("Path/Linear")]
+[AddComponentMenu("Spline Path/Linear")]
 public class LinearPath : Path
 {
     public override void GetPoint(float t, out Vector3 position, out Quaternion? rotation)
