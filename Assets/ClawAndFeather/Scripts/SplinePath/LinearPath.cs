@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [AddComponentMenu("Spline Path/Linear Path")]
-[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
+[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path#path-script")]
 public class LinearPath : Path
 {
     public override void GetPoint(float t, out Vector3 position, out Quaternion? rotation)

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [AddComponentMenu("Spline Path/Follow Path")]
-[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
+[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path#followpath-script")]
 public class FollowPath : MonoBehaviour
 {
     public enum EndAction
