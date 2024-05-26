@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     #region Movement
     private Rigidbody2D _body;
 
-    private float _direction = 1; // 1 is right, -1 is left
+    public int Direction { get; private set; } = 1; // 1 is right, -1 is left
     [field:SerializeField] public float Speed { get; set; } = 5f;
     
     #endregion
@@ -19,10 +19,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        _body.AddForce(_direction * Speed * Vector2.right);
-
-        if (_body.velocity.magnitude > Speed) 
-        { _body.velocity = Vector2.ClampMagnitude(_body.velocity, Speed); }
+        _body.AddForce(Direction * Speed * Vector2.right);
     }
     public void ButtonControl(InputAction.CallbackContext context)
     {
@@ -31,7 +28,7 @@ public class PlayerController : MonoBehaviour
             switch (context.interaction)
             {
                 case TapInteraction: // Reverse Direction
-                    _direction *= -1;
+                    Direction *= -1;
                     break;
                 case HoldInteraction: // Pause
                     break;
