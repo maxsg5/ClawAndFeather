@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("Spline Path/Linear")]
+[AddComponentMenu("Spline Path/Linear Path")]
+[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
 public class LinearPath : Path
 {
     public override void GetPoint(float t, out Vector3 position, out Quaternion? rotation)
@@ -46,7 +47,7 @@ public class LinearPath : Path
             for (int i = 1; i < n; i++)
             {
                 Gizmos.DrawLine(points[i - 1].position, points[i % points.Count].position);
-            } 
+            }
         }
     }
 }
