@@ -5,23 +5,25 @@ using UnityEngine.InputSystem.Interactions;
 public class PlayerController : MonoBehaviour
 {
     #region Movement
-    private float _verticalDir = 0;
-    [SerializeField] private float _angleMult = 10;
+    private Rigidbody2D _body;
+
+
+
     private float _direction = 1; // 1 is right, -1 is left
-    public float Speed { get; set; } = 5f;
-    public Vector2 Velocity { get; set; }
+    [field:SerializeField] public float Speed { get; set; } = 5f;
     
     #endregion
 
     void Start()
     {
-        
+        _body = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        _verticalDir = (Time.deltaTime * _angleMult + _verticalDir) % 360;
-        Velocity = new Vector2(_direction, Mathf.Sin(_verticalDir)) * Speed;
-        transform.Translate(Velocity * Time.deltaTime);
+        _body.AddForce(_direction * Vector2.right * Speed);
+
+        if (_body.velocity.magnitude > Speed) 
+        { _body.velocity = Vector2.ClampMagnitude(_body.velocity, Speed); }
     }
     public void ButtonControl(InputAction.CallbackContext context)
     {
