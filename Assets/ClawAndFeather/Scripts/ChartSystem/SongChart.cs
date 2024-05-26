@@ -17,27 +17,29 @@ public class SongChart
         Notes = notes;
     }
 
-    public static bool CheckTolerance(SongChart chart, float inputTime, out float accuracy)
+    public bool CheckTolerance(float inputTime, out float accuracy)
     {
         accuracy = 0f;
-        Note[] notes = chart.Notes;
 
-        Note previousNote = notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
-        Note nextNote = notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
+        Note previousNote = Notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
+        Note nextNote = Notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
 
         float nextTimeDiff = Math.Abs(inputTime - nextNote.BeatTime);
         float prevTimeDiff = Math.Abs(inputTime - previousNote.BeatTime);
 
-        Note checkNote = nextNote.WasPlayed 
-            ? previousNote 
-            : (previousNote.WasPlayed 
+        Note checkNote = nextNote.WasPlayed
+            ? previousNote
+            : (previousNote.WasPlayed
                 ? nextNote
                 : (nextTimeDiff < prevTimeDiff
                     ? nextNote
                     : previousNote));
-        
+
         float timeDiff = inputTime - checkNote.BeatTime;
-        bool hitNote = chart.ToleranceEarly <= timeDiff & timeDiff <= chart.ToleranceLate;
+
+        accuracy = 2 * ((timeDiff - ToleranceEarly) / (ToleranceLate - ToleranceEarly));
+
+        bool hitNote = ToleranceEarly <= timeDiff & timeDiff <= ToleranceLate;
 
         return hitNote;
     }
