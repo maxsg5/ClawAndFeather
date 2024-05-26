@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 public class SongChart
 {
@@ -19,14 +20,24 @@ public class SongChart
     public static bool CheckTolerance(SongChart chart, float inputTime, out float accuracy)
     {
         accuracy = 0f;
-        bool hitNote = false;
+        Note[] notes = chart.Notes;
 
-        Note previousNote = chart.Notes.Where(n => n.IsRest == false && n.BeatTime <= inputTime).FirstOrDefault();
+        Note previousNote = notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
+        Note nextNote = notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
 
+        float nextTimeDiff = inputTime - nextNote.BeatTime;
+        float prevTimeDiff = inputTime - previousNote.BeatTime;
 
-        Note nextNote = chart.Notes.Where(n => n.IsRest == false && n.BeatTime >= inputTime).FirstOrDefault();
-
-
+        Note checkNote = nextNote.WasPlayed 
+            ? previousNote 
+            : (previousNote.WasPlayed 
+                ? nextNote
+                : (nextTimeDiff < prevTimeDiff
+                    ? nextNote
+                    : previousNote));
+        
+        float timeDiff = inputTime - checkNote.BeatTime;
+        bool hitNote = chart.ToleranceEarly <= timeDiff & timeDiff <= chart.ToleranceLate;
 
         return hitNote;
     }
