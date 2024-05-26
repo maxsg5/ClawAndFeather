@@ -1,4 +1,6 @@
-﻿public class SongChart
+﻿using System.Linq;
+
+public class SongChart
 {
     public float BPM { get; private set; }
     public float ToleranceEarly { get; private set; }
@@ -14,10 +16,18 @@
         Notes = notes;
     }
 
-    public bool CheckTolerance(float inputTime, out float accuracy)
+    public static bool CheckTolerance(SongChart chart, float inputTime, out float accuracy)
     {
         accuracy = 0f;
+        bool hitNote = false;
+
+        Note previousNote = chart.Notes.Where(n => n.IsRest == false && n.BeatTime <= inputTime).FirstOrDefault();
 
 
+        Note nextNote = chart.Notes.Where(n => n.IsRest == false && n.BeatTime >= inputTime).FirstOrDefault();
+
+
+
+        return hitNote;
     }
 }
