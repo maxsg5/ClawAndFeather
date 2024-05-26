@@ -25,8 +25,8 @@ public class SongChart
         Note previousNote = notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
         Note nextNote = notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
 
-        float nextTimeDiff = inputTime - nextNote.BeatTime;
-        float prevTimeDiff = inputTime - previousNote.BeatTime;
+        float nextTimeDiff = Math.Abs(inputTime - nextNote.BeatTime);
+        float prevTimeDiff = Math.Abs(inputTime - previousNote.BeatTime);
 
         Note checkNote = nextNote.WasPlayed 
             ? previousNote 
