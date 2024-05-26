@@ -2,13 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SongChartParser : MonoBehaviour
+public class SongParser : MonoBehaviour
 {
     public TextAsset[] filesToParse;
-    void Start()
-    {
-        
-    }
 
     public static bool ReadCSVFile(TextAsset file, out SongChart chart)
     {
