@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
+    public int Score { get; private set; }
+    public int Lives { get; private set; }
 }
