@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     #region Movement
     private Rigidbody2D _body;
 
-
-
     private float _direction = 1; // 1 is right, -1 is left
     [field:SerializeField] public float Speed { get; set; } = 5f;
     
