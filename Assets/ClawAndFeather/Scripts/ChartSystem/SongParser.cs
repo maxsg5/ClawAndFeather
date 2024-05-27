@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class SongParser : MonoBehaviour
@@ -19,19 +18,16 @@ public class SongParser : MonoBehaviour
         }
 
         #region Checking the Non Repeating Data
-        float bpm = 0;
-        float earlyTolerance = 0;
-        float lateTolerance = 0;
-        if ( !float.TryParse(nonRepeatingData[0], out bpm)
-          || !float.TryParse(nonRepeatingData[1], out earlyTolerance)
-          || !float.TryParse(nonRepeatingData[2], out lateTolerance))
+        if (!float.TryParse(nonRepeatingData[0], out float bpm)
+          || !float.TryParse(nonRepeatingData[1], out float earlyTolerance)
+          || !float.TryParse(nonRepeatingData[2], out float lateTolerance))
         {
             Debug.LogError("Error with BPM, ToleranceEarly, or ToleranceLate.");
             return false;
         }
         #endregion
-        
-        List<Note> notes = new List<Note>();
+
+        List<Note> notes = new();
         float totalBeatTime = 0;
 
         for (int i = 1; i < dataLines.Length; i++)
