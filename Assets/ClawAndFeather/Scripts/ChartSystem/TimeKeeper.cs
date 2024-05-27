@@ -9,7 +9,7 @@ public class TimeKeeper : MonoBehaviour
 {
     [field:SerializeField] public float TimeUnpaused { get; private set; }
 
-    public List<float> AccuracyOfHitNotes { get; private set; }
+    public List<float> AccuracyOfHitNotes { get; private set; } = new List<float>();
 
     private void Update()
     {

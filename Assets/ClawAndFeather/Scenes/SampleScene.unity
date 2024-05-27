@@ -322,16 +322,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7479055918673315021, guid: 951c4d1c3ef5f8c47a92d437200e461a,
-        type: 3}
-      propertyPath: <Speed>k__BackingField
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7965103292929198490, guid: 951c4d1c3ef5f8c47a92d437200e461a,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
