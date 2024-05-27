@@ -16,7 +16,7 @@ public class TimeKeeper : MonoBehaviour
         TimeUnpaused += Time.deltaTime;
     }
 
-    public void ButtonControl(InputAction.CallbackContext context)
+    public void AccuracyCheck(InputAction.CallbackContext context)
     {
         if (context.performed)
         {

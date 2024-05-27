@@ -6,7 +6,10 @@ public class GameState : MonoBehaviour
     public PlayerController Player { get; private set; }
     void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        { Player = player.GetComponent<PlayerController>(); }
+        
     }
 
     /// <summary>
