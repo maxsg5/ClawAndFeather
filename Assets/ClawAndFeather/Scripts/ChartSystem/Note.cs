@@ -11,7 +11,7 @@ public struct Note
         {
             throw new System.ArgumentOutOfRangeException(nameof(beatDelay));
         }
-        if (beatTime <= 0)
+        if (beatTime < 0)
         {
             throw new System.ArgumentOutOfRangeException(nameof(beatTime));
         }

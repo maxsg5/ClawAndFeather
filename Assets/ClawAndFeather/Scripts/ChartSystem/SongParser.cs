@@ -72,7 +72,7 @@ public class SongParser : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.LogError(e.Message);
+                Debug.LogException(e);
                 return false;
             }
         }
