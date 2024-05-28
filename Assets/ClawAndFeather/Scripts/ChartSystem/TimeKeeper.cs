@@ -9,7 +9,7 @@ public class TimeKeeper : MonoBehaviour
 {
     public float TimeUnpaused => Singleton.Global.State.TimeUnpaused;
 
-    public List<float> AccuracyOfHitNotes { get; private set; }
+    public List<float> AccuracyOfHitNotes { get; private set; } = new List<float>();
 
     public void ButtonControl(InputAction.CallbackContext context)
     {
