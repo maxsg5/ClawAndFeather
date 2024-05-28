@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class BeatVisualizer : MonoBehaviour
 {
-    public TimeKeeper timeKeeper;
-    [Space]
     public Color noteColour = Color.green;
     public Color onColour = Color.white;
     public Color offColour = Color.black;
     public float flashTime = 1.0f;
 
+    private TimeKeeper _timeKeeper;
     private bool _flash = true;
     private float _beatDelay;
     private Renderer _rend;
 
     private void Start()
     {
-        _beatDelay = 60 / Singleton.Global.Audio.GetCurrentChart().BPM;
+        _beatDelay = 60 / Singleton.Global.Audio.CurrentChart.BPM;
         _rend = GetComponent<Renderer>();
+        _timeKeeper = Singleton.Global.State.Player.GetComponent<TimeKeeper>();
     }
 
     private void Update()
@@ -27,7 +27,7 @@ public class BeatVisualizer : MonoBehaviour
             StartCoroutine(Flash(
                 delay: _beatDelay,
                 flashTime: flashTime,
-                noteDetected: Singleton.Global.Audio.GetCurrentChart().CheckTolerance(timeKeeper.TimeUnpaused, out _)));
+                noteDetected: Singleton.Global.Audio.CurrentChart.CheckTolerance(_timeKeeper.TimeUnpaused, out _)));
         }
     }
 

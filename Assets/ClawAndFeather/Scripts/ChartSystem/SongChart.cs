@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using UnityEngine;
 
 public class SongChart
 {
@@ -12,6 +11,19 @@ public class SongChart
 
     public SongChart(float bpm, float toleranceEarly, float toleranceLate, Note[] notes)
     {
+        if (toleranceEarly >= 0)
+        {
+            throw new ArgumentException(nameof(toleranceEarly));
+        }
+        if (toleranceLate <= 0)
+        {
+            throw new ArgumentException(nameof(toleranceLate));
+        }
+        if (bpm <= 0)
+        {
+            throw new ArgumentException(nameof(bpm));
+        }
+
         BPM = bpm;
         ToleranceEarly = toleranceEarly;
         ToleranceLate = toleranceLate;

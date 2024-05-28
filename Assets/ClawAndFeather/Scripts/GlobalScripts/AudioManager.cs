@@ -20,5 +20,5 @@ public class AudioManager : MonoBehaviour
     /// Gets the current chart being used.
     /// </summary>
     /// <returns></returns>
-    public SongChart GetCurrentChart() => _songCharts[_currentChartID];
+    public SongChart CurrentChart => _songCharts[_currentChartID];
 }

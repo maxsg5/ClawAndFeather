@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class NoteVisualizer : MonoBehaviour
 {
-    public TimeKeeper timeKeeper;
-    [Space]
     public Color NoNote = Color.white;
     public Color Early = Color.yellow;
     public Color Note = Color.green;
     public Color Late = Color.red;
 
     private Renderer rend;
+    private TimeKeeper _timeKeeper;
     // Start is called before the first frame update
     void Start()
     {
+        _timeKeeper = Singleton.Global.State.Player.GetComponent<TimeKeeper>();
         rend = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool noteHit = Singleton.Global.Audio.GetCurrentChart().CheckTolerance(timeKeeper.TimeUnpaused, out _, out var timeDiff);
+        bool noteHit = Singleton.Global.Audio.CurrentChart.CheckTolerance(_timeKeeper.TimeUnpaused, out _, out var timeDiff);
 
         if (!noteHit)
         {

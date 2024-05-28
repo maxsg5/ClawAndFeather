@@ -7,6 +7,15 @@ public struct Note
 
     public Note(float beatDelay, float beatTime, bool isRest)
     {
+        if (beatDelay <= 0)
+        {
+            throw new System.ArgumentOutOfRangeException(nameof(beatDelay));
+        }
+        if (beatTime <= 0)
+        {
+            throw new System.ArgumentOutOfRangeException(nameof(beatTime));
+        }
+
         BeatDelay = beatDelay;
         BeatTime = beatTime;
         IsRest = isRest;
