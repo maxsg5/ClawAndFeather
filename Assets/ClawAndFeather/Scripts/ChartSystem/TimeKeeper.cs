@@ -18,7 +18,7 @@ public class TimeKeeper : MonoBehaviour
             switch (context.interaction)
             {
                 case TapInteraction: // Reverse Direction
-                    if (Singleton.Global.Audio.CurrentChart.CheckTolerance(TimeUnpaused, out var hitNote, out var accuracy))
+                    if (Singleton.Global.Audio.CurrentChart.TryPlayNote(TimeUnpaused, out var hitNote, out var accuracy))
                     {
                         hitNote?.Play();
                     }

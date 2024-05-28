@@ -30,42 +30,37 @@ public class SongChart
         Notes = notes;
     }
 
-    public bool CheckTolerance(float inputTime, out Note hitNote, out float accuracy) => CheckTolerance(inputTime, out hitNote, out accuracy, out _);
-    public bool CheckTolerance(float inputTime, out Note hitNote, out float accuracy, out float timeDiff)
+    // check whether the input time is close enough to the noteTime
+    public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy) => TryPlayNote(inputTime, out playedNote, out accuracy, out _);
+    public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy, out float timeDiff)
     {
-        Note checkNote = GetNearestNote(inputTime);
+        // Find nearest 2 notes
+        Note nextNote = Notes.Where(n => !n.IsRest & (inputTime - n.NoteTime) >= 0).FirstOrDefault();
+        Note prevNote = Notes.Where(n => !n.IsRest & (inputTime - n.NoteTime) <= 0).FirstOrDefault();
 
-        timeDiff = inputTime - checkNote.BeatTime;
+        float nextNoteDiff = inputTime - nextNote.NoteTime;
+        float prevNoteDiff = inputTime - prevNote.NoteTime;
 
-        accuracy = timeDiff < 0
-            ? ToleranceEarly / timeDiff
-            : ToleranceLate / timeDiff;
+        // Pick the one closest to inputTime
+        float checkDiff;
+        if (Math.Abs(nextNoteDiff) >= Math.Abs(prevNoteDiff))
+        {
+            playedNote = prevNote;
+            checkDiff = prevNoteDiff;
 
-        bool noteHit = ToleranceEarly <= timeDiff & timeDiff <= ToleranceLate;
+            accuracy = checkDiff / ToleranceLate;
+        }
+        else
+        {
+            playedNote = nextNote;
+            checkDiff = nextNoteDiff;
 
-        hitNote = noteHit ? checkNote : null;
+            accuracy = checkDiff / ToleranceEarly;
+        }
 
-        return noteHit;
+        timeDiff = checkDiff;
+        // return whether or not the time is tolerated
+        return ToleranceEarly < checkDiff & checkDiff < ToleranceLate;
     }
 
-    private Tuple<Note, Note> GetNearestNotePair(float inputTime)
-    {
-        Note previousNote = Notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
-        Note nextNote = Notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
-
-        return Tuple.Create(previousNote, nextNote);
-    }
-
-    public Note GetNearestNote(float time)
-    {
-        Tuple<Note, Note> checkNotes = GetNearestNotePair(time);
-
-        var prevNote = checkNotes.Item1;
-        var nextNote = checkNotes.Item2;
-
-        float nextTimeDiff = Math.Abs(time - nextNote.BeatTime);
-        float prevTimeDiff = Math.Abs(time - prevNote.BeatTime);
-
-        return (prevTimeDiff >= nextTimeDiff) ? prevNote : nextNote;
-    }
 }
