@@ -9,7 +9,6 @@ public class GameState : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         { Player = player.GetComponent<PlayerController>(); }
-        
     }
 
     /// <summary>
