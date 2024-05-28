@@ -7,7 +7,7 @@ public class SongParser : MonoBehaviour
     public TextAsset[] filesToParse;
 
     /// <summary>
-    /// When giving a <paramref name="file"/> make sure it is a csv split by \n into rows and follows this pattern:
+    /// When giving a <paramref name="file"/> make sure it is a csv split into rows and follows this pattern:
     /// <br />BPM,EarlyTolerance,LateTolerance
     /// <br />NumberOfBeats,Time/Signature
     /// <br />NumberOfBeats,Time/Signature
@@ -18,7 +18,7 @@ public class SongParser : MonoBehaviour
     /// <returns>True or False based on if it was able to read the file or not.</returns>
     public static bool ReadCSVFile(TextAsset file, out SongChart chart)
     {
-        chart = null;
+        chart = null; // what it returns if it returns false
         string[] dataLines = file.text.Split('\n'); // split by each new line
         string[] nonRepeatingData = dataLines[0].Split(',');
         if (nonRepeatingData.Length != 3)
