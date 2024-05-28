@@ -44,7 +44,6 @@ public class MenuController : MonoBehaviour
     private IEnumerator Flash(Image image, int duration)
     {
         float timePassed = 0;
-        Color originalColor = image.color;
         while (timePassed < duration * 0.5f)
         {
             timePassed += Time.deltaTime;
