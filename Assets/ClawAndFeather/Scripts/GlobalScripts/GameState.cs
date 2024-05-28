@@ -2,16 +2,18 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
-    public float Score { get; private set; }
+    public float Score { get; set; }
+    public GameObject PlayerObject { get; private set; }
     public PlayerController Player { get; private set; }
+    public bool Paused { get; private set; }
     void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        PlayerObject = GameObject.FindGameObjectWithTag("Player");
+        Player = PlayerObject.GetComponent<PlayerController>();
     }
 
     /// <summary>
-    /// Used to Set the Score of the <see cref="GameState.Score"/>
+    /// Used to Flip the <see cref="GameState.Paused"/> state
     /// </summary>
-    /// <param name="score"></param>
-    public void SetScore(float score) => Score = score;
+    public void Pause() => Paused = !Paused;
 }

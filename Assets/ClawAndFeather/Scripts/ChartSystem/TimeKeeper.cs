@@ -25,7 +25,7 @@ public class TimeKeeper : MonoBehaviour
                 case TapInteraction: // Reverse Direction
                     Singleton.Global.Audio.GetCurrentChart().CheckTolerance(TimeUnpaused, out var accuracy);
                     AccuracyOfHitNotes.Add(accuracy);
-                    Singleton.Global.State.SetScore(AccuracyOfHitNotes.Average());
+                    Singleton.Global.State.Score = AccuracyOfHitNotes.Average();
                     break;
                 case HoldInteraction: // Pause
                     break;
