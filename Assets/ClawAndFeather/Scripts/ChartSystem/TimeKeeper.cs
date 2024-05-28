@@ -7,14 +7,9 @@ using System.Linq;
 
 public class TimeKeeper : MonoBehaviour
 {
-    [field:SerializeField] public float TimeUnpaused { get; private set; }
+    public float TimeUnpaused => Singleton.Global.State.TimeUnpaused;
 
     public List<float> AccuracyOfHitNotes { get; private set; }
-
-    private void Update()
-    {
-        TimeUnpaused += Time.deltaTime;
-    }
 
     public void ButtonControl(InputAction.CallbackContext context)
     {

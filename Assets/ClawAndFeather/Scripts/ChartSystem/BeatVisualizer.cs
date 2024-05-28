@@ -3,34 +3,41 @@ using UnityEngine;
 
 public class BeatVisualizer : MonoBehaviour
 {
+    public TimeKeeper timeKeeper;
+    [Space]
     public Color noteColour = Color.green;
     public Color onColour = Color.white;
     public Color offColour = Color.black;
     public float flashTime = 1.0f;
 
-    private bool _isOn = false;
-    private float _bpm;
+    private bool _flash = true;
+    private float _beatDelay;
     private Renderer _rend;
 
     private void Start()
     {
-        _bpm = Singleton.Global.Audio.GetCurrentChart().BPM;
+        _beatDelay = Singleton.Global.Audio.GetCurrentChart().BPM / 60;
         _rend = GetComponent<Renderer>();
     }
 
     private void Update()
     {
-        if (!_isOn)
+        if (_flash)
         {
-            _isOn = true;
-            StartCoroutine(Flash(flashTime, Singleton.Global.Audio.GetCurrentChart().CheckTolerance());
+            StartCoroutine(Flash(
+                delay: _beatDelay,
+                flashTime: flashTime,
+                noteDetected: Singleton.Global.Audio.GetCurrentChart().CheckTolerance(timeKeeper.TimeUnpaused, out _)));
         }
     }
 
-    private IEnumerator Flash(float flashTime, bool noteDetected)
+    private IEnumerator Flash(float delay, float flashTime, bool noteDetected)
     {
+        _flash = false;
         _rend.material.color = noteDetected ? noteColour : onColour;
         yield return new WaitForSeconds(flashTime);
-
+        _rend.material.color = offColour;
+        yield return new WaitForSeconds(delay - flashTime);
+        _flash = true;
     }
 }
