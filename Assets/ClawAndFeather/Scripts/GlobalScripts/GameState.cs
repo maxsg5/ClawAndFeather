@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour
 {
@@ -16,4 +17,6 @@ public class GameState : MonoBehaviour
     /// </summary>
     /// <param name="score"></param>
     public void SetScore(float score) => Score = score;
+    public static void ChangeScene(int ID) => SceneManager.LoadScene(ID);
+    public static void ExitGame() => Application.Quit();
 }

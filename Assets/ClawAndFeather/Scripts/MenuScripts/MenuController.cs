@@ -30,9 +30,9 @@ public class MenuController : MonoBehaviour
         }
         _selectedButton = 0;
         _fadeCoroutine = StartCoroutine(Fade(_buttonImages[_selectedButton], 1, 0.2f));
-        //_buttons[0].onClick.AddListener(() => ChangeScene(1)); //play button
+        _buttons[0].onClick.AddListener(() => GameState.ChangeScene(1)); //play button
+        _buttons[_buttonObjects.Length - 1].onClick.AddListener(GameState.ExitGame); // exit game
     }
-    private void ChangeScene(int ID) => SceneManager.LoadScene(ID);
     public void MenuControls(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -50,9 +50,7 @@ public class MenuController : MonoBehaviour
                     _buttonImages[_selectedButton].color = Color.white;
 
                     _selectedButton = (_selectedButton + 1) % _buttonObjects.Length;
-
                     _fadeCoroutine = StartCoroutine(Fade(_buttonImages[_selectedButton], 1, 0.2f));
-                    //_eventSystem.SetSelectedGameObject(_buttonObjects[_selectedButton]);
 
                     break;
                 case HoldInteraction: // click button
