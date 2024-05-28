@@ -12,4 +12,6 @@ public struct Note
         IsRest = isRest;
         WasPlayed = false;
     }
+
+    public void Play() => WasPlayed = true;
 }
