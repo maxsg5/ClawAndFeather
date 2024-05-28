@@ -30,20 +30,22 @@ public class SongChart
         Notes = notes;
     }
 
-    public bool CheckTolerance(float inputTime, out float accuracy) => CheckTolerance(inputTime, out accuracy, out _);
-    public bool CheckTolerance(float inputTime, out float accuracy, out float timeDiff)
+    public bool CheckTolerance(float inputTime, out Note? hitNote, out float accuracy) => CheckTolerance(inputTime, out hitNote, out accuracy, out _);
+    public bool CheckTolerance(float inputTime, out Note? hitNote, out float accuracy, out float timeDiff)
     {
         Note checkNote = GetNearestNote(inputTime);
 
         timeDiff = inputTime - checkNote.BeatTime;
 
         accuracy = timeDiff < 0
-            ? timeDiff / ToleranceEarly
-            : timeDiff / ToleranceLate;
+            ? ToleranceEarly / timeDiff
+            : ToleranceLate / timeDiff;
 
-        bool hitNote = ToleranceEarly <= timeDiff & timeDiff <= ToleranceLate;
+        bool noteHit = ToleranceEarly <= timeDiff & timeDiff <= ToleranceLate;
 
-        return hitNote;
+        hitNote = noteHit ? checkNote : null;
+
+        return noteHit;
     }
 
     private Tuple<Note, Note> GetNearestNotePair(float inputTime)
