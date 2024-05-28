@@ -27,7 +27,7 @@ public class BeatVisualizer : MonoBehaviour
             StartCoroutine(Flash(
                 delay: _beatDelay,
                 flashTime: flashTime,
-                noteDetected: Singleton.Global.Audio.CurrentChart.CheckTolerance(_timeKeeper.TimeUnpaused, out _)));
+                noteDetected: Singleton.Global.Audio.CurrentChart.CheckTolerance(_timeKeeper.TimeUnpaused, out _, out _)));
         }
     }
 

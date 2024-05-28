@@ -19,7 +19,15 @@ public class NoteVisualizer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool noteHit = Singleton.Global.Audio.CurrentChart.CheckTolerance(_timeKeeper.TimeUnpaused, out _, out var timeDiff);
+        bool noteHit = Singleton.Global.Audio.CurrentChart.CheckTolerance(_timeKeeper.TimeUnpaused, out var note, out _, out var timeDiff);
+
+        Debug.Log($"{nameof(_timeKeeper.TimeUnpaused)} = {_timeKeeper.TimeUnpaused};" +
+            $" {nameof(timeDiff)} = {timeDiff}");
+
+        if (note is not null)
+        {
+            Debug.LogWarning(note.BeatTime);
+        }
 
         if (!noteHit)
         {

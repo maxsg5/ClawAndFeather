@@ -1,4 +1,4 @@
-public struct Note
+public class Note
 {
     public float BeatDelay { get; private set; }
     public float BeatTime { get; private set; }

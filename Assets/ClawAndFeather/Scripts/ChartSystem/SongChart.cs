@@ -30,8 +30,8 @@ public class SongChart
         Notes = notes;
     }
 
-    public bool CheckTolerance(float inputTime, out Note? hitNote, out float accuracy) => CheckTolerance(inputTime, out hitNote, out accuracy, out _);
-    public bool CheckTolerance(float inputTime, out Note? hitNote, out float accuracy, out float timeDiff)
+    public bool CheckTolerance(float inputTime, out Note hitNote, out float accuracy) => CheckTolerance(inputTime, out hitNote, out accuracy, out _);
+    public bool CheckTolerance(float inputTime, out Note hitNote, out float accuracy, out float timeDiff)
     {
         Note checkNote = GetNearestNote(inputTime);
 
