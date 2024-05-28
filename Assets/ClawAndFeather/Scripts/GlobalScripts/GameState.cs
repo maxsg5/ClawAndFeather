@@ -5,11 +5,17 @@ public class GameState : MonoBehaviour
     public float Score { get; set; }
     public GameObject PlayerObject { get; private set; }
     public PlayerController Player { get; private set; }
+    public float TimeUnpaused { get; private set; }
     public bool Paused { get; private set; }
     void Awake()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
         Player = PlayerObject.GetComponent<PlayerController>();
+    }
+
+    private void Update()
+    {
+        TimeUnpaused += Time.deltaTime;
     }
 
     /// <summary>
