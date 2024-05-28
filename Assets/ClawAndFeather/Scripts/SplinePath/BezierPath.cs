@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
 [AddComponentMenu("Spline Path/Bezier Path")]
-[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path#path-script")]
+[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
 public class BezierPath : Path
 {
-    public override void GetPoint(float t, out Vector3 position, out Quaternion? rotation)
+    public override void GetPointAlongPath(float t, out Vector3 position, out Quaternion rotation)
     {
+        rotation = GetLinearRotation(t, out _, out _, out _);
         t = Mathf.Clamp01(t);
 
         Vector3 b = new();
@@ -16,7 +17,7 @@ public class BezierPath : Path
             b += Combination(n, i) * Mathf.Pow(1 - t, n - i) * Mathf.Pow(t, i) * points[i % points.Count].position;
         }
         position = b;
-        rotation = null;
+
     }
 
     private void OnDrawGizmos()
@@ -27,9 +28,9 @@ public class BezierPath : Path
             float t = 0f;
             for (int i = 0; i < curveSegments; i++)
             {
-                GetPoint(t, out var from, out _);
+                GetPointAlongPath(t, out var from, out _);
                 t += 1 / (float)curveSegments;
-                GetPoint(t, out var to, out _);
+                GetPointAlongPath(t, out var to, out _);
                 Gizmos.DrawLine(from, to);
             }
         }

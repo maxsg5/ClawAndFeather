@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [AddComponentMenu("Spline Path/Catmull-Rom Path")]
-[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path#path-script")]
+[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
 public class CatmullRomPath : Path
 {
     public override bool PathIsValid
@@ -18,9 +18,9 @@ public class CatmullRomPath : Path
         }
     }
 
-    public override void GetPoint(float t, out Vector3 position, out Quaternion? rotation)
+    public override void GetPointAlongPath(float t, out Vector3 position, out Quaternion rotation)
     {
-        rotation = null;
+        rotation = GetLinearRotation(t, out _, out _, out _);
 
         float l = t * (points.Count - (closeLoop ? 0 : 3));
         int index = (closeLoop ? 0 : 1) + (int)l;
@@ -41,9 +41,9 @@ public class CatmullRomPath : Path
             float t2 = 0f;
             for (int i = 0; i < curveSegments; i++)
             {
-                GetPoint(t2, out var from, out _);
+                GetPointAlongPath(t2, out var from, out _);
                 t2 += 1 / (float)curveSegments;
-                GetPoint(t2, out var to, out _);
+                GetPointAlongPath(t2, out var to, out _);
                 Gizmos.DrawLine(from, to);
             }
         }

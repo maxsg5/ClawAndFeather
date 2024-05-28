@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[AddComponentMenu("Spline Path/Follow Path")]
-[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path#followpath-script")]
+[HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
+[AddComponentMenu("Spline Path/Follow Path (Transform)")]
 public class FollowPath : MonoBehaviour
 {
     public enum EndAction
@@ -9,6 +9,12 @@ public class FollowPath : MonoBehaviour
         Stop,       // Stop moving
         Reverse,    // Reverse direction
         Continue,   // return to start
+    }
+    public enum RotationMode
+    {
+        None,       // No rotation
+        Keyframe,   // The script will interpolate between the rotation of the points
+        Path,       // The script will look int the direction it is moving
     }
 
     #region Inspector Values
@@ -19,25 +25,33 @@ public class FollowPath : MonoBehaviour
     [Min(0)] public float moveTime = 1.0f;
     [Tooltip("The time offset in seconds.")]
     [Min(0)] public float timeOffset = 0.0f;
-    [Tooltip("What to do when the end of the path is reached.")]
-    public EndAction endAction;
+    [Space]
     [Tooltip("Reverses direction.")]
     public bool reverse = false;
+    [Tooltip("What to do when the end of the path is reached.")]
+    public EndAction endAction;
+    [Tooltip("Dictates how the script will rotate the body.")]
+    public RotationMode rotationMode = RotationMode.None;
     #endregion
 
     #region Private members
-    private Timer _moveTimer;
-    private int Reverse => reverse ? -1 : 1;
+    protected float _moveTimer;
+
+    protected float T => endAction switch
+    {
+        EndAction.Stop => Mathf.Clamp01((timeOffset + _moveTimer) / moveTime),
+        EndAction.Reverse => Mathf.PingPong((timeOffset + _moveTimer) / moveTime, 1),
+        _ => Mathf.Repeat((timeOffset + _moveTimer) / moveTime, 1),
+    };
+
+    protected Vector3 _previousPosition;
     #endregion
 
     #region Unity Messages
-    private void Start()
+    private void Awake()
     {
-        if (path.PathIsValid)
-        {
-            _moveTimer = new Timer(moveTime, timeOffset % moveTime);
-        }
-        else
+        _previousPosition = transform.position;
+        if (!path.PathIsValid)
         {
             enabled = false;
         }
@@ -45,7 +59,6 @@ public class FollowPath : MonoBehaviour
 
     private void Update()
     {
-        _moveTimer = new Timer(moveTime, _moveTimer.Time);
         if (!path.PathIsValid)
         {
             enabled = false;
@@ -59,57 +72,35 @@ public class FollowPath : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        path.GetPoint(timeOffset % moveTime, out var position, out _);
+
+        path.GetPointAlongPath(T, out var position, out _);
         Gizmos.DrawSphere(position, 0.2f);
     }
     #endregion
 
     private void MoveAlongPath()
     {
-        _moveTimer.Time += Reverse * Time.deltaTime;
+        _moveTimer += (reverse ? -1 : 1) * Time.deltaTime;
+        var t = T;
 
-        path.GetPoint(_moveTimer.Value, out var position, out var rotation);
-        transform.SetPositionAndRotation(position, rotation ?? transform.rotation);
-
-        if (_moveTimer.Alarm)
+        path.GetPointAlongPath(t, out var position, out var rotation);
+        Quaternion newRotation = rotationMode switch
         {
-            switch (endAction)
-            {
-                case EndAction.Stop:
-                    reverse = !reverse;
-                    enabled = false;
-                    break;
-                case EndAction.Reverse:
-                    reverse = !reverse;
-                    break;
-                default:
-                    break;
-            }
+            RotationMode.Keyframe => rotation,
+            RotationMode.Path => Quaternion.LookRotation(position - _previousPosition),
+            _ => transform.rotation,
+        };
+        transform.SetPositionAndRotation(position, newRotation);
 
-            _moveTimer.Time = reverse ? moveTime : 0;
+        if (endAction == EndAction.Stop && t == 1 || t == 0)
+        {
+            Reverse();
+            enabled = false;
         }
+
+        _previousPosition = position;
     }
 
     public void Toggle() => enabled = !enabled;
-}
-
-public struct Timer
-{
-    private float time;
-
-    public float Length { get; set; }
-    public float Time
-    {
-        readonly get => time;
-        set => time = value >= Length ? Length : value <= 0 ? 0 : value;
-    }
-
-    public Timer(float length) : this() => Length = length;
-
-    public Timer(float length, float time) : this(length) => Time = time;
-
-    /// <summary> Returns <see cref="Time"/> divided by <see cref="Length"/>. </summary>
-    public readonly float Value => Time / Length;
-    /// <summary> Returns true when <see cref="Time"/> is 0 or <see cref="Length"/>. </summary>
-    public readonly bool Alarm => Time >= Length | Time <= 0;
+    public void Reverse() => reverse = !reverse;
 }
