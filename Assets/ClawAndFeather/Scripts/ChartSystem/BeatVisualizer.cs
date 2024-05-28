@@ -16,7 +16,7 @@ public class BeatVisualizer : MonoBehaviour
 
     private void Start()
     {
-        _beatDelay = Singleton.Global.Audio.GetCurrentChart().BPM / 60;
+        _beatDelay = 60 / Singleton.Global.Audio.GetCurrentChart().BPM;
         _rend = GetComponent<Renderer>();
     }
 
