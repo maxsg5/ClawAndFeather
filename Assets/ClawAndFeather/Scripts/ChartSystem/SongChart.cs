@@ -66,6 +66,6 @@ public class SongChart
         float nextTimeDiff = Math.Abs(time - nextNote.BeatTime);
         float prevTimeDiff = Math.Abs(time - prevNote.BeatTime);
 
-        return (prevTimeDiff < nextTimeDiff) ? prevNote : nextNote;
+        return (prevTimeDiff >= nextTimeDiff) ? prevNote : nextNote;
     }
 }
