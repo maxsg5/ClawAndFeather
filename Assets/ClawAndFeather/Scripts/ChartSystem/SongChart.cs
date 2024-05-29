@@ -11,36 +11,46 @@ public class SongChart
 
     public SongChart(float bpm, float toleranceEarly, float toleranceLate, Note[] notes)
     {
+        if (toleranceEarly >= 0)
+        {
+            throw new ArgumentException(nameof(toleranceEarly));
+        }
+        if (toleranceLate <= 0)
+        {
+            throw new ArgumentException(nameof(toleranceLate));
+        }
+        if (bpm <= 0)
+        {
+            throw new ArgumentException(nameof(bpm));
+        }
+
         BPM = bpm;
         ToleranceEarly = toleranceEarly;
         ToleranceLate = toleranceLate;
-        Notes = notes;
+        Notes = notes.OrderBy(n => n.NoteTime).ToArray();
     }
 
-    public bool CheckTolerance(float inputTime, out float accuracy)
+    // check whether the input time is close enough to the noteTime
+    public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy) => TryPlayNote(inputTime, out playedNote, out accuracy, out _);
+    public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy, out float timeDiff)
     {
-        Note previousNote = Notes.Where(n => n.IsRest == false & n.BeatTime <= inputTime).FirstOrDefault();
-        Note nextNote = Notes.Where(n => n.IsRest == false & n.BeatTime >= inputTime).FirstOrDefault();
+        playedNote = Notes.OrderBy(n => Math.Abs(inputTime - n.NoteTime)).FirstOrDefault();
 
-        float nextTimeDiff = Math.Abs(inputTime - nextNote.BeatTime);
-        float prevTimeDiff = Math.Abs(inputTime - previousNote.BeatTime);
+        timeDiff = inputTime - playedNote.NoteTime;
 
-        Note checkNote = nextNote.WasPlayed
-            ? previousNote
-            : (previousNote.WasPlayed
-                ? nextNote
-                : (nextTimeDiff < prevTimeDiff
-                    ? nextNote
-                    : previousNote));
+        if (timeDiff > 0)
+        {
+            accuracy = Math.Abs(ToleranceLate / timeDiff);
+        }
+        else if (timeDiff < 0)
+        {
+            accuracy = Math.Abs(ToleranceEarly / timeDiff);
+        }
+        else
+        {
+            accuracy = 1;
+        }
 
-        float timeDiff = inputTime - checkNote.BeatTime;
-
-        accuracy = timeDiff < 0
-            ? timeDiff / ToleranceEarly
-            : timeDiff / ToleranceLate;
-
-        bool hitNote = ToleranceEarly <= timeDiff & timeDiff <= ToleranceLate;
-
-        return hitNote;
+        return ToleranceEarly < timeDiff & timeDiff < ToleranceLate;
     }
 }

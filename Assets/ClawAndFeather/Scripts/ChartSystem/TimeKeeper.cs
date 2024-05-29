@@ -7,25 +7,23 @@ using System.Linq;
 
 public class TimeKeeper : MonoBehaviour
 {
-    [field:SerializeField] public float TimeUnpaused { get; private set; }
+    public float TimeUnpaused => Singleton.Global.State.TimeUnpaused;
 
     public List<float> AccuracyOfHitNotes { get; private set; } = new List<float>();
 
-    private void Update()
-    {
-        TimeUnpaused += Time.deltaTime;
-    }
-
-    public void AccuracyCheck(InputAction.CallbackContext context)
+    public void ButtonControl(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             switch (context.interaction)
             {
                 case TapInteraction: // Reverse Direction
-                    Singleton.Global.Audio.GetCurrentChart().CheckTolerance(TimeUnpaused, out var accuracy);
+                    if (Singleton.Global.Audio.CurrentChart.TryPlayNote(TimeUnpaused, out var hitNote, out var accuracy))
+                    {
+                        hitNote?.Play();
+                    }
                     AccuracyOfHitNotes.Add(accuracy);
-                    Singleton.Global.State.SetScore(AccuracyOfHitNotes.Average());
+                    Singleton.Global.State.Score = AccuracyOfHitNotes.Average();
                     break;
                 case HoldInteraction: // Pause
                     break;

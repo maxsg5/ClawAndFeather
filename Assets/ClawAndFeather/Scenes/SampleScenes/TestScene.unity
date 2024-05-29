@@ -134,7 +134,7 @@ PrefabInstance:
         type: 3}
       propertyPath: filesToParse.Array.data[0]
       value: 
-      objectReference: {fileID: 4900000, guid: 17b916a06857c3a40a42b5229671755f, type: 3}
+      objectReference: {fileID: 4900000, guid: a0a2116a70c477c4e9da30bc4dc9c5c9, type: 3}
     - target: {fileID: 6468561070502468930, guid: 3fbfaa533b84e614caba10f174a9c2be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -400,8 +400,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27.89, y: -227.87}
-  m_SizeDelta: {x: 158.78, y: 137.58}
+  m_AnchoredPosition: {x: -48.5, y: -271.66666}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348236615
 MonoBehaviour:
@@ -416,7 +416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preText: 
-  scoreLabel: {fileID: 0}
 --- !u!114 &348236616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f507f8e2e3853f548a10aaf81db0b6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <TimeUnpaused>k__BackingField: 0
 --- !u!1 &1183139461
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,26 +633,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0527c9436a5369340bb47d8087ff7b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeKeeper: {fileID: 0}
-  noteColour:
-    r: 0
-    g: 1
-    b: 0
-    a: 1
-  onColour:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  offColour:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
+  noteColour: {r: 0, g: 1, b: 0, a: 1}
+  onColour: {r: 1, g: 1, b: 1, a: 1}
+  offColour: {r: 0, g: 0, b: 0, a: 1}
   flashTime: 0.2
-  _flash: 1
-  _beatDelay: 0
-  _rend: {fileID: 0}
 --- !u!212 &1183139463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -821,28 +803,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3da471a0fd24f4099bd1b17137bd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeKeeper: {fileID: 0}
-  NoNote:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  Early:
-    r: 1
-    g: 0.92156863
-    b: 0.015686275
-    a: 1
-  Note:
-    r: 0
-    g: 1
-    b: 0
-    a: 1
-  Late:
-    r: 1
-    g: 0
-    b: 0
-    a: 1
-  rend: {fileID: 0}
+  NoNote: {r: 0, g: 0, b: 0, a: 1}
+  Early: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  Note: {r: 0, g: 1, b: 0, a: 1}
+  Late: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1654571123
 GameObject:
   m_ObjectHideFlags: 0

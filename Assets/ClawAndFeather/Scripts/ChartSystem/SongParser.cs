@@ -6,9 +6,19 @@ public class SongParser : MonoBehaviour
 {
     public TextAsset[] filesToParse;
 
+    /// <summary>
+    /// When giving a <paramref name="file"/> make sure it is a csv split into rows and follows this pattern:
+    /// <br />BPM,EarlyTolerance,LateTolerance
+    /// <br />NumberOfBeats,Time/Signature
+    /// <br />NumberOfBeats,Time/Signature
+    /// <br />...
+    /// </summary>
+    /// <param name="file"></param>
+    /// <param name="chart"></param>
+    /// <returns>True or False based on if it was able to read the file or not.</returns>
     public static bool ReadCSVFile(TextAsset file, out SongChart chart)
     {
-        chart = null;
+        chart = null; // what it returns if it returns false
         string[] dataLines = file.text.Split('\n'); // split by each new line
         string[] nonRepeatingData = dataLines[0].Split(',');
         if (nonRepeatingData.Length != 3)
@@ -27,7 +37,7 @@ public class SongParser : MonoBehaviour
         }
         #endregion
 
-        List<Note> notes = new List<Note>();
+        List<Note> notes = new();
         float totalBeatTime = 0;
 
         for (int i = 1; i < dataLines.Length; i++)
@@ -62,12 +72,12 @@ public class SongParser : MonoBehaviour
             }
             catch (Exception e)
             {
-                Debug.LogError(e.Message);
+                Debug.LogException(e);
                 return false;
             }
         }
 
-        chart = new SongChart(bpm, earlyTolerance, lateTolerance, notes.ToArray());
+        chart = new SongChart(bpm, -earlyTolerance, lateTolerance, notes.ToArray());
         return true;
     }
 }
