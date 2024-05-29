@@ -33,11 +33,11 @@ public class NoteVisualizer : MonoBehaviour
         {
             rend.material.color = NoNote;
         }
-        else if (timeDiff < 0)
+        else if (note.NoteTime > _timeKeeper.TimeUnpaused)
         {
             rend.material.color = Early;
         }
-        else if (timeDiff > 0)
+        else if (note.NoteTime < _timeKeeper.TimeUnpaused)
         {
             rend.material.color = Late;
         }

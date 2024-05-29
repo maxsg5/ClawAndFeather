@@ -27,40 +27,30 @@ public class SongChart
         BPM = bpm;
         ToleranceEarly = toleranceEarly;
         ToleranceLate = toleranceLate;
-        Notes = notes;
+        Notes = notes.OrderBy(n => n.NoteTime).ToArray();
     }
 
     // check whether the input time is close enough to the noteTime
     public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy) => TryPlayNote(inputTime, out playedNote, out accuracy, out _);
     public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy, out float timeDiff)
     {
-        // Find nearest 2 notes
-        Note nextNote = Notes.Where(n => !n.IsRest & (inputTime - n.NoteTime) >= 0).FirstOrDefault();
-        Note prevNote = Notes.Where(n => !n.IsRest & (inputTime - n.NoteTime) <= 0).FirstOrDefault();
+        playedNote = Notes.OrderBy(n => Math.Abs(inputTime - n.NoteTime)).FirstOrDefault();
 
-        float nextNoteDiff = inputTime - nextNote.NoteTime;
-        float prevNoteDiff = inputTime - prevNote.NoteTime;
+        timeDiff = inputTime - playedNote.NoteTime;
 
-        // Pick the one closest to inputTime
-        float checkDiff;
-        if (Math.Abs(nextNoteDiff) >= Math.Abs(prevNoteDiff))
+        if (timeDiff > 0)
         {
-            playedNote = prevNote;
-            checkDiff = prevNoteDiff;
-
-            accuracy = checkDiff / ToleranceLate;
+            accuracy = Math.Abs(ToleranceLate / timeDiff);
+        }
+        else if (timeDiff < 0)
+        {
+            accuracy = Math.Abs(ToleranceEarly / timeDiff);
         }
         else
         {
-            playedNote = nextNote;
-            checkDiff = nextNoteDiff;
-
-            accuracy = checkDiff / ToleranceEarly;
+            accuracy = 1;
         }
 
-        timeDiff = checkDiff;
-        // return whether or not the time is tolerated
-        return ToleranceEarly < checkDiff & checkDiff < ToleranceLate;
+        return ToleranceEarly < timeDiff & timeDiff < ToleranceLate;
     }
-
 }
