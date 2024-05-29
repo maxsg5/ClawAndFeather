@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1b13110ebe63244b3782a45ae6bbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <TimeUnpaused>k__BackingField: 0
 --- !u!1 &7408082087645208071
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filesToParse:
-  - {fileID: 4900000, guid: 17b916a06857c3a40a42b5229671755f, type: 3}
+  - {fileID: 4900000, guid: a0a2116a70c477c4e9da30bc4dc9c5c9, type: 3}
 --- !u!82 &8785522568438133117
 AudioSource:
   m_ObjectHideFlags: 0

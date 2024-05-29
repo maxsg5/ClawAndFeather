@@ -7,7 +7,7 @@ using System.Linq;
 
 public class TimeKeeper : MonoBehaviour
 {
-    public float TimeUnpaused => Singleton.Global.State.TimeUnpaused;
+    public float TimeUnpaused => Singleton.Global.Audio.AudioTime;
 
     public List<float> AccuracyOfHitNotes { get; private set; } = new List<float>();
 
