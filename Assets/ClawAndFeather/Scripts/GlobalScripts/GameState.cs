@@ -23,5 +23,9 @@ public class GameState : MonoBehaviour
     /// <summary>
     /// Used to Flip the <see cref="GameState.Paused"/> state
     /// </summary>
+    /// <param name="score"></param>
+    public void SetScore(float score) => Score = score;
+    public static void ChangeScene(int ID) => SceneManager.LoadScene(ID);
+    public static void ExitGame() => Application.Quit();
     public void Pause() => Paused = !Paused;
 }
