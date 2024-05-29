@@ -9,6 +9,8 @@ public class SongChart
 
     public Note[] Notes { get; private set; }
 
+    public Note[] UnplayedNotes => Notes.Where(n => !n.WasPlayed).ToArray();
+
     public SongChart(float bpm, float toleranceEarly, float toleranceLate, Note[] notes)
     {
         if (toleranceEarly >= 0)
@@ -34,7 +36,7 @@ public class SongChart
     public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy) => TryPlayNote(inputTime, out playedNote, out accuracy, out _);
     public bool TryPlayNote(float inputTime, out Note playedNote, out float accuracy, out float timeDiff)
     {
-        playedNote = Notes.OrderBy(n => Math.Abs(inputTime - n.NoteTime)).FirstOrDefault();
+        playedNote = UnplayedNotes.OrderBy(n => Math.Abs(inputTime - n.NoteTime)).FirstOrDefault();
 
         timeDiff = inputTime - playedNote.NoteTime;
 
