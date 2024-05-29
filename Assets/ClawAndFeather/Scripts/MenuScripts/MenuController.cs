@@ -1,14 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private GameObject[] _buttonObjects;
     private Button[] _buttons;
     private Image[] _buttonImages;
