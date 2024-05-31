@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class AudioManager : MonoBehaviour
             { _songCharts.Add(chart); }  
         }
         Songs = GetComponents<AudioSource>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set currently setted volume
     }
 
     /// <summary>
@@ -29,4 +35,10 @@ public class AudioManager : MonoBehaviour
     /// Gets the current time of the song currently being played
     /// </summary>
     public float AudioTime => Songs[_currentChartID].time;
+
+    public void ChangeVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("Volume", volume);
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set currently setted volume
+    }
 }

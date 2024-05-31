@@ -35,15 +35,16 @@ public abstract class MenuController : MonoBehaviour
     }
     internal void OnEnable()
     {
-        for (int i = 0; i < _buttonObjects.Length; i++)
-        { _buttonAnimations[i].SetBool("Leave", false); }
-        StartCoroutine(Initialize(1));
+        StartCoroutine(Initialize(1.5f));
     }
     internal IEnumerator Initialize(float waitTime)
-    {
+    {   
+        for (int i = 0; i < _buttonObjects.Length; i++)
+        { _buttonAnimations[i].SetBool("Selected", false); }
+        _buttonImages[selectedButton].color = unselectedButtonColor;
         yield return new WaitForSeconds(waitTime);
-        _buttonImages[0].color = selectedButtonColor;
-        _buttonAnimations[0].SetBool("Selected", true);
+        _buttonImages[selectedButton].color = selectedButtonColor;
+        _buttonAnimations[selectedButton].SetBool("Selected", true);
     }    
     public void MenuControls(InputAction.CallbackContext context)
     {
@@ -105,7 +106,7 @@ public abstract class MenuController : MonoBehaviour
     public IEnumerator Outro(float waitTime, GameObject newActive)
     {
         for (int i = 0; i < _buttonObjects.Length; i++)
-        { _buttonAnimations[i].SetBool("Leave", true); }
+        { _buttonAnimations[i].SetTrigger("Leave"); }
         yield return new WaitForSeconds(waitTime);
         gameObject.SetActive(false);
         newActive.SetActive(true);
