@@ -8,7 +8,7 @@ public class Altimeter : HUDLabel
     private void Update()
     {
         float progress = Singleton.Global.Audio.SongProgress;
-        SetLabelText($"{progress * maxAltitude}");
+        SetLabelText($"{progress * maxAltitude}m");
 
         if (progressBar == null)
         {
