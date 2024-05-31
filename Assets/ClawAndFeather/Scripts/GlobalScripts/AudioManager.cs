@@ -43,7 +43,7 @@ public class AudioManager : MonoBehaviour
     /// The <paramref name="volumeModifier"/> is the modifier to the existing volume.
     /// </summary>
     /// <param name="volumeModifier"></param>
-    public void ChangeVolume(float volumeModifier)
+    public void ChangeVolume(float volumeModifier)  
     {
         _currentVolume = Mathf.Clamp01(_currentVolume + volumeModifier);
         PlayerPrefs.SetFloat("Volume", _currentVolume);
