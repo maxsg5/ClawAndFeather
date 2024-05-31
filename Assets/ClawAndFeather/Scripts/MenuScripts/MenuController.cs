@@ -4,22 +4,22 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UI;
 
-public class MenuController : MonoBehaviour
+public abstract class MenuController : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _buttonObjects;
-    private Button[] _buttons;
-    private Image[] _buttonImages;
-    private Animator[] _buttonAnimations;
+    [SerializeField] protected GameObject[] _buttonObjects;
+    protected Button[] _buttons;
+    protected Image[] _buttonImages;
+    protected Animator[] _buttonAnimations;
     public int selectedButton;
 
-    private Coroutine _fadeCoroutine;
-    private Coroutine _flashCoroutine;
+    protected Coroutine _fadeCoroutine;
+    protected Coroutine _flashCoroutine;
     [Space]
     public Color submittedButtonColor;
     public Color selectedButtonColor;
     public Color unselectedButtonColor;
     
-    void Awake()
+    internal virtual void Awake()
     {
         _buttons = new Button[_buttonObjects.Length];
         _buttonImages = new Image[_buttonObjects.Length];
@@ -32,14 +32,14 @@ public class MenuController : MonoBehaviour
             _buttonAnimations[i] = _buttonObjects[i].GetComponent<Animator>();
         }
         selectedButton = 0;
-        _buttons[0].onClick.AddListener(() => GameState.ChangeScene(1)); //play button
-        _buttons[_buttonObjects.Length - 1].onClick.AddListener(GameState.ExitGame); // exit game
     }
-    private void OnEnable()
+    internal void OnEnable()
     {
+        for (int i = 0; i < _buttonObjects.Length; i++)
+        { _buttonAnimations[i].SetBool("Leave", false); }
         StartCoroutine(Initialize(1));
     }
-    private IEnumerator Initialize(float waitTime)
+    internal IEnumerator Initialize(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         _buttonImages[0].color = selectedButtonColor;
@@ -75,7 +75,7 @@ public class MenuController : MonoBehaviour
             }
         }
     }
-    private IEnumerator Fade(Image image, float fadeDuration, float fadeLerp)
+    internal IEnumerator Fade(Image image, float fadeDuration, float fadeLerp)
     {
         float timePassed = 0;
         while (timePassed < fadeDuration)
@@ -85,7 +85,7 @@ public class MenuController : MonoBehaviour
             yield return null;
         }
     }
-    private IEnumerator Flash(Image image, int duration)
+    internal IEnumerator Flash(Image image, int duration)
     {
         float timePassed = 0;
         while (timePassed < duration * 0.5f)
@@ -101,5 +101,12 @@ public class MenuController : MonoBehaviour
             yield return null;
         }
         image.color = selectedButtonColor;
+    }
+    public IEnumerator Outro(float waitTime)
+    {
+        for (int i = 0; i < _buttonObjects.Length; i++)
+        { _buttonAnimations[i].SetBool("Leave", true); }
+        yield return new WaitForSeconds(waitTime);
+        gameObject.SetActive(false);
     }
 }
