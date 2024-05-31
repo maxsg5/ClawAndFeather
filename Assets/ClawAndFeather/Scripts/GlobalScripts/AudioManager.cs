@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ public class AudioManager : MonoBehaviour
     private int _currentChartID = 0;
 
     private float _currentVolume = 1.0f;
+    public float CurrentVolume { get => _currentVolume; private set => _currentVolume = value; }
 
     public AudioSource[] Songs { get; private set; }
     
@@ -39,14 +41,21 @@ public class AudioManager : MonoBehaviour
     public float AudioTime => Songs[_currentChartID].time;
 
     /// <summary>
+    /// Returns <see cref="AudioTime"/> as a percentage of the <see cref="Note.NoteTime"/> of the final <see cref="Note"/> in <see cref="CurrentChart"/>.
+    /// </summary>
+    public float SongProgress => AudioTime / CurrentChart.Notes.Last().NoteTime;
+
+    /// <summary>
     /// Change the volume of the camera listener. There is a minimum value of 0 and maximum of 1. <br />
     /// The <paramref name="volumeModifier"/> is the modifier to the existing volume.
     /// </summary>
     /// <param name="volumeModifier"></param>
     public void ChangeVolume(float volumeModifier)  
     {
-        _currentVolume = Mathf.Clamp01(_currentVolume + volumeModifier);
-        PlayerPrefs.SetFloat("Volume", _currentVolume);
+        CurrentVolume = Mathf.Clamp01(CurrentVolume + volumeModifier);
+        PlayerPrefs.SetFloat("Volume", CurrentVolume);
         AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set currently setted volume
     }
+
+
 }

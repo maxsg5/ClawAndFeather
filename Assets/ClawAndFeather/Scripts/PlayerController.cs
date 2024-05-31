@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField] public float Speed { get; set; } = 5f;
     [field: SerializeField] public float ImpulseMultiplier { get; set; } = 2f;
     [field: SerializeField] public float MaxVelocity { get; set; } = 10f;
+    [field: Space]
+    [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
 
     #endregion
 
