@@ -102,11 +102,12 @@ public abstract class MenuController : MonoBehaviour
         }
         image.color = selectedButtonColor;
     }
-    public IEnumerator Outro(float waitTime)
+    public IEnumerator Outro(float waitTime, GameObject newActive)
     {
         for (int i = 0; i < _buttonObjects.Length; i++)
         { _buttonAnimations[i].SetBool("Leave", true); }
         yield return new WaitForSeconds(waitTime);
         gameObject.SetActive(false);
+        newActive.SetActive(true);
     }
 }
