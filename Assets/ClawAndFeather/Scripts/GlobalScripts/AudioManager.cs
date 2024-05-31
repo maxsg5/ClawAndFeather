@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     private List<SongChart> _songCharts = new List<SongChart>();
     private int _currentChartID = 0;
 
+    private float _currentVolume = 1.0f;
+
     public AudioSource[] Songs { get; private set; }
     
     void Awake()
@@ -36,9 +38,15 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public float AudioTime => Songs[_currentChartID].time;
 
-    public void ChangeVolume(float volume)
+    /// <summary>
+    /// Change the volume of the camera listener. There is a minimum value of 0 and maximum of 1. <br />
+    /// The <paramref name="volumeModifier"/> is the modifier to the existing volume.
+    /// </summary>
+    /// <param name="volumeModifier"></param>
+    public void ChangeVolume(float volumeModifier)
     {
-        PlayerPrefs.SetFloat("Volume", volume);
+        _currentVolume = Mathf.Clamp01(_currentVolume + volumeModifier);
+        PlayerPrefs.SetFloat("Volume", _currentVolume);
         AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set currently setted volume
     }
 }
