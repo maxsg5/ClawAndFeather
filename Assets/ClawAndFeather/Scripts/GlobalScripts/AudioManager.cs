@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
@@ -57,5 +59,26 @@ public class AudioManager : MonoBehaviour
         AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set currently setted volume
     }
 
+    // TimeKeeper
+    public List<float> HitNotes { get; private set; } = new();
 
+    public void ButtonControl(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            switch (context.interaction)
+            {
+                case TapInteraction: // Reverse Direction
+                    if (Singleton.Global.Audio.CurrentChart.TryPlayNote(AudioTime, out var hitNote, out var accuracy))
+                    {
+                        hitNote.Play();
+                    }
+                    HitNotes.Add(accuracy);
+                    Singleton.Global.State.Score = HitNotes.Average();
+                    break;
+                case HoldInteraction: // Pause
+                    break;
+            }
+        }
+    }
 }
