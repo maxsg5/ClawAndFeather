@@ -11,8 +11,7 @@ public class AudioManager : MonoBehaviour
     private List<SongChart> _songCharts = new List<SongChart>();
     private int _currentChartID = 0;
 
-    private float _currentVolume = 1.0f;
-    public float CurrentVolume { get => _currentVolume; private set => _currentVolume = value; }
+    [field:SerializeField] public float CurrentVolume { get; private set; } = 1.0f;
 
     public AudioSource[] Songs { get; private set; }
     
@@ -25,6 +24,7 @@ public class AudioManager : MonoBehaviour
             { _songCharts.Add(chart); }  
         }
         Songs = GetComponents<AudioSource>();
+        PlayerPrefs.SetFloat("Volume", CurrentVolume);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
