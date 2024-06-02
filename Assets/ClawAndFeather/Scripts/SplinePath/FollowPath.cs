@@ -80,7 +80,7 @@ public class FollowPath : MonoBehaviour
 
     private void MoveAlongPath()
     {
-        _moveTimer += (reverse ? -1 : 1) * Time.deltaTime;
+        _moveTimer += (reverse ? -1 : 1) * Singleton.Global.Time.GameTime;
         var t = T;
 
         path.GetPointAlongPath(t, out var position, out var rotation);

@@ -49,12 +49,12 @@ public class FollowPath2D : FollowPath
 
     private void MoveAlongPath()
     {
-        _moveTimer += (reverse ? -1 : 1) * Time.deltaTime;
+        _moveTimer += (reverse ? -1 : 1) * Singleton.Global.Time.GameTime;
         var t = T;
 
         path.GetPointAlongPath(t, out var position, out var rotation);
         Body.position = _previousPosition;
-        Body.velocity = (position - _previousPosition) / Time.deltaTime;
+        Body.velocity = (position - _previousPosition) / Singleton.Global.Time.GameTime;
 
         switch (rotationMode)
         {
