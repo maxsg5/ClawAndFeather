@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018a3accb33d36243ada8d18a09d4f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4103307452127121047, guid: 450147244a85f21478fccd1b498652bc,
+  projectile: {fileID: 5825750328249923119, guid: 450147244a85f21478fccd1b498652bc,
     type: 3}
   spawnOnStart: 1
   spawnDelay: 1.15
@@ -161,7 +161,7 @@ MonoBehaviour:
   launchAngle: 45
   flipX: 0
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  launchVelocity: 0
+  launchVelocity: 1
   trajectory: 1
   resolution: 25
 --- !u!4 &362312648
