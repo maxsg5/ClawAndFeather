@@ -24,12 +24,14 @@ public class AudioManager : MonoBehaviour
             { _songCharts.Add(chart); }  
         }
         Songs = GetComponents<AudioSource>();
-        PlayerPrefs.SetFloat("Volume", CurrentVolume);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("Volume"); // set currently setted volume
+        if (scene.buildIndex != 0) // short work around
+        { AudioListener.volume = PlayerPrefs.GetFloat("Volume"); }
+        else
+        { PlayerPrefs.SetFloat("Volume", CurrentVolume); }
     }
 
     /// <summary>

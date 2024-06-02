@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
                     _body.AddForce(Direction * Speed * ImpulseMultiplier * Vector2.right, ForceMode2D.Impulse);
                     break;
                 case HoldInteraction: // Pause
+                    Singleton.Global.State.Pause();
                     break;
             }
         }
