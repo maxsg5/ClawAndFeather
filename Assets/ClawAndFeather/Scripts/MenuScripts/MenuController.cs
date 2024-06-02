@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public abstract class MenuController : MonoBehaviour
 {
-    protected float _time = Singleton.Global.Time.UITime;
-
     [SerializeField] protected GameObject[] _buttonObjects;
     protected Button[] _buttons;
     protected Image[] _buttonImages;
@@ -83,7 +81,7 @@ public abstract class MenuController : MonoBehaviour
         float timePassed = 0;
         while (timePassed < fadeDuration)
         {
-            timePassed += _time;
+            timePassed += Singleton.Global.Time.UITime;
             image.color = Color.Lerp(image.color, selectedButtonColor, fadeLerp);
             yield return null;
         }
