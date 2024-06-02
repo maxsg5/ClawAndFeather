@@ -4,7 +4,7 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     #region Inspector
-    [SerializeReference] public GameObject projectilePrefab;
+    [SerializeReference] public Projectile projectile;
     [Header("Launch Settings")]
     public bool spawnOnStart = false;
     [Min(0)] public float spawnDelay = 1.15f;
@@ -40,15 +40,15 @@ public class ProjectileSpawner : MonoBehaviour
     {
         try
         {
-            if (projectilePrefab == null)
+            if (projectile == null)
             {
-                throw new System.ArgumentNullException(nameof(projectilePrefab));
+                throw new System.ArgumentNullException(nameof(projectile));
             }
 
-            _projectilePool = Singleton.Global.Prefabs.GetPoolByPrefab(projectilePrefab);
+            _projectilePool = Singleton.Global.Prefabs.GetPoolByPrefab(projectile.gameObject);
             if (_projectilePool == null)
             {
-                throw new System.NullReferenceException($"No prefab pool using prefab {projectilePrefab.name} was found.");
+                throw new System.NullReferenceException($"No prefab pool using prefab {projectile.gameObject.name} was found.");
             }
 
             if (spawnOnStart)
@@ -96,7 +96,7 @@ public class ProjectileSpawner : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         var force = LaunchDirection * launchForce;
-        Vector2 velocity = (projectilePrefab != null && projectilePrefab.TryGetComponent(out Projectile projectile))
+        Vector2 velocity = (projectile != null)
             ? force / projectile.Body.mass
             : force;
 
@@ -110,10 +110,10 @@ public class ProjectileSpawner : MonoBehaviour
         if (trajectory)
         {
             float timeStep = lifeTime * (1f / resolution);
-            var previousPosition = Projectile.ProjectileMotion(0, velocity, transform.position);
+            var previousPosition = Projectile.ProjectileMotion(0, velocity, transform.position, projectile);
             for (int i = 1; i <= resolution; i++)
             {
-                var position = Projectile.ProjectileMotion(timeStep * i, velocity, transform.position);
+                var position = Projectile.ProjectileMotion(timeStep * i, velocity, transform.position, projectile);
                 Gizmos.DrawLine(previousPosition, position);
                 previousPosition = position;
             }
