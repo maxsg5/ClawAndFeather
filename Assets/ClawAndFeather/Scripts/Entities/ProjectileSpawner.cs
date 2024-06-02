@@ -4,23 +4,23 @@ using UnityEngine;
 public class ProjectileSpawner : MonoBehaviour
 {
     #region Inspector
-    public GameObject projectilePrefab;
+    [SerializeReference] public GameObject projectilePrefab;
     [Header("Launch Settings")]
     public bool spawnOnStart = false;
-    [Min(0)] public float spawnDelay = 1.0f;
-    [Min(0)] public float secondsAlive = 1.0f;
+    [Min(0)] public float spawnDelay = 4.0f;
+    [Tooltip("Time in seconds until the projectile de-spawns."), Min(0)] public float lifeTime = 4.0f;
     [Space]
-    [Range(-180, 180)] public float launchAngle = 0.0f;
+    [Min(0)] public float launchForce = 2.0f;
+    [Range(-180, 180)] public float launchAngle = 45.0f;
     public bool flipX = false;
-    [Min(0)] public float launchForce = 1.0f;
 
     [Header("Gizmo Settings")]
-    public bool showTrajectory = true;
-    [Range(1, 100)] public int precision = 50;
-    public Color trajectoryColour = Color.red;
+    public Color color = Color.red;
     [Space]
-    public bool showDirection = true;
-    public Color directionColour = Color.green;
+    public bool launchVelocity = true;
+    [Space]
+    public bool trajectory = true;
+    [Range(1, 100)] public int precision = 50;
     #endregion
 
     private PrefabPool _projectilePool;
@@ -37,8 +37,29 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void Awake()
     {
-        _projectilePool = Singleton.Global.Prefabs.GetPoolByPrefab(projectilePrefab);
-        _spawning = spawnOnStart;
+        try
+        {
+            if (projectilePrefab == null)
+            {
+                throw new System.ArgumentNullException($"No value was assigned to {nameof(projectilePrefab)}. ");
+            }
+
+            _projectilePool = Singleton.Global.Prefabs.GetPoolByPrefab(projectilePrefab);
+            if (_projectilePool == null)
+            {
+                throw new System.NullReferenceException($"No prefab pool using prefab {projectilePrefab.name} was found.");
+            }
+
+            if (!spawnOnStart)
+            {
+                StartCoroutine(Wait(spawnDelay));
+            }
+        }
+        catch (System.Exception ex)
+        {
+            gameObject.SetActive(false);
+            Debug.LogException(ex);
+        }
     }
 
     private void Update()
@@ -56,7 +77,7 @@ public class ProjectileSpawner : MonoBehaviour
         if (projectileObject != null && projectileObject.TryGetComponent(out Projectile projectile))
         {
             projectile.Body.AddForce(LaunchDirection * launchForce);
-            projectile.DespawnIn(seconds: secondsAlive);
+            projectile.DespawnIn(seconds: lifeTime);
         }
     }
 
@@ -68,28 +89,27 @@ public class ProjectileSpawner : MonoBehaviour
     }
 
     // Gizmos
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
+        Gizmos.color = color;
         // Direction
-        if (showDirection)
+        if (launchVelocity)
         {
-            Gizmos.color = directionColour;
             Gizmos.DrawRay(transform.position, LaunchDirection * launchForce);
         }
         // Trajectory
-        if (showTrajectory)
+        if (trajectory)
         {
-            Gizmos.color = trajectoryColour;
-
-            Vector2[] points = new Vector2[precision];
-            float timeIncrement = secondsAlive / precision;
-
-            Projectile.ProjectileMotion(0, LaunchDirection * launchForce, out points[0]);
-            for (int i = 1; i < precision; i++)
+            float timeStep = lifeTime * (1f / precision);
+            var previousPosition = Projectile.ProjectileMotion(0, LaunchDirection * launchForce, transform.position);
+            for (int i = 1; i <= precision; i++)
             {
-                Projectile.ProjectileMotion(i * timeIncrement, LaunchDirection * launchForce, out points[i]);
-                Gizmos.DrawLine(points[i - 1], points[i]);
+                var position = Projectile.ProjectileMotion(timeStep * i, LaunchDirection * launchForce, transform.position);
+                Gizmos.DrawLine(previousPosition, position);
+                previousPosition = position;
             }
+
+            Gizmos.DrawSphere(Projectile.ProjectileMotion(lifeTime, LaunchDirection * launchForce, transform.position), 0.2f);
         }
     }
 }

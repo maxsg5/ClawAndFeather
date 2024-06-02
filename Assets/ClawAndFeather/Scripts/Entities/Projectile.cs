@@ -27,7 +27,9 @@ public class Projectile : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculates the <paramref name="position"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>, assuming gravity is <see langword="1"/>
+    /// Calculates the <paramref name="initialPosition"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>,
+    /// assuming gravity is <see langword="-1"/>
     /// </summary>
-    public static void ProjectileMotion(float time, Vector2 Vi, out Vector2 position) => position = new(Vi.x * time, 0.5f * (time * time) + Vi.y * time);
+    public static Vector3 ProjectileMotion(float time, Vector3 initialVelocity, Vector3 initialPosition) =>
+        new Vector3(initialVelocity.x * time, -0.5f * (time * time) + initialVelocity.y * time, initialVelocity.z * time) + initialPosition;
 }
