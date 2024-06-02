@@ -4,7 +4,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
-    public Rigidbody2D Body { get; set; }
+    private Rigidbody2D _body;
+
+    public Rigidbody2D Body
+    {
+        get
+        {
+            if (_body == null)
+            {
+                _body = GetComponent<Rigidbody2D>();
+            }
+            return _body;
+        }
+
+        set => _body = value;
+    }
 
     private void OnEnable()
     {
@@ -30,6 +44,9 @@ public class Projectile : MonoBehaviour
     /// Calculates the <paramref name="initialPosition"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>,
     /// assuming gravity is <see langword="-1"/>
     /// </summary>
-    public static Vector3 ProjectileMotion(float time, Vector3 initialVelocity, Vector3 initialPosition) =>
-        new Vector3(initialVelocity.x * time, 0.5f * Physics2D.gravity.y * (time * time) + initialVelocity.y * time, initialVelocity.z * time) + initialPosition;
+    public static Vector3 ProjectileMotion(float time, Vector2 initialVelocity, Vector2 initialPosition, Projectile projectile)
+    {
+        Vector2 G = Physics2D.gravity * (projectile == null ? 1 : projectile.Body.gravityScale); 
+        return (time * time * 0.5f * G) + (initialVelocity * time) + initialPosition;
+    }
 }

@@ -95,20 +95,25 @@ public class ProjectileSpawner : MonoBehaviour
     // Gizmos
     private void OnDrawGizmosSelected()
     {
+        var force = LaunchDirection * launchForce;
+        Vector2 velocity = (projectilePrefab != null && projectilePrefab.TryGetComponent(out Projectile projectile))
+            ? force / projectile.Body.mass
+            : force;
+
         Gizmos.color = color;
         // Direction
         if (launchVelocity)
         {
-            Gizmos.DrawRay(transform.position, LaunchDirection * launchForce);
+            Gizmos.DrawRay(transform.position, velocity);
         }
         // Trajectory
         if (trajectory)
         {
             float timeStep = lifeTime * (1f / resolution);
-            var previousPosition = Projectile.ProjectileMotion(0, LaunchDirection * launchForce, transform.position);
+            var previousPosition = Projectile.ProjectileMotion(0, velocity, transform.position);
             for (int i = 1; i <= resolution; i++)
             {
-                var position = Projectile.ProjectileMotion(timeStep * i, LaunchDirection * launchForce, transform.position);
+                var position = Projectile.ProjectileMotion(timeStep * i, velocity, transform.position);
                 Gizmos.DrawLine(previousPosition, position);
                 previousPosition = position;
             }
