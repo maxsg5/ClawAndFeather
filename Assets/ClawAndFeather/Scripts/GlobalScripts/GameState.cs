@@ -7,16 +7,17 @@ public class GameState : MonoBehaviour
     public GameObject PlayerObject { get; private set; }
     public PlayerController Player { get; private set; }
 
-    private GameObject _pausedMenu;
+    [SerializeField] private GameObject _pausedMenu;
     public bool Paused { get; private set; }
     void Awake()
     {
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
         if (PlayerObject != null)
         { Player = PlayerObject.GetComponent<PlayerController>(); }
-        _pausedMenu = GameObject.FindGameObjectWithTag("PauseMenu");
         if (_pausedMenu != null)
-            _pausedMenu.SetActive(false);
+        { _pausedMenu = GameObject.FindGameObjectWithTag("PauseMenu"); }
+        if (_pausedMenu != null)
+        { _pausedMenu.SetActive(false); }
     }
 
     /// <summary>
@@ -27,8 +28,7 @@ public class GameState : MonoBehaviour
         Paused = !Paused;
         if (_pausedMenu != null)
         {  _pausedMenu.SetActive(Paused); }
-        if (PlayerObject != null)
-        { PlayerObject.SetActive(!Paused); }
+        Singleton.Global.Time.SetGameTime(Paused ? 0.0f : 1.0f);
     }
 
     /// <summary>

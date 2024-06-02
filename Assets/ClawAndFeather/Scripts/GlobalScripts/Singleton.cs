@@ -6,6 +6,7 @@ public class Singleton : MonoBehaviour
     public GameState State { get; private set; }
     public AudioManager Audio { get; private set; }
     public PrefabManager Prefabs { get; private set; }
+    public TimeScaler Time { get; private set; }
     void Awake()
     {
         if (Global != null && Global != this)
@@ -18,5 +19,6 @@ public class Singleton : MonoBehaviour
         State = GetComponentInChildren<GameState>();
         Audio = GetComponentInChildren<AudioManager>();
         Prefabs = GetComponentInChildren<PrefabManager>();
+        Time = GetComponentInChildren<TimeScaler>();
     }
 }
