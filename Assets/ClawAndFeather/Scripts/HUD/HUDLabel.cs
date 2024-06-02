@@ -9,7 +9,7 @@ public abstract class HUDLabel : MonoBehaviour
     protected GameState _state;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         _state = Singleton.Global.State;
         _label = GetComponent<TextMeshProUGUI>();

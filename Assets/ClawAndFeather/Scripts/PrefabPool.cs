@@ -67,18 +67,7 @@ public class PrefabPool : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns and activates the next inactive object in <see cref="PrefabPool"/>.
+    /// Returns the next inactive object in <see cref="PrefabPool"/>.
     /// </summary>
-    public GameObject Next
-    {
-        get
-        {
-            GameObject returnObject = InactivePool.FirstOrDefault();
-            if (returnObject != null)
-            {
-                returnObject.SetActive(true);
-            }
-            return returnObject;
-        }
-    }
+    public GameObject Next => InactivePool.FirstOrDefault();
 }

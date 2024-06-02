@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Altimeter : HUDLabel
 {
     public float maxAltitude = 1000;
+    public int digits = 4;
     public UnityEngine.UI.Slider progressBar;
 
     private void Update()
@@ -16,7 +18,8 @@ public class Altimeter : HUDLabel
         }
         else
         {
-            progressBar.value = progress;
+            var digs = Mathf.Pow(10, digits);
+            progressBar.value = Mathf.Round(progress * digs) / digs;
         }
     }
 }

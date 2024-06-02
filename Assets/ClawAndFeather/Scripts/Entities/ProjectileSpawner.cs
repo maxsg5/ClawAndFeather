@@ -7,20 +7,21 @@ public class ProjectileSpawner : MonoBehaviour
     [SerializeReference] public GameObject projectilePrefab;
     [Header("Launch Settings")]
     public bool spawnOnStart = false;
-    [Min(0)] public float spawnDelay = 4.0f;
-    [Tooltip("Time in seconds until the projectile de-spawns."), Min(0)] public float lifeTime = 4.0f;
+    [Min(0)] public float spawnDelay = 1.15f;
+    [Tooltip("Time in seconds until the projectile de-spawns.")]
+    [Min(0)] public float lifeTime = 1.15f;
     [Space]
-    [Min(0)] public float launchForce = 2.0f;
+    [Min(0)] public float launchForce = 8.0f;
     [Range(-180, 180)] public float launchAngle = 45.0f;
     public bool flipX = false;
 
     [Header("Gizmo Settings")]
-    public Color color = Color.red;
+    public Color color = Color.yellow;
     [Space]
-    public bool launchVelocity = true;
+    public bool launchVelocity = false;
     [Space]
     public bool trajectory = true;
-    [Range(1, 100)] public int precision = 50;
+    [Range(1, 100)] public int resolution = 25;
     #endregion
 
     private PrefabPool _projectilePool;
@@ -35,13 +36,13 @@ public class ProjectileSpawner : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         try
         {
             if (projectilePrefab == null)
             {
-                throw new System.ArgumentNullException($"No value was assigned to {nameof(projectilePrefab)}. ");
+                throw new System.ArgumentNullException(nameof(projectilePrefab));
             }
 
             _projectilePool = Singleton.Global.Prefabs.GetPoolByPrefab(projectilePrefab);
@@ -50,8 +51,9 @@ public class ProjectileSpawner : MonoBehaviour
                 throw new System.NullReferenceException($"No prefab pool using prefab {projectilePrefab.name} was found.");
             }
 
-            if (!spawnOnStart)
+            if (spawnOnStart)
             {
+                SpawnProjectile();
                 StartCoroutine(Wait(spawnDelay));
             }
         }
@@ -73,17 +75,19 @@ public class ProjectileSpawner : MonoBehaviour
 
     public void SpawnProjectile()
     {
+        _spawning = false;
         var projectileObject = _projectilePool.Next;
         if (projectileObject != null && projectileObject.TryGetComponent(out Projectile projectile))
         {
-            projectile.Body.AddForce(LaunchDirection * launchForce);
+            projectile.gameObject.SetActive(true);
+            projectile.Body.position = transform.position;
+            projectile.Body.AddForce(LaunchDirection * launchForce, ForceMode2D.Impulse);
             projectile.DespawnIn(seconds: lifeTime);
         }
     }
 
     private IEnumerator Wait(float delay)
     {
-        _spawning = false;
         yield return new WaitForSeconds(delay);
         _spawning = true;
     }
@@ -100,16 +104,15 @@ public class ProjectileSpawner : MonoBehaviour
         // Trajectory
         if (trajectory)
         {
-            float timeStep = lifeTime * (1f / precision);
+            float timeStep = lifeTime * (1f / resolution);
             var previousPosition = Projectile.ProjectileMotion(0, LaunchDirection * launchForce, transform.position);
-            for (int i = 1; i <= precision; i++)
+            for (int i = 1; i <= resolution; i++)
             {
                 var position = Projectile.ProjectileMotion(timeStep * i, LaunchDirection * launchForce, transform.position);
                 Gizmos.DrawLine(previousPosition, position);
                 previousPosition = position;
             }
-
-            Gizmos.DrawSphere(Projectile.ProjectileMotion(lifeTime, LaunchDirection * launchForce, transform.position), 0.2f);
+            Gizmos.DrawWireSphere(previousPosition, 0.2f);
         }
     }
 }

@@ -31,5 +31,5 @@ public class Projectile : MonoBehaviour
     /// assuming gravity is <see langword="-1"/>
     /// </summary>
     public static Vector3 ProjectileMotion(float time, Vector3 initialVelocity, Vector3 initialPosition) =>
-        new Vector3(initialVelocity.x * time, -0.5f * (time * time) + initialVelocity.y * time, initialVelocity.z * time) + initialPosition;
+        new Vector3(initialVelocity.x * time, 0.5f * Physics2D.gravity.y * (time * time) + initialVelocity.y * time, initialVelocity.z * time) + initialPosition;
 }
