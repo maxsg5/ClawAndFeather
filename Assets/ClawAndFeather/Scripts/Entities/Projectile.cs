@@ -41,8 +41,7 @@ public class Projectile : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculates the <paramref name="initialPosition"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>,
-    /// assuming gravity is <see langword="-1"/>
+    /// Calculates the <paramref name="initialPosition"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>
     /// </summary>
     public static Vector3 ProjectileMotion(float time, Vector2 initialVelocity, Vector2 initialPosition, Projectile projectile)
     {
