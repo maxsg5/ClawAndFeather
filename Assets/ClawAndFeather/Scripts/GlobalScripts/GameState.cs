@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
         if (PlayerObject != null)
         { Player = PlayerObject.GetComponent<PlayerController>(); }
-        if (_pausedMenu != null)
+        if (_pausedMenu == null)
         { _pausedMenu = GameObject.FindGameObjectWithTag("PauseMenu"); }
         if (_pausedMenu != null)
         { _pausedMenu.SetActive(false); }
@@ -24,11 +24,13 @@ public class GameState : MonoBehaviour
     /// Used to Flip the <see cref="GameState.Paused"/> state
     /// </summary>
     public void Pause()
-    { 
+    {
+        Debug.Log("Called");
         Paused = !Paused;
         if (_pausedMenu != null)
         {  _pausedMenu.SetActive(Paused); }
         Singleton.Global.Time.SetGameTime(Paused ? 0.0f : 1.0f);
+        Debug.Log(Singleton.Global.Time.GameTime);
     }
 
     /// <summary>
