@@ -27,24 +27,14 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (Singleton.Global.Time.GameTime != 0)
-        {
-            _body.bodyType = RigidbodyType2D.Dynamic;
-            _spinnerBody.bodyType = RigidbodyType2D.Dynamic;
-
-            _body.AddForce(Direction * Speed * Vector2.right);
-            _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
-        }
-        else
-        {
-            _body.bodyType = RigidbodyType2D.Static;
-            _spinnerBody.bodyType = RigidbodyType2D.Static;
-        }
+        _body.AddForce(Direction * Speed * Vector2.right);
+        _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
     }
     public void ButtonControl(InputAction.CallbackContext context)
     {
-        if (context.performed && Singleton.Global.Time.GameTime != 0)
+        if (context.performed && Time.timeScale != 0)
         {
+            Debug.Log("Thing happened");
             switch (context.interaction)
             {
                 case TapInteraction: // Reverse Direction
@@ -55,6 +45,10 @@ public class PlayerController : MonoBehaviour
                     Singleton.Global.State.Pause();
                     break;
             }
+        }
+        else if (context.performed && Time.timeScale == 0)
+        {
+            Debug.Log("THing interrupted");
         }
     }
 }

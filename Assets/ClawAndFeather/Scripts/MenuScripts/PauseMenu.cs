@@ -18,7 +18,7 @@ public class PauseMenu : MenuController
     {
         for (int i = 0; i < _buttonObjects.Length; i++)
         { _buttonAnimations[i].SetTrigger("Leave"); }
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
         Singleton.Global.State.Pause();
     }
 }

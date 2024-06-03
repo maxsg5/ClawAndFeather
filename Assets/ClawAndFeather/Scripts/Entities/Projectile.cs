@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -31,7 +32,12 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Will despawn the <see cref="Projectile"/> after a delay in <paramref name="seconds"/>.
     /// </summary>
-    public void Despawn(float seconds) => StartCoroutine(Singleton.Global.Time.DelayedAction(seconds, () => gameObject.SetActive(false)));
+    public void Despawn(float seconds) => StartCoroutine(SetActiveFalse(seconds));
+    private IEnumerator SetActiveFalse(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
+    }
 
     /// <summary>
     /// Calculates the <paramref name="initialPosition"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>

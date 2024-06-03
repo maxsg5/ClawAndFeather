@@ -25,12 +25,10 @@ public class GameState : MonoBehaviour
     /// </summary>
     public void Pause()
     {
-        Debug.Log("Called");
         Paused = !Paused;
         if (_pausedMenu != null)
         {  _pausedMenu.SetActive(Paused); }
-        Singleton.Global.Time.SetGameTime(Paused ? 0.0f : 1.0f);
-        Debug.Log(Singleton.Global.Time.GameTime);
+        Time.timeScale = Paused ? 0.0f : 1.0f;
     }
 
     /// <summary>

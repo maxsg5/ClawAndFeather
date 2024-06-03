@@ -42,7 +42,7 @@ public abstract class MenuController : MonoBehaviour
         for (int i = 0; i < _buttonObjects.Length; i++)
         { _buttonAnimations[i].SetBool("Selected", false); }
         _buttonImages[selectedButton].color = unselectedButtonColor;
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
         _buttonImages[selectedButton].color = selectedButtonColor;
         _buttonAnimations[selectedButton].SetBool("Selected", true);
     }    
@@ -81,7 +81,7 @@ public abstract class MenuController : MonoBehaviour
         float timePassed = 0;
         while (timePassed < fadeDuration)
         {
-            timePassed += Singleton.Global.Time.UITime;
+            timePassed += Time.unscaledDeltaTime;
             image.color = Color.Lerp(image.color, selectedButtonColor, fadeLerp);
             yield return null;
         }
@@ -91,13 +91,13 @@ public abstract class MenuController : MonoBehaviour
         float timePassed = 0;
         while (timePassed < duration * 0.5f)
         {
-            timePassed += Time.deltaTime;
+            timePassed += Time.unscaledDeltaTime;
             image.color = Color.Lerp(image.color, submittedButtonColor, 0.1f);
             yield return null;
         }
         while (timePassed < duration)
         {
-            timePassed += Time.deltaTime;
+            timePassed += Time.unscaledDeltaTime;
             image.color = Color.Lerp(image.color, selectedButtonColor, 0.1f);
             yield return null;
         }
@@ -107,7 +107,7 @@ public abstract class MenuController : MonoBehaviour
     {
         for (int i = 0; i < _buttonObjects.Length; i++)
         { _buttonAnimations[i].SetTrigger("Leave"); }
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSecondsRealtime(waitTime);
         gameObject.SetActive(false);
         newActive.SetActive(true);
     }
