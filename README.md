@@ -23,8 +23,8 @@
 
 ## ToDo List
 ### General Stuff
-- [ ] Character Controller
-- [ ] Way To Control Animations
+- [x] ~~Character Controller~~
+- [x] ~~Way To Control Animations~~
 - [ ] Collision Detection
 - [ ] Obstacles
 - [x] ~~Setup Input~~
@@ -38,16 +38,15 @@
 - [ ] Rhythm
 
 ### UI Mechanics
-- [ ] Hold Space for Pause Menu
-- [ ] HUD (Score Tally and Lives)
-- [ ] Selected Button Changes Based on Beat
-- [ ] Progress Bar
-- [ ] Animation to Show How Long Button Has Been Pressed for
-- [ ] Tap Space for Changing Selected Button
-- [ ] Hold Space to Select Button
+- [x] ~~Hold Space for Pause Menu~~
+- [x] ~~HUD (Score Tally and Lives)~~
+- [x] ~~Progress Bar~~
+- [x] ~~Animation to Show How Long Button Has Been Pressed for~~
+- [x] ~~Tap Space for Changing Selected Button~~
+- [x] ~~Hold Space to Select Button~~
 
 ### Gameplay Mechanics
-- [ ] Press Space to Change Bird Direction
+- [x] ~~Press Space to Change Bird Direction~~
 - [ ] Hazards Come Out on Tempo
 
 ## Game Summary
