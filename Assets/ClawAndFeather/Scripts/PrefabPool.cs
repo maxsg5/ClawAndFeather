@@ -1,6 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Global/Prefab Pool")]
 [HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/Scripts/Prefab-Pool")]
 public class PrefabPool : MonoBehaviour
 {
