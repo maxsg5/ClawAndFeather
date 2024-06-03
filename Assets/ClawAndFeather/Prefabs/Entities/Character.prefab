@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spinnerBody: {fileID: 8822161285360228744}
-  <Speed>k__BackingField: 5
+  <Speed>k__BackingField: 7.5
   <ImpulseMultiplier>k__BackingField: 1
   <MaxVelocity>k__BackingField: 10
   <Lives>k__BackingField: 9
@@ -197,7 +197,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1793842997
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -809738443, guid: 0c953864cebbd4d43b61bb7569279d50, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
