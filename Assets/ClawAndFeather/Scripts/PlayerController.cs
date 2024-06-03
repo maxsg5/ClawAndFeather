@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -49,17 +50,33 @@ public class PlayerController : MonoBehaviour
     #region Heath
     [field: Space]
     [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
+    [field: SerializeField] public bool IsInvulnerable { get; set; } = false;
+    [field: SerializeField]
+    public float InvulnerableTime { get; set; } = 2.0f;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent(out Obstacle obstacle) && obstacle.colliders.Contains(collider))
+        if (!IsInvulnerable && collider.TryGetComponent(out Obstacle obstacle) && obstacle.colliders.Contains(collider))
         {
             Lives--;
             if (Lives <= 0)
             {
+                // TODO: Animate the player when they get hit
                 GameState.ExitGame(); // Temporary until Game over screen is made
             }
+            else
+            {
+                // TODO: Animate the player when they take damage. set InvulnerableTime to the animation length
+                StartCoroutine(TakeDamage(InvulnerableTime));
+            }
         }
+    }
+
+    private IEnumerator TakeDamage(float invulnerableTime)
+    {
+        IsInvulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        IsInvulnerable = false;
     }
     #endregion
 }
