@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: EndPath
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 3085623327880119754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.73, y: 0, z: 0}
+  m_LocalPosition: {x: -21.34454, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -43,7 +43,7 @@ GameObject:
   m_Layer: 0
   m_Name: StartPath
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -56,38 +56,7 @@ Transform:
   m_GameObject: {fileID: 3235692075816195632}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.97, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1032678180633138027}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5153454558853862091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 999203140237029586}
-  m_Layer: 0
-  m_Name: MiddlePath
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &999203140237029586
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5153454558853862091}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.42, y: -0, z: 0}
+  m_LocalPosition: {x: -0.10453987, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032678180633138027}
-  - component: {fileID: 9039209098471613794}
+  - component: {fileID: 1640358832710672543}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -119,16 +88,15 @@ Transform:
   m_GameObject: {fileID: 5294522471640339311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.9645405, y: 2.9653463, z: 19.963753}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6725365947278993487}
-  - {fileID: 999203140237029586}
   - {fileID: 7080949938716255241}
   m_Father: {fileID: 8807711167966590445}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9039209098471613794
+--- !u!114 &1640358832710672543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,15 +105,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5294522471640339311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58690f7eaf11c024a89141429d93ed1a, type: 3}
+  m_Script: {fileID: 11500000, guid: d51bc0909ac87d147aba7170497a9c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathColor: {r: 0.9811321, g: 0, b: 0, a: 1}
+  pathColor: {r: 1, g: 0, b: 0, a: 1}
   curveSegments: 20
   closeLoop: 0
   points:
   - {fileID: 6725365947278993487}
-  - {fileID: 999203140237029586}
   - {fileID: 7080949938716255241}
 --- !u!1 &7505613951656719576
 GameObject:
@@ -208,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 8649236864098531575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.685461, y: 3.9853463, z: -70.03625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -390,7 +357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827b99bb8c2a5994283aef56977cd2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 9039209098471613794}
+  path: {fileID: 0}
   moveTime: 7
   timeOffset: 0
   reverse: 0
