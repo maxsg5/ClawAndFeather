@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         _body = GetComponent<Rigidbody2D>();
     }
-    void Update()
+    void FixedUpdate()
     {
         _body.AddForce(Direction * Speed * Vector2.right);
         _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
