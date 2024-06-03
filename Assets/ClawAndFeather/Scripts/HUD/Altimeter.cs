@@ -5,13 +5,13 @@ using UnityEngine;
 public class Altimeter : HUDLabel
 {
     public float maxAltitude = 1000;
-    public int digits = 4;
+    [Min(0)] public int digits;
     public UnityEngine.UI.Slider progressBar;
 
     private void Update()
     {
         float progress = Singleton.Global.Audio.SongProgress;
-        SetLabelText($"{progress * maxAltitude}m");
+        SetLabelText($"{Math.Round(progress * maxAltitude, digits)}m");
 
         if (progressBar == null)
         {
@@ -19,8 +19,7 @@ public class Altimeter : HUDLabel
         }
         else
         {
-            var digs = Mathf.Pow(10, digits);
-            progressBar.value = Mathf.Round(progress * digs) / digs;
+            progressBar.value = progress;
         }
     }
 }
