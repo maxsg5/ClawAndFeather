@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Global/Singleton")]
 public class Singleton : MonoBehaviour
 {
     public static Singleton Global { get; private set; }

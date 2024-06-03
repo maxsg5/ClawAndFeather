@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Entities/ProjectileSpawner")]
 public class ProjectileSpawner : MonoBehaviour
 {
     #region Inspector

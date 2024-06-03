@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Menu/PauseMenu")]
 public class PauseMenu : MenuController
 {
     [Space]

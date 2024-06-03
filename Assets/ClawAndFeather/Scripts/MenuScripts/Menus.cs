@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Menu/Menus")]
 public class Menus : MonoBehaviour
 {
     public float startingTime;

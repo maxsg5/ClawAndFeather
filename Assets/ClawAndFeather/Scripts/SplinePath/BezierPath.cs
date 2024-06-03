@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("Spline Path/Bezier Path")]
+[AddComponentMenu("Scripts/Spline Path/Bezier Path")]
 [HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
 public class BezierPath : Path
 {

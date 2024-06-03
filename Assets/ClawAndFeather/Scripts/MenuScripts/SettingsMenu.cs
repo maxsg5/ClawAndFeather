@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Menu/SettingsMenu")]
 public class SettingsMenu : MenuController
 {
     [Space]

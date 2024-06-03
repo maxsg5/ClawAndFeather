@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Global/Prefab Manager")]
 public class PrefabManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _activePrefabs;

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem.Interactions;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+[AddComponentMenu("Scripts/Global/Audio Manager")]
 public class AudioManager : MonoBehaviour
 {
     private SongParser _parser;

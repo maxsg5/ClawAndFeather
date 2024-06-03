@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Menu/Main Menu")]
 public class MainMenu : MenuController
 {
     [Space]
