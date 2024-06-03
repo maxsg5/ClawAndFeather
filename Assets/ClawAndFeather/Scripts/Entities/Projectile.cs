@@ -32,13 +32,7 @@ public class Projectile : MonoBehaviour
     /// <summary>
     /// Will despawn the <see cref="Projectile"/> after a delay in <paramref name="seconds"/>.
     /// </summary>
-    public void DespawnIn(float seconds) => StartCoroutine(Despawn(seconds));
-
-    private IEnumerator Despawn(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        this.gameObject.SetActive(false);
-    }
+    public void DespawnIn(float seconds) => StartCoroutine(Singleton.Global.Time.DelayedAction(() => gameObject.SetActive(false), seconds));
 
     /// <summary>
     /// Calculates the <paramref name="initialPosition"/> of a <see cref="Projectile"/> at a point in <paramref name="time"/>
