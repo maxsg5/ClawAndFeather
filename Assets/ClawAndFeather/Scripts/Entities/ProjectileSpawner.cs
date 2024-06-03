@@ -79,7 +79,7 @@ public class ProjectileSpawner : MonoBehaviour
             projectile.gameObject.SetActive(true);
             projectile.Body.position = transform.position;
             projectile.Body.AddForce(LaunchDirection * launchForce, ForceMode2D.Impulse);
-            projectile.DespawnIn(lifeTime);
+            projectile.Despawn(lifeTime);
         }
 
         _spawning = false;
