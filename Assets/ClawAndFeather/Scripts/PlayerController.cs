@@ -5,9 +5,13 @@ using UnityEngine.InputSystem.Interactions;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    #region Spinning
+    [SerializeField] private Rigidbody2D _spinnerBody;
+    [field: Space]
+    #endregion
+
     #region Movement
     private Rigidbody2D _body;
-
     public int Direction { get; private set; } = 1; // 1 is right, -1 is left
     [field: SerializeField] public float Speed { get; set; } = 5f;
     [field: SerializeField] public float ImpulseMultiplier { get; set; } = 2f;
@@ -23,12 +27,23 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        _body.AddForce(Direction * Speed * Vector2.right);
-        _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
+        if (Singleton.Global.Time.GameTime != 0)
+        {
+            _body.bodyType = RigidbodyType2D.Dynamic;
+            _spinnerBody.bodyType = RigidbodyType2D.Dynamic;
+
+            _body.AddForce(Direction * Speed * Vector2.right);
+            _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
+        }
+        else
+        {
+            _body.bodyType = RigidbodyType2D.Static;
+            _spinnerBody.bodyType = RigidbodyType2D.Static;
+        }
     }
     public void ButtonControl(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Singleton.Global.Time.GameTime != 0)
         {
             switch (context.interaction)
             {
