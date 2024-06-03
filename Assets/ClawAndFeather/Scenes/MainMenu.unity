@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &161930059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,6 +2135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 8107490768040908154, guid: ccd99a1aff22eb34f85f98186334e075,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5637221726835443659, guid: ccd99a1aff22eb34f85f98186334e075, type: 3}
@@ -2153,6 +2158,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247336180071643398, guid: b083dc126c886f54c939226272447f83,
+        type: 3}
+      propertyPath: m_text
+      value: 'Play
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8659165824811952988, guid: b083dc126c886f54c939226272447f83,
         type: 3}

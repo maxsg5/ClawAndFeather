@@ -13,7 +13,7 @@ public class PauseMenu : MenuController
 
         _buttons[0].onClick.AddListener(() => StartCoroutine(Unpause(2))); // unpause button
         _buttons[1].onClick.AddListener(() => StartCoroutine(Outro(2, settingsCanvas))); // settings menu
-        _buttons[2].onClick.AddListener(() => GameState.ChangeScene(0)); // menu scene
+        _buttons[2].onClick.AddListener(MainMenu); // menu scene
     }
     private IEnumerator Unpause(float waitTime)
     {
@@ -21,5 +21,10 @@ public class PauseMenu : MenuController
         { _buttonAnimations[i].SetTrigger("Leave"); }
         yield return new WaitForSecondsRealtime(waitTime);
         Singleton.Global.State.Pause();
+    }
+    private void MainMenu()
+    {
+        Singleton.Global.State.Pause();
+        GameState.ChangeScene(0);
     }
 }
