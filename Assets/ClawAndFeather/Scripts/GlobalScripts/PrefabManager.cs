@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [AddComponentMenu("Scripts/Global/Prefab Manager")]
 public class PrefabManager : MonoBehaviour
@@ -9,11 +10,14 @@ public class PrefabManager : MonoBehaviour
 
     private void Awake()
     {
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         _prefabIDs = new int[_activePrefabs.Length];
         _pools = FindObjectsOfType<PrefabPool>();
         LinkPrefabPools();
     }
-
     // Links the prefab pools to the appropriate active prefabs selected.
     private void LinkPrefabPools()
     {

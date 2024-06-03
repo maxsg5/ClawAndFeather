@@ -12,6 +12,11 @@ public class GameState : MonoBehaviour
     public bool Paused { get; private set; }
     void Awake()
     {
+        SceneManager.sceneLoaded += SceneLoaded;
+    }
+
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
         if (PlayerObject != null)
         { Player = PlayerObject.GetComponent<PlayerController>(); }
