@@ -53,8 +53,7 @@ public class PlayerController : MonoBehaviour
     [field: Header("Health Settings")]
     [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
     [field: SerializeField] public bool IsInvulnerable { get; set; } = false;
-    [field: SerializeField]
-    public float InvulnerableTime { get; set; } = 2.0f;
+    [field: SerializeField] public float InvulnerableTime { get; set; } = 2.0f;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
