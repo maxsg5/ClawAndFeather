@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour
 {
     #region Spinning
     [SerializeField] private Rigidbody2D _spinnerBody;
-    [field: Space]
     #endregion
 
     #region Movement
     private Rigidbody2D _body;
     public int Direction { get; private set; } = 1; // 1 is right, -1 is left
+    [field: Header("Movement Settings")]
     [field: SerializeField] public float Speed { get; set; } = 5f;
     [field: SerializeField] public float ImpulseMultiplier { get; set; } = 2f;
     [field: SerializeField] public float MaxVelocity { get; set; } = 10f;
@@ -25,11 +25,13 @@ public class PlayerController : MonoBehaviour
     {
         _body = GetComponent<Rigidbody2D>();
     }
+
     void FixedUpdate()
     {
         _body.AddForce(Direction * Speed * Vector2.right);
         _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
     }
+    
     public void ButtonControl(InputAction.CallbackContext context)
     {
         if (context.performed && Time.timeScale != 0)
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Heath
-    [field: Space]
+    [field: Header("Health Settings")]
     [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
     [field: SerializeField] public bool IsInvulnerable { get; set; } = false;
     [field: SerializeField]
