@@ -771,11 +771,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 2997007584467854434, guid: 9accf152b1ee0654fb215606569a8211,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5785325852468122204, guid: 9accf152b1ee0654fb215606569a8211,
         type: 3}
       propertyPath: m_Pivot.x
@@ -881,16 +876,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1886886010}
-    - target: {fileID: 7399619473965826043, guid: 9accf152b1ee0654fb215606569a8211,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1424688157
-      objectReference: {fileID: 0}
-    - target: {fileID: 7577197540249834305, guid: 9accf152b1ee0654fb215606569a8211,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
