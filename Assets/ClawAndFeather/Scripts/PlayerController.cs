@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -8,29 +10,28 @@ public class PlayerController : MonoBehaviour
 {
     #region Spinning
     [SerializeField] private Rigidbody2D _spinnerBody;
-    [field: Space]
     #endregion
 
     #region Movement
     private Rigidbody2D _body;
     public int Direction { get; private set; } = 1; // 1 is right, -1 is left
+    [field: Header("Movement Settings")]
     [field: SerializeField] public float Speed { get; set; } = 5f;
     [field: SerializeField] public float ImpulseMultiplier { get; set; } = 2f;
     [field: SerializeField] public float MaxVelocity { get; set; } = 10f;
-    [field: Space]
-    [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
-
     #endregion
 
     void Start()
     {
         _body = GetComponent<Rigidbody2D>();
     }
+
     void FixedUpdate()
     {
         _body.AddForce(Direction * Speed * Vector2.right);
         _body.velocity = Vector2.ClampMagnitude(_body.velocity, MaxVelocity);
     }
+    
     public void ButtonControl(InputAction.CallbackContext context)
     {
         if (context.performed && Time.timeScale != 0)
@@ -47,4 +48,36 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    #region Heath
+    [field: Header("Health Settings")]
+    [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
+    [field: SerializeField] public bool IsInvulnerable { get; set; } = false;
+    [field: SerializeField] public float InvulnerableTime { get; set; } = 2.0f;
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!IsInvulnerable && collider.TryGetComponent(out Obstacle obstacle) && obstacle.colliders.Contains(collider))
+        {
+            Lives--;
+            if (Lives <= 0)
+            {
+                // TODO: Animate the player when they get hit
+                GameState.ExitGame(); // Temporary until Game over screen is made
+            }
+            else
+            {
+                // TODO: Animate the player when they take damage. set InvulnerableTime to the animation length
+                StartCoroutine(TakeDamage(InvulnerableTime));
+            }
+        }
+    }
+
+    private IEnumerator TakeDamage(float invulnerableTime)
+    {
+        IsInvulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        IsInvulnerable = false;
+    }
+    #endregion
 }
