@@ -57,18 +57,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!IsInvulnerable && collider.TryGetComponent(out Obstacle obstacle) && obstacle.colliders.Contains(collider))
+        if (!IsInvulnerable)
         {
-            Lives--;
-            if (Lives <= 0)
+            var obstacle = collider.GetComponentInParent<Obstacle>();
+            if (obstacle != null && obstacle.colliders.Contains(collider))
             {
-                // TODO: Animate the player when they get hit
-                GameState.ExitGame(); // Temporary until Game over screen is made
-            }
-            else
-            {
-                // TODO: Animate the player when they take damage. set InvulnerableTime to the animation length
-                StartCoroutine(TakeDamage(InvulnerableTime));
+                Lives--;
+                if (Lives <= 0)
+                {
+                    // TODO: Animate the player when they get hit
+                    GameState.ExitGame(); // Temporary until Game over screen is made
+                }
+                else
+                {
+                    // TODO: Animate the player when they take damage. set InvulnerableTime to the animation length
+                    StartCoroutine(TakeDamage(InvulnerableTime));
+                } 
             }
         }
     }

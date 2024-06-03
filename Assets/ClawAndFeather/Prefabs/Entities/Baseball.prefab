@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5274249753972731636}
   - component: {fileID: 6244895952140727718}
   - component: {fileID: 5825750328249923119}
+  - component: {fileID: 5144297987064399881}
   m_Layer: 0
   m_Name: Baseball
   m_TagString: Untagged
@@ -161,3 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797570d131fee0246a7442f40e6d1d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5144297987064399881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4103307452127121047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2341633357779056628}
   - component: {fileID: 9201591018652062704}
   - component: {fileID: 6535051382709004718}
+  - component: {fileID: 4362269160600180365}
   m_Layer: 0
   m_Name: plane
   m_TagString: Untagged
@@ -201,12 +202,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827b99bb8c2a5994283aef56977cd2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 4792178694309637392}
+  path: {fileID: 1843748442911335242}
   moveTime: 2
   timeOffset: 0
   reverse: 0
   endAction: 2
   rotationMode: 0
+--- !u!114 &4362269160600180365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435061655404128213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
 --- !u!1 &2398987136614851893
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +233,7 @@ GameObject:
   m_Layer: 0
   m_Name: StartPath
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -283,7 +297,7 @@ GameObject:
   m_Layer: 0
   m_Name: End Path
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -311,7 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8509045463221203569}
-  - component: {fileID: 4792178694309637392}
+  - component: {fileID: 1843748442911335242}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -336,7 +350,7 @@ Transform:
   - {fileID: 252159542041779938}
   m_Father: {fileID: 6532584668782845730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4792178694309637392
+--- !u!114 &1843748442911335242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,10 +359,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6079956967560847369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58690f7eaf11c024a89141429d93ed1a, type: 3}
+  m_Script: {fileID: 11500000, guid: d51bc0909ac87d147aba7170497a9c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathColor: {r: 1, g: 0, b: 0, a: 1}
+  pathColor: {r: 0, g: 1, b: 0, a: 1}
   curveSegments: 20
   closeLoop: 0
   points:
