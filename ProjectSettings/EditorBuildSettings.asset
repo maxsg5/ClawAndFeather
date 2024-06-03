@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/ClawAndFeather/Scenes/MainMenu.unity
     guid: 79457f96052882b4cb4dd689826430bb
   - enabled: 1
-    path: Assets/ClawAndFeather/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/ClawAndFeather/Scenes/Levels/Test_Level.unity
+    guid: 5c88a41528ea25d4c83b158e0cc27c91
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9b54423a21d666c47b9ee821d5613ca4,
       type: 2}
