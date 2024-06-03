@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed && Time.timeScale != 0)
         {
-            Debug.Log("Thing happened");
             switch (context.interaction)
             {
                 case TapInteraction: // Reverse Direction
@@ -45,10 +44,6 @@ public class PlayerController : MonoBehaviour
                     Singleton.Global.State.Pause();
                     break;
             }
-        }
-        else if (context.performed && Time.timeScale == 0)
-        {
-            Debug.Log("THing interrupted");
         }
     }
 }
