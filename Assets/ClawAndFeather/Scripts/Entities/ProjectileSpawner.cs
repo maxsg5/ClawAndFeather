@@ -53,7 +53,7 @@ public class ProjectileSpawner : MonoBehaviour
 
             if (spawnOnStart)
             {
-                StartCoroutine(SpawnProjectile(spawnDelay));
+                SpawnProjectile(spawnDelay);
             }
         }
         catch (System.Exception ex)
@@ -67,11 +67,11 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (_spawning)
         {
-            StartCoroutine(SpawnProjectile(spawnDelay));
+            SpawnProjectile(spawnDelay);
         }
     }
 
-    private IEnumerator SpawnProjectile(float delay)
+    private void SpawnProjectile(float delay)
     {
         var projectileObject = _projectilePool.Next;
         if (projectileObject != null && projectileObject.TryGetComponent(out Projectile projectile))
@@ -79,12 +79,11 @@ public class ProjectileSpawner : MonoBehaviour
             projectile.gameObject.SetActive(true);
             projectile.Body.position = transform.position;
             projectile.Body.AddForce(LaunchDirection * launchForce, ForceMode2D.Impulse);
-            projectile.DespawnIn(seconds: lifeTime);
+            projectile.Despawn(lifeTime);
         }
 
         _spawning = false;
-        yield return new WaitForSeconds(delay);
-        _spawning = true;
+        StartCoroutine(Singleton.Global.Time.DelayedAction(delay, () => _spawning = true));
     }
 
     // Gizmos

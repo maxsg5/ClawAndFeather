@@ -15,7 +15,7 @@ public class TimeScaler : MonoBehaviour
         UITime = Time.deltaTime * _UITimeScale;
     }
 
-
+    public enum Scope { Game, UI, Global }
     /// <summary>
     /// Use this method to set a variable followed by waiting, then setting the variable later to a different value. <br />
     /// Use ( result => [ your variable name here ] = result ) in place of the <paramref name="variable"/>.
@@ -37,4 +37,23 @@ public class TimeScaler : MonoBehaviour
         variable(finalValue);
     }
 
+    /// <summary>
+    /// Invokes an <paramref name="action"/> after an amount of <paramref name="time"/> has passed.
+    /// </summary>
+    public IEnumerator DelayedAction(float time, Action action) => DelayedAction(time, action, Scope.Game);
+    public IEnumerator DelayedAction(float time, Action action, Scope scope)
+    {
+        float currentTime = 0;
+        while (currentTime < time)
+        {
+            currentTime += scope switch
+            {
+                Scope.UI => UITime,
+                Scope.Game => GameTime,
+                _ => Time.deltaTime,
+            };
+            yield return null;
+        }
+        action();
+    }
 }
