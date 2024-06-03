@@ -83,7 +83,7 @@ public class ProjectileSpawner : MonoBehaviour
         }
 
         _spawning = false;
-        StartCoroutine(Singleton.Global.Time.DelayedAction(() => _spawning = true, delay));
+        StartCoroutine(Singleton.Global.Time.DelayedAction(delay, () => _spawning = true));
     }
 
     // Gizmos
