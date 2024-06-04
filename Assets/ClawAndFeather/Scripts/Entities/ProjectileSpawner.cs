@@ -22,12 +22,12 @@ public class ProjectileSpawner : MonoBehaviour
     [Min(0)] public float warningLifeSpan;
 
     [Header("Gizmo Settings")]
-    public Color color = Color.yellow;
+    [SerializeField] private Color _color = Color.yellow;
     [Space]
-    public bool launchVelocity = false;
+    [SerializeField] private bool _showLaunchVelocity = false;
     [Space]
-    public bool trajectory = true;
-    [Range(1, 100)] public int resolution = 25;
+    [SerializeField] private bool _showTrajectory = true;
+    [SerializeField, Range(1, 100)] private int _resolution = 25;
     #endregion
 
     private PrefabPool _projectilePool;
@@ -125,18 +125,18 @@ public class ProjectileSpawner : MonoBehaviour
             ? force / projectile.Body.mass
             : force;
 
-        Gizmos.color = color;
+        Gizmos.color = _color;
         // Direction
-        if (launchVelocity)
+        if (_showLaunchVelocity)
         {
             Gizmos.DrawRay(transform.position, velocity);
         }
         // Trajectory
-        if (trajectory)
+        if (_showTrajectory)
         {
-            float timeStep = lifeTime * (1f / resolution);
+            float timeStep = lifeTime * (1f / _resolution);
             var previousPosition = Projectile.ProjectileMotion(0, velocity, transform.position, projectile);
-            for (int i = 1; i <= resolution; i++)
+            for (int i = 1; i <= _resolution; i++)
             {
                 var position = Projectile.ProjectileMotion(timeStep * i, velocity, transform.position, projectile);
                 Gizmos.DrawLine(previousPosition, position);
