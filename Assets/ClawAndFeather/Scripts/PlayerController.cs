@@ -8,10 +8,6 @@ using UnityEngine.InputSystem.Interactions;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    #region Spinning
-    [SerializeField] private Rigidbody2D _spinnerBody;
-    #endregion
-
     #region Movement
     private Rigidbody2D _body;
     public int Direction { get; private set; } = 1; // 1 is right, -1 is left
