@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[AddComponentMenu("Scripts/Global/Game Manager")]
+[AddComponentMenu("Scripts/Claw and Feather/Global/Game Manager")]
 public class GameState : MonoBehaviour
 {
     public float Score { get; set; }

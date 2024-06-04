@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/MenuScripts/IntroScene")]
+[AddComponentMenu("Scripts/Claw and Feather/Menu/Intro Scene")]
 public class IntroScene : MonoBehaviour
 {
     public void EndScene()

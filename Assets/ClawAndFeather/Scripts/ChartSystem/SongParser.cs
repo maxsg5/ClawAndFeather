@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Global/Song Parser")]
+[AddComponentMenu("Scripts/Claw and Feather/Global/Song Parser")]
 public class SongParser : MonoBehaviour
 {
     public TextAsset[] filesToParse;

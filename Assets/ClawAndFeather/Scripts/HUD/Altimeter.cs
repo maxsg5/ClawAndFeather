@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/HUD/Altimeter")]
+[AddComponentMenu("Scripts/Claw and Feather/HUD/Altimeter")]
 public class Altimeter : HUDLabel
 {
     public float maxAltitude = 1000;

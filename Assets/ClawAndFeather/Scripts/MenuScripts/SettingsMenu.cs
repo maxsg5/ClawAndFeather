@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Menu/SettingsMenu")]
+[AddComponentMenu("Scripts/Claw and Feather/Menu/Settings Menu")]
 public class SettingsMenu : MenuController
 {
     [Space]

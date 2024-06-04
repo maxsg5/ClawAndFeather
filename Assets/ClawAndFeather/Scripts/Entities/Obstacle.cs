@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Entities/Obstacle")]
+[AddComponentMenu("Scripts/Claw and Feather/Entities/Obstacle")]
 public class Obstacle : MonoBehaviour
 {
 	public Collider2D[] colliders;

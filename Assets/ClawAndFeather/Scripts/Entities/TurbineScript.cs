@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[AddComponentMenu("Scripts/Entities/Turbine")]
+[AddComponentMenu("Scripts/Claw and Feather/Entities/Turbine")]
 public class TurbineScript : MonoBehaviour
 {
 

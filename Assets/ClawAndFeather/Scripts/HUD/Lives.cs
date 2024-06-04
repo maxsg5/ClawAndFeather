@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[AddComponentMenu("Scripts/HUD/Lives")]
+[AddComponentMenu("Scripts/Claw and Feather/HUD/Lives")]
 public class Lives : HUDLabel
 {
     private void Update()

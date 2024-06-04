@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[AddComponentMenu("Scripts/Global/Prefab Manager")]
+[AddComponentMenu("Scripts/Claw and Feather/Global/Prefab Manager")]
 public class PrefabManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _activePrefabs;

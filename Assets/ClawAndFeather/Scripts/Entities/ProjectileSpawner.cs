@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Entities/ProjectileSpawner")]
+[AddComponentMenu("Scripts/Claw and Feather/Entities/Projectile Spawner")]
 public class ProjectileSpawner : MonoBehaviour
 {
     #region Inspector

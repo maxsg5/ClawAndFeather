@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu("Scripts/Claw and Feather/Entities/Warning Sign")]
 public class WarningSignArrow : MonoBehaviour
 {
     public Transform target;

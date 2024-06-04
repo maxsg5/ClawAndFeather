@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D)), AddComponentMenu("Scripts/Entities/Projectile")]
+[RequireComponent(typeof(Rigidbody2D)), AddComponentMenu("Scripts/Claw and Feather/Entities/Projectile")]
 public class Projectile : MonoBehaviour
 {
     private Rigidbody2D _body;

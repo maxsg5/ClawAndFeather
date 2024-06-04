@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
-[AddComponentMenu("Scripts/Spline Path/Follow Path (Rigidbody2D)"), RequireComponent(typeof(Rigidbody2D))]
+[AddComponentMenu("Scripts/Claw and Feather/Spline Path/Follow Path (Rigidbody2D)"), RequireComponent(typeof(Rigidbody2D))]
 public class FollowPath2D : FollowPath
 {
     public Rigidbody2D Body { get; private set; }

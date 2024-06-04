@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/HUD/Accuracy")]
+[AddComponentMenu("Scripts/Claw and Feather/HUD/Accuracy")]
 public class AccuracyScore : HUDLabel
 {
     private void Update()

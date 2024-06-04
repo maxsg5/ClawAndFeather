@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Global/Singleton")]
+[AddComponentMenu("Scripts/Claw and Feather/Global/Singleton")]
 public class Singleton : MonoBehaviour
 {
     public static Singleton Global { get; private set; }

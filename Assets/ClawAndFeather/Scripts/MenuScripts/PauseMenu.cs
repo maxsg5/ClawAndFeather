@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[AddComponentMenu("Scripts/Menu/PauseMenu")]
+[AddComponentMenu("Scripts/Claw and Feather/Menu/Pause Menu")]
 public class PauseMenu : MenuController
 {
     [Space]

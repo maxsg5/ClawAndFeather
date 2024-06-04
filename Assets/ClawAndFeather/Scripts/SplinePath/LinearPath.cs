@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("Scripts/Spline Path/Linear Path")]
+[AddComponentMenu("Scripts/Claw and Feather/Spline Path/Linear Path")]
 [HelpURL("https://github.com/JDoddsNAIT/Unity-Scripts/tree/main/dScripts/Follow-Path")]
 public class LinearPath : Path
 {
