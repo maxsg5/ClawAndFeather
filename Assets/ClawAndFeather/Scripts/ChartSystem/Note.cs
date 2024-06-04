@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Note
 {
     public float BeatDelay { get; private set; }
@@ -22,5 +24,9 @@ public class Note
         WasPlayed = false;
     }
 
-    public void Play() => WasPlayed = true;
+    public void Play()
+    {
+        Debug.Log("A note was played");
+        WasPlayed = true;
+    }
 }

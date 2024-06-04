@@ -17,9 +17,9 @@ public class ProjectileSpawner : MonoBehaviour
     public bool flipX = false;
 
     [Header("Warning Settings")]
+    public GameObject warningObject;
     [Min(0)] public float warningTimeBeforeSpawn;
     [Min(0)] public float warningLifeSpan;
-    public GameObject warningObject;
 
     [Header("Gizmo Settings")]
     public Color color = Color.yellow;
@@ -57,7 +57,10 @@ public class ProjectileSpawner : MonoBehaviour
                 throw new System.NullReferenceException($"No prefab pool using prefab {projectile.gameObject.name} was found.");
             }
 
-            warningObject.SetActive(false);
+            if (warningObject != null)
+            {
+                warningObject.SetActive(false);
+            }
 
             if (spawnOnStart)
             {
@@ -86,15 +89,22 @@ public class ProjectileSpawner : MonoBehaviour
     private IEnumerator SpawnProjectile()
     {
         _spawning = false;
-        float currentTime = 0;
-        while (currentTime < spawnDelay)
+        if (warningObject != null)
         {
-            currentTime += Time.deltaTime;
-            if (currentTime >= spawnDelay - warningTimeBeforeSpawn)
-            { warningObject.SetActive(true); }
-            yield return null;
+            float currentTime = 0;
+            while (currentTime < spawnDelay)
+            {
+                currentTime += Time.deltaTime;
+                if (currentTime >= spawnDelay - warningTimeBeforeSpawn)
+                { warningObject.SetActive(true); }
+                yield return null;
+            }
+            warningObject.SetActive(false); 
         }
-        warningObject.SetActive(false);
+        else
+        {
+            yield return new WaitForSeconds(spawnDelay);
+        }
 
         var projectileObject = _projectilePool.Next;
         if (projectileObject != null && projectileObject.TryGetComponent(out Projectile projectile))
