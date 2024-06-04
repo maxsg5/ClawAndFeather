@@ -29,10 +29,22 @@ public class AudioManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex != 0) // short work around
-        { AudioListener.volume = PlayerPrefs.GetFloat("Volume"); }
-        else
-        { PlayerPrefs.SetFloat("Volume", CurrentVolume); }
+        switch (scene.buildIndex)
+        {
+            case 1: // main menu
+                PlayerPrefs.SetFloat("Volume", CurrentVolume);
+                break;
+            case 2: // level one
+                AudioListener.volume = PlayerPrefs.GetFloat("Volume");
+                _currentChartID = 0;
+                Songs[_currentChartID].Play();
+                break;
+            case 3: // level two
+                AudioListener.volume = PlayerPrefs.GetFloat("Volume");
+                _currentChartID = 1;
+                Songs[_currentChartID].Play();
+                break;
+        }
     }
 
     /// <summary>
@@ -67,7 +79,7 @@ public class AudioManager : MonoBehaviour
 
     public void ButtonControl(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.timeScale != 0) // if not paused
         {
             switch (context.interaction)
             {
@@ -83,5 +95,13 @@ public class AudioManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void PauseSong(bool pause)
+    {
+        if (pause)
+        { Songs[_currentChartID].Pause(); }
+        else
+        { Songs[_currentChartID].Play(); }
     }
 }

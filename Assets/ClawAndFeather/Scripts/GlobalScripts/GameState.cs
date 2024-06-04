@@ -35,6 +35,7 @@ public class GameState : MonoBehaviour
         if (_pausedMenu != null)
         {  _pausedMenu.SetActive(Paused); }
         Time.timeScale = Paused ? 0.0f : 1.0f;
+        Singleton.Global.Audio.PauseSong(Paused);
     }
 
     /// <summary>
