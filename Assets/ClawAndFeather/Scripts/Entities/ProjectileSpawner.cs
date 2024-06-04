@@ -61,7 +61,7 @@ public class ProjectileSpawner : MonoBehaviour
 
             if (spawnOnStart)
             {
-                SpawnProjectile(0);
+                StartCoroutine(SpawnProjectile());
             }
             else
             {
@@ -79,16 +79,11 @@ public class ProjectileSpawner : MonoBehaviour
     {
         if (_spawning)
         {
-            SpawnProjectile(spawnDelay);
+            StartCoroutine(SpawnProjectile());
         }
     }
 
-    private void SpawnProjectile(float delay)
-    {
-
-        StartCoroutine(Spawn(delay));
-    }
-    private IEnumerator Spawn(float delay)
+    private IEnumerator SpawnProjectile()
     {
         _spawning = false;
         float currentTime = 0;
