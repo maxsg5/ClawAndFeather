@@ -16,6 +16,11 @@ public class ProjectileSpawner : MonoBehaviour
     [Range(-180, 180)] public float launchAngle = 45.0f;
     public bool flipX = false;
 
+    [Header("Warning Settings")]
+    [Min(0)] public float warningTimeBeforeSpawn;
+    [Min(0)] public float warningLifeSpan;
+    public GameObject warningObject;
+
     [Header("Gizmo Settings")]
     public Color color = Color.yellow;
     [Space]
@@ -52,9 +57,15 @@ public class ProjectileSpawner : MonoBehaviour
                 throw new System.NullReferenceException($"No prefab pool using prefab {projectile.gameObject.name} was found.");
             }
 
+            warningObject.SetActive(false);
+
             if (spawnOnStart)
             {
-                SpawnProjectile(spawnDelay);
+                SpawnProjectile(0);
+            }
+            else
+            {
+                _spawning = true;
             }
         }
         catch (System.Exception ex)
@@ -74,6 +85,22 @@ public class ProjectileSpawner : MonoBehaviour
 
     private void SpawnProjectile(float delay)
     {
+
+        StartCoroutine(Spawn(delay));
+    }
+    private IEnumerator Spawn(float delay)
+    {
+        _spawning = false;
+        float currentTime = 0;
+        while (currentTime < spawnDelay)
+        {
+            currentTime += Time.deltaTime;
+            if (currentTime >= spawnDelay - warningTimeBeforeSpawn)
+            { warningObject.SetActive(true); }
+            yield return null;
+        }
+        warningObject.SetActive(false);
+
         var projectileObject = _projectilePool.Next;
         if (projectileObject != null && projectileObject.TryGetComponent(out Projectile projectile))
         {
@@ -82,13 +109,6 @@ public class ProjectileSpawner : MonoBehaviour
             projectile.Body.AddForce(LaunchDirection * launchForce, ForceMode2D.Impulse);
             projectile.Despawn(lifeTime);
         }
-
-        _spawning = false;
-        StartCoroutine(Spawn(delay));
-    }
-    private IEnumerator Spawn(float delay)
-    {
-        yield return new WaitForSeconds(delay);
         _spawning = true;
     }
 
