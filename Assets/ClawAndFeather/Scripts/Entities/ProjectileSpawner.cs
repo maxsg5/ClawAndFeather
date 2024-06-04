@@ -70,8 +70,8 @@ public class ProjectileSpawner : MonoBehaviour
         }
         catch (System.Exception ex)
         {
-            gameObject.SetActive(false);
             Debug.LogException(ex);
+            Destroy(this);
         }
     }
 
