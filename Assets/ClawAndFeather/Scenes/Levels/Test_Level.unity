@@ -284,6 +284,9 @@ MonoBehaviour:
   launchForce: 10.82
   launchAngle: 45
   flipX: 0
+  warningTimeBeforeSpawn: 0
+  warningLifeSpan: 0
+  warningObject: {fileID: 0}
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   launchVelocity: 1
   trajectory: 1
@@ -461,6 +464,9 @@ MonoBehaviour:
   launchForce: 12.67
   launchAngle: 21
   flipX: 1
+  warningTimeBeforeSpawn: 0
+  warningLifeSpan: 0
+  warningObject: {fileID: 0}
   color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   launchVelocity: 1
   trajectory: 1
