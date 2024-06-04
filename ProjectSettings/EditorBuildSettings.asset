@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ClawAndFeather/Scenes/Intro.unity
+    guid: c387b39f1e10f504fa7c01ea4f88cf30
+  - enabled: 1
     path: Assets/ClawAndFeather/Scenes/MainMenu.unity
     guid: 79457f96052882b4cb4dd689826430bb
   - enabled: 1

@@ -25,6 +25,6 @@ public class PauseMenu : MenuController
     private void MainMenu()
     {
         Singleton.Global.State.Pause();
-        GameState.ChangeScene(0);
+        GameState.ChangeScene(1);
     }
 }
