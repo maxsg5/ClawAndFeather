@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [AddComponentMenu("Scripts/Claw and Feather/Entities/Turbine")]
-public class TurbineScript : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class Alien : MonoBehaviour
 {
+    public Transform target;
+
 
     // Start is called before the first frame update
     void Start()
