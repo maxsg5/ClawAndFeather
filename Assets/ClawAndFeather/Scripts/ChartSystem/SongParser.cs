@@ -57,7 +57,7 @@ public class SongParser : MonoBehaviour
 
                 if (numberOfBeats == 0)
                 {
-                    beatDelay = beatDelay = 60 * timeSignature / bpm;
+                    beatDelay = 60 * timeSignature / bpm;
                     notes.Add(new Note(beatDelay, totalBeatTime, true));
                     totalBeatTime += beatDelay;
                 }
@@ -65,7 +65,7 @@ public class SongParser : MonoBehaviour
                 {
                     for (int j = 0; j < numberOfBeats; j++)
                     {
-                        beatDelay = beatDelay = 60 * timeSignature / (numberOfBeats * bpm);
+                        beatDelay = 60 * timeSignature / (numberOfBeats * bpm);
                         notes.Add(new Note(beatDelay, totalBeatTime, false));
                         totalBeatTime += beatDelay;
                     }
