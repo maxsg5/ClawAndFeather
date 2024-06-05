@@ -45,6 +45,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region Animation
+    [Header("Animation Settings")]
+    [SerializeField] private Animator _animator;
+    [SerializeField][Min(0)] private float _deathLength;
+    private IEnumerator DieAnimation()
+    {
+        yield return new WaitForSeconds(_deathLength);
+        _animator.SetTrigger("Dead");
+        GameState.ChangeScene(1); // TEMPORARY
+    }
+    
+    #endregion
+
     #region Heath
     [field: Header("Health Settings")]
     [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
@@ -61,8 +74,8 @@ public class PlayerController : MonoBehaviour
                 Lives--;
                 if (Lives <= 0)
                 {
-                    // TODO: Animate the player when they get hit
-                    GameState.ExitGame(); // Temporary until Game over screen is made
+                    _animator.SetTrigger("Falling");
+                    StartCoroutine(DieAnimation());
                 }
                 else
                 {

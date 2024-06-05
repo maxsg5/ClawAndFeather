@@ -135,6 +135,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenus
       objectReference: {fileID: 0}
+    - target: {fileID: 2116617781601553102, guid: b62d2769913324a479d355a1ef516cd5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3027505953343508738, guid: b62d2769913324a479d355a1ef516cd5,
         type: 3}
       propertyPath: m_UpdateMode
@@ -616,6 +621,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7479055918673315021, guid: 951c4d1c3ef5f8c47a92d437200e461a,
+        type: 3}
+      propertyPath: _deathLength
+      value: 2.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
