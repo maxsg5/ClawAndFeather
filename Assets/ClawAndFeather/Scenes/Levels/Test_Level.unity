@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offColour: {r: 0, g: 0, b: 0, a: 1}
-  earlyColour: {r: 0, g: 1, b: 0, a: 1}
+  earlyColour: {r: 0.6549525, g: 1, b: 0.19433957, a: 1}
   lateColour: {r: 1, g: 0, b: 0, a: 1}
 --- !u!212 &1416907579
 SpriteRenderer:
