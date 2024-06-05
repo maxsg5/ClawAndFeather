@@ -289,7 +289,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.06}
-  m_ConnectedAnchor: {x: -10.17, y: 0.67000014}
+  m_ConnectedAnchor: {x: -38.09503, y: -10.918762}
   m_UseMotor: 1
   m_Motor:
     m_MotorSpeed: 255
@@ -362,7 +362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliders: []
+  colliders:
+  - {fileID: 7493420837859300432}
 --- !u!1 &8748707677650324013
 GameObject:
   m_ObjectHideFlags: 0
