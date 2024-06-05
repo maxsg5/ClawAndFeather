@@ -940,7 +940,7 @@ PrefabInstance:
     - target: {fileID: 8107490768040908154, guid: ccd99a1aff22eb34f85f98186334e075,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4097675516950071767, guid: ccd99a1aff22eb34f85f98186334e075, type: 3}
@@ -2088,16 +2088,17 @@ MonoBehaviour:
     -> Martina Goodyear
 
     -> Shayla
+    Cymbaluk
 
 
     Programmers:
 
-    ->
-    Kael Kostiuk
+    -> Kael Kostiuk
 
     -> Jonathan Dodds
 
-    -> Jeff Sabandal'
+    ->
+    Jeff Sabandal'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cadd0afe6ee788741a04dda2d7698848, type: 2}
   m_sharedMaterial: {fileID: 6789447257834119285, guid: cadd0afe6ee788741a04dda2d7698848,
