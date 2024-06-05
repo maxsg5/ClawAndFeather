@@ -5,8 +5,8 @@ public class NoteVisualizer : MonoBehaviour
 {
     #region Inspector
     public Color offColour = Color.black;
-    public Color earlyColour = Color.green;
-    public Color lateColour = Color.red;
+    public Color onColour = Color.green;
+    public Color restColour = Color.red;
     #endregion
 
     private Renderer _rend;
@@ -20,22 +20,10 @@ public class NoteVisualizer : MonoBehaviour
 
     void Update()
     {
-        _rend.material.color = offColour;
-        var time = _audioManager.AudioTime;
-        if (_audioManager.CurrentChart.TryPlayNote(time, out var note, out _))
-        {
-            if (note.NoteTime < time)
-            {
-                _rend.material.color = earlyColour;
-            }
-            else if (note.NoteTime > time)
-            {
-                _rend.material.color = lateColour;
-            }
-        }
-        else
-        {
-            Debug.Log("No note was played");
-        }
+        _rend.material.color = _audioManager.CurrentChart.TryPlayNote(_audioManager.AudioTime, out var note, out _) 
+            ? note.IsRest
+                ? restColour // note detected, is rest.
+                : onColour // note detected, is not rest.
+            : offColour; // no note detected.
     }
 }
