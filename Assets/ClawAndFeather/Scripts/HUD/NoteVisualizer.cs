@@ -18,7 +18,7 @@ public class NoteVisualizer : MonoBehaviour
 
     private void Update()
     {
-        _rend.material.color = Singleton.Global.Audio.CurrentChart.TryPlayNote(Singleton.Global.Audio.AudioTime, out var note, out _) 
+        _rend.material.color = Singleton.Global.Audio.CurrentChart.TryPlayNote(Singleton.Global.Audio.AudioTime, out var note, out _)
             ? note.IsRest
                 ? restColour // note detected, is rest.
                 : onColour // note detected, is not rest.

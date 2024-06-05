@@ -10,8 +10,10 @@ public class SongParser : MonoBehaviour
     /// <summary>
     /// When giving a <paramref name="file"/> make sure it is a csv split into rows and follows this pattern:
     /// <br />BPM,EarlyTolerance,LateTolerance
-    /// <br />NumberOfBeats,Time/Signature
-    /// <br />NumberOfBeats,Time/Signature
+    /// <br />float,float,float
+    /// <br />NumberOfBeats,Notes/Beats
+    /// <br />int,int/int
+    /// <br />int,int/int
     /// <br />...
     /// </summary>
     /// <param name="file"></param>
@@ -21,7 +23,7 @@ public class SongParser : MonoBehaviour
     {
         chart = null; // what it returns if it returns false
         string[] dataLines = file.text.Split('\n'); // split by each new line
-        string[] nonRepeatingData = dataLines[0].Split(',');
+        string[] nonRepeatingData = dataLines[1].Split(',');
         if (nonRepeatingData.Length != 3)
         {
             Debug.LogError("Length of BPM,ToleranceEarly,ToleranceLate does not meet format.");
@@ -41,7 +43,7 @@ public class SongParser : MonoBehaviour
         List<Note> notes = new();
         float totalBeatTime = 0;
 
-        for (int i = 1; i < dataLines.Length; i++)
+        for (int i = 3; i < dataLines.Length; i++)
         {
             try
             {
