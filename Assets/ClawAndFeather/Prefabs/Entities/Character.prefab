@@ -102,6 +102,9 @@ MonoBehaviour:
   <Lives>k__BackingField: 9
   <IsInvulnerable>k__BackingField: 0
   <InvulnerableTime>k__BackingField: 2
+  _renderer: {fileID: 3826324225633584264}
+  _hitColour: {r: 1, g: 0.3075471, b: 0.3075471, a: 1}
+  _hitDuration: 1
 --- !u!50 &7965103292929198490
 Rigidbody2D:
   serializedVersion: 4
