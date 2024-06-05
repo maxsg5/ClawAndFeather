@@ -25,10 +25,10 @@ public class Obstacle : MonoBehaviour
     [ContextMenu("Get All Colliders")]
     private void SetColliders()
     {
-        colliders = GetComponentsInChildren<Collider2D>().Where(c => c.isTrigger == false).ToArray();
+        colliders = GetComponentsInChildren<Collider2D>().Where(c => c.isTrigger).ToArray();
         if (colliders.Length < 1)
         {
-            throw new System.Exception($"There are no non-trigger colliders on {gameObject.name} or it's children.");
+            throw new System.Exception($"There are no trigger colliders on {gameObject.name} or it's children.");
         }
     }
 }
