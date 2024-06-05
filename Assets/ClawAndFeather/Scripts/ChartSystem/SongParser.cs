@@ -50,23 +50,27 @@ public class SongParser : MonoBehaviour
                 if (row.Length != 2)
                 { throw new Exception($"Row {i} of file {file.name} is in the incorrect format."); }
                 
-                int numberOfBeats = int.Parse(row[0]);
+                int numberOfNotes = int.Parse(row[0]);
                 string[] timeSignatureString = row[1].Split("/");
                 float timeSignature = int.Parse(timeSignatureString[0]) / float.Parse(timeSignatureString[1]);
                 float beatDelay = 0;
 
-                if (numberOfBeats == 0)
+                // notes/beat * beats/minute = notes/minute
+                // notes/minute * minutes/second = notes/second
+                // notes/second ^-1 = seconds/note = beatDelay
+
+                if (numberOfNotes == 0)
                 {
-                    beatDelay = 60 * timeSignature / bpm;
-                    notes.Add(new Note(beatDelay, totalBeatTime, true));
+                    beatDelay = 1 / (timeSignature * bpm / 60f);
+                    notes.Add(new Note(totalBeatTime, true));
                     totalBeatTime += beatDelay;
                 }
                 else
                 {
-                    for (int j = 0; j < numberOfBeats; j++)
+                    for (int j = 0; j < numberOfNotes; j++)
                     {
-                        beatDelay = 60 * timeSignature / (numberOfBeats * bpm);
-                        notes.Add(new Note(beatDelay, totalBeatTime, false));
+                        beatDelay = 1 / (timeSignature * bpm / 60f);
+                        notes.Add(new Note(totalBeatTime, false));
                         totalBeatTime += beatDelay;
                     }
                 }
