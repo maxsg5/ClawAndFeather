@@ -405,7 +405,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5684004931705031002}
   - component: {fileID: 8315874579931492655}
-  - component: {fileID: 8027667914555367379}
   m_Layer: 0
   m_Name: Geese
   m_TagString: Untagged
@@ -451,19 +450,6 @@ MonoBehaviour:
   reverse: 0
   endAction: 2
   rotationMode: 0
---- !u!114 &8027667914555367379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4467924111689439588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders: []
 --- !u!1 &4504999946681283846
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2426019036016190620}
+  - component: {fileID: 1783501037997969861}
   m_Layer: 0
   m_Name: Goosen
   m_TagString: Untagged
@@ -965,6 +952,24 @@ Transform:
   - {fileID: 5483977952085937223}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1783501037997969861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4934484661106052804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 5861724792937016806}
+  - {fileID: 5133249398220875212}
+  - {fileID: 5218655373597515500}
+  - {fileID: 5103697293429894500}
+  - {fileID: 7755682902230238212}
 --- !u!1 &7861919791117743966
 GameObject:
   m_ObjectHideFlags: 0

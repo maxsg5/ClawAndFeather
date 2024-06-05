@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 2048918098211618405}
   - component: {fileID: 4844478452816084587}
   - component: {fileID: 3740620507941960710}
-  - component: {fileID: 337492146318066426}
   m_Layer: 0
   m_Name: ufo
   m_TagString: Untagged
@@ -250,19 +249,6 @@ PolygonCollider2D:
       - {x: 0.234375, y: -1.484375}
       - {x: 1.046875, y: -1.390625}
   m_UseDelaunayMesh: 0
---- !u!114 &337492146318066426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2501048776232043109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders: []
 --- !u!1 &3342184442722902441
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7154695952766475488}
+  - component: {fileID: 4616613977849653400}
   m_Layer: 0
   m_Name: UFOPrefab
   m_TagString: Untagged
@@ -327,6 +314,20 @@ Transform:
   - {fileID: 2613283030258121811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4616613977849653400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906887224569747185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d732c7868d224f468db8da094480fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 3740620507941960710}
 --- !u!1 &4250271297656904138
 GameObject:
   m_ObjectHideFlags: 0
