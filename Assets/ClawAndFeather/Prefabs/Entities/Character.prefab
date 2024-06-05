@@ -97,6 +97,8 @@ MonoBehaviour:
   <Speed>k__BackingField: 7.5
   <ImpulseMultiplier>k__BackingField: 1
   <MaxVelocity>k__BackingField: 10
+  _animator: {fileID: 5183033257980768250}
+  _deathLength: 2.75
   <Lives>k__BackingField: 9
   <IsInvulnerable>k__BackingField: 0
   <InvulnerableTime>k__BackingField: 2
