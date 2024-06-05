@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     #region Animation
     [Header("Animation Settings")]
     [SerializeField] private Animator _animator;
-    [SerializeField][Min(0)] private float _deathLength;
+    [SerializeField, Min(0)] private float _deathLength;
     private IEnumerator DieAnimation()
     {
         yield return new WaitForSeconds(_deathLength);
@@ -63,6 +63,11 @@ public class PlayerController : MonoBehaviour
     [field: SerializeField, Range(0, 9)] public int Lives { get; set; } = 9;
     [field: SerializeField] public bool IsInvulnerable { get; set; } = false;
     [field: SerializeField] public float InvulnerableTime { get; set; } = 2.0f;
+
+    [Space]
+    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private Color _hitColour;
+    [SerializeField, Min(0)] private float _hitDuration;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -89,7 +94,15 @@ public class PlayerController : MonoBehaviour
     private IEnumerator TakeDamage(float invulnerableTime)
     {
         IsInvulnerable = true;
-        yield return new WaitForSeconds(invulnerableTime);
+        float currentTime = 0;
+        _renderer.color = _hitColour;
+        while (currentTime < invulnerableTime)
+        {
+            _renderer.color = Color.Lerp(_renderer.color, Color.white, 0.1f);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        _renderer.color = Color.white;
         IsInvulnerable = false;
     }
     #endregion
