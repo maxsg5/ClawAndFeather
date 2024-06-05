@@ -27,6 +27,7 @@ public class SongChart
             throw new ArgumentException(nameof(bpm));
         }
 
+        SongName = songName;
         BPM = bpm;
         ToleranceEarly = toleranceEarly;
         ToleranceLate = toleranceLate;
