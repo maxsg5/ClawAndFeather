@@ -16,9 +16,7 @@ public class SongParser : MonoBehaviour
     /// <br />int,int/int
     /// <br />...
     /// </summary>
-    /// <param name="file"></param>
-    /// <param name="chart"></param>
-    /// <returns>True or False based on if it was able to read the file or not.</returns>
+    /// <returns><see langword="true"/> or <see langword="false"/> based on if it was able to read the file or not.</returns>
     public static bool ReadCSVFile(TextAsset file, out SongChart chart)
     {
         chart = null; // what it returns if it returns false
