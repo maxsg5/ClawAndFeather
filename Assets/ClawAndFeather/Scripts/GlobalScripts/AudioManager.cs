@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private SongParser _parser;
     private readonly List<SongChart> _songCharts = new();
     private int _currentSongID = 0;
+    private int _currentBuildID = 0;
 
     [field:SerializeField] public float CurrentVolume { get; private set; } = 1.0f;
 
@@ -29,6 +30,7 @@ public class AudioManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        _currentBuildID = scene.buildIndex;
         switch (scene.buildIndex)
         {
             case 1: // main menu
@@ -82,7 +84,7 @@ public class AudioManager : MonoBehaviour
 
     public void ButtonControl(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.timeScale != 0) // if not paused
+        if (context.performed && Time.timeScale != 0 && _currentBuildID > 1) // if not paused
         {
             switch (context.interaction)
             {

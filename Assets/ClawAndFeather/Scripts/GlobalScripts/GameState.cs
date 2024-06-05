@@ -27,15 +27,23 @@ public class GameState : MonoBehaviour
     }
 
     /// <summary>
-    /// Used to Flip the <see cref="GameState.Paused"/> state
+    /// Used to Flip the <see cref="GameState.Paused"/> state.
     /// </summary>
     public void Pause()
     {
         Paused = !Paused;
-        if (_pausedMenu != null)
-        {  _pausedMenu.SetActive(Paused); }
         Time.timeScale = Paused ? 0.0f : 1.0f;
+        if (_pausedMenu != null)
+        { _pausedMenu.SetActive(Paused); }
         Singleton.Global.Audio.PauseSong(Paused);
+    }
+    /// <summary>
+    /// Exclusivly only flips <see cref="GameState.Paused"/> state.
+    /// </summary>
+    public void LimitedPause()
+    {
+        Paused = !Paused;
+        Time.timeScale = Paused ? 0.0f : 1.0f;
     }
 
     /// <summary>

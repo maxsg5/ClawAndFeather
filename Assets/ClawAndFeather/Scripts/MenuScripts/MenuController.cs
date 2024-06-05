@@ -69,9 +69,9 @@ public abstract class MenuController : MonoBehaviour
                     break;
                 case HoldInteraction: // click button
 
-                    _buttons[selectedButton].onClick.Invoke();
                     _flashCoroutine = StartCoroutine(Flash(_buttonImages[selectedButton], 1));
-
+                    _buttons[selectedButton].onClick.Invoke();
+                    
                     break;
             }
         }
