@@ -3,6 +3,7 @@ using System.Linq;
 
 public class SongChart
 {
+    public string SongName { get; private set; }
     public float BPM { get; private set; }
     public float ToleranceEarly { get; private set; }
     public float ToleranceLate { get; private set; }
@@ -11,7 +12,7 @@ public class SongChart
 
     public Note[] UnplayedNotes => Notes.Where(n => !n.WasPlayed).ToArray();
 
-    public SongChart(float bpm, float toleranceEarly, float toleranceLate, Note[] notes)
+    public SongChart(string songName, float bpm, float toleranceEarly, float toleranceLate, Note[] notes)
     {
         if (toleranceEarly >= 0)
         {

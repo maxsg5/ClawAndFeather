@@ -78,7 +78,7 @@ public class SongParser : MonoBehaviour
             }
         }
 
-        chart = new SongChart(bpm, -earlyTolerance, lateTolerance, notes.ToArray());
+        chart = new SongChart(file.name, bpm, -earlyTolerance, lateTolerance, notes.ToArray());
         return true;
     }
 }

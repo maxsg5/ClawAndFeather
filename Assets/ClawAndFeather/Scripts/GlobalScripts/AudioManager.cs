@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     private SongParser _parser;
-    private List<SongChart> _songCharts = new List<SongChart>();
-    private int _currentChartID = 0;
+    private readonly List<SongChart> _songCharts = new();
+    private int _currentSongID = 0;
 
     [field:SerializeField] public float CurrentVolume { get; private set; } = 1.0f;
 
@@ -33,16 +33,19 @@ public class AudioManager : MonoBehaviour
         {
             case 1: // main menu
                 PlayerPrefs.SetFloat("Volume", CurrentVolume);
+                CurrentChart = null;
                 break;
             case 2: // level one
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
-                _currentChartID = 0;
-                Songs[_currentChartID].Play();
+                _currentSongID = 0;
+                Songs[_currentSongID].Play();
+                CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
             case 3: // level two
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
-                _currentChartID = 1;
-                Songs[_currentChartID].Play();
+                _currentSongID = 1;
+                Songs[_currentSongID].Play();
+                CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
         }
     }
@@ -50,12 +53,12 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Gets the current chart being used.
     /// </summary>
-    public SongChart CurrentChart => _songCharts[_currentChartID];
+    public SongChart CurrentChart { get; private set; }
 
     /// <summary>
     /// Gets the current time of the song currently being played
     /// </summary>
-    public float AudioTime => Songs[_currentChartID].time;
+    public float AudioTime => Songs[_currentSongID].time;
 
     /// <summary>
     /// Returns <see cref="AudioTime"/> as a percentage of the <see cref="Note.NoteTime"/> of the final <see cref="Note"/> in <see cref="CurrentChart"/>.
@@ -100,8 +103,8 @@ public class AudioManager : MonoBehaviour
     public void PauseSong(bool pause)
     {
         if (pause)
-        { Songs[_currentChartID].Pause(); }
+        { Songs[_currentSongID].Pause(); }
         else
-        { Songs[_currentChartID].Play(); }
+        { Songs[_currentSongID].Play(); }
     }
 }
