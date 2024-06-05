@@ -82,6 +82,10 @@ public class AudioManager : MonoBehaviour
     // TimeKeeper
     public List<float> HitNotes { get; private set; } = new();
 
+    /// <summary>
+    /// Never reference specifically
+    /// </summary>
+    /// <param name="context"></param>
     public void ButtonControl(InputAction.CallbackContext context)
     {
         if (context.performed && Time.timeScale != 0 && _currentBuildID > 1) // if not paused

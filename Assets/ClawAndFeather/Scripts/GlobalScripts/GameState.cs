@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 [AddComponentMenu("Scripts/Claw and Feather/Global/Game Manager")]
@@ -10,6 +12,7 @@ public class GameState : MonoBehaviour
 
     [SerializeField] private GameObject _pausedMenu;
     public bool Paused { get; private set; }
+    private int _currentBuildID;
     void Awake()
     {
         SceneManager.sceneLoaded += SceneLoaded;
@@ -17,6 +20,7 @@ public class GameState : MonoBehaviour
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        _currentBuildID = scene.buildIndex;
         PlayerObject = GameObject.FindGameObjectWithTag("Player");
         if (PlayerObject != null)
         { Player = PlayerObject.GetComponent<PlayerController>(); }
@@ -56,4 +60,23 @@ public class GameState : MonoBehaviour
     /// This is pretty self-explanatory, stupid.
     /// </summary>
     public static void ExitGame() => Application.Quit();
+
+    /// <summary>
+    /// Never reference specifically
+    /// </summary>
+    /// <param name="context"></param>
+    public void ButtonControl(InputAction.CallbackContext context)
+    {
+        if (context.performed && _currentBuildID == 0) // if on intro, can skip
+        {
+            switch (context.interaction)
+            {
+                case TapInteraction:
+                    break;
+                case HoldInteraction: // SKip
+                    ChangeScene(_currentBuildID + 1);
+                    break;
+            }
+        }
+    }
 }
