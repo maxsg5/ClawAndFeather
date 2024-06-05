@@ -7,6 +7,7 @@ public class SongChart
     public float BPM { get; private set; }
     public float ToleranceEarly { get; private set; }
     public float ToleranceLate { get; private set; }
+    public float Length { get; private set; }
 
     public Note[] Notes { get; private set; }
 
@@ -32,6 +33,7 @@ public class SongChart
         ToleranceEarly = toleranceEarly;
         ToleranceLate = toleranceLate;
         Notes = notes.OrderBy(n => n.NoteTime).ToArray();
+        Length = Notes.Last().NoteTime;
     }
 
     // check whether the input time is close enough to the noteTime

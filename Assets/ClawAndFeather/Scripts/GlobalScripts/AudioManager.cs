@@ -65,7 +65,7 @@ public class AudioManager : MonoBehaviour
     /// <summary>
     /// Returns <see cref="AudioTime"/> as a percentage of the <see cref="Note.NoteTime"/> of the final <see cref="Note"/> in <see cref="CurrentChart"/>.
     /// </summary>
-    public float SongProgress => AudioTime / CurrentChart.Notes.Last().NoteTime;
+    public float SongProgress => AudioTime / CurrentChart.Length;
 
     /// <summary>
     /// Change the volume of the camera listener. There is a minimum value of 0 and maximum of 1. <br />
