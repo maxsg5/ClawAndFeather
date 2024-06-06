@@ -41,6 +41,14 @@ public class GameState : MonoBehaviour
         { _pausedMenu.SetActive(Paused); }
         Singleton.Global.Audio.PauseSong(Paused);
     }
+    public void Pause(bool pause)
+    {
+        Paused = pause;
+        Time.timeScale = Paused ? 0.0f : 1.0f;
+        if (_pausedMenu != null)
+        { _pausedMenu.SetActive(Paused); }
+        Singleton.Global.Audio.PauseSong(Paused);
+    }
     /// <summary>
     /// Exclusivly only flips <see cref="GameState.Paused"/> state.
     /// </summary>
@@ -49,9 +57,9 @@ public class GameState : MonoBehaviour
         Paused = !Paused;
         Time.timeScale = Paused ? 0.0f : 1.0f;
     }
-    public void LimitedPause(bool time)
+    public void LimitedPause(bool pause)
     {
-        Paused = time;
+        Paused = pause;
         Time.timeScale = Paused ? 0.0f : 1.0f;
     }
 
