@@ -14,7 +14,7 @@ public class ChartVisualizer : MonoBehaviour
     [SerializeField] bool _showBPM = true;
     [SerializeField] Color _BPMColor = Color.red;
     [SerializeField, Min(0)] float _BPMLineLength = 6.0f;
-    [SerializeField, Min(1)] float _addedLength = 1.0f;
+    [SerializeField, Range(1, 10f)] float _addedLength = 1.0f;
     [Space]
     [SerializeField] bool _showNotes = true;
     [SerializeField] Color _notesColor = Color.yellow;
@@ -35,6 +35,12 @@ public class ChartVisualizer : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+
+        if (_keepChartUpdated)
+        {
+            ParseChart(logSuccess: false);
+        }
+        
         if (_showChart == ShowGizmo.Always && _songChart != null)
         {
             DrawLines();
@@ -42,11 +48,6 @@ public class ChartVisualizer : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        if (_keepChartUpdated)
-        {
-            ParseChart(logSuccess: false);
-        }
-
         if (_showChart == ShowGizmo.Selected && _songChart != null)
         {
             DrawLines();
