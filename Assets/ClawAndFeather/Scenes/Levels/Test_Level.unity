@@ -976,9 +976,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _chart: {fileID: 4900000, guid: 5ea966f4436491344825fa5461112b54, type: 3}
   _showChart: 0
-  _showBPM: 0
+  _showBPM: 1
   _BPMColor: {r: 1, g: 0, b: 0, a: 1}
-  _BPMLineLength: 5
+  _BPMLineLength: 6.25
   _showNotes: 1
   _notesColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _notesLineLength: 5

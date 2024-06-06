@@ -12,7 +12,7 @@ public class ChartVisualizer : MonoBehaviour
     [Space]
     [SerializeField] private bool _showBPM = true;
     [SerializeField] private Color _BPMColor = Color.red;
-    [SerializeField, Min(0)] private float _BPMLineLength = 5.0f;
+    [SerializeField, Min(0)] private float _BPMLineLength = 6.0f;
     [Space]
     [SerializeField] private bool _showNotes = true;
     [SerializeField] private Color _notesColor = Color.yellow;
@@ -39,30 +39,28 @@ public class ChartVisualizer : MonoBehaviour
 
     private void DrawLines()
     {
-        float x1, x2, y;
+        float y;
+        Vector2 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         // BPM
         if (_showBPM)
         {
             Gizmos.color = _BPMColor;
-            int totalBeats = Mathf.CeilToInt(_songChart.Length * _songChart.BPM);
-            x1 = transform.position.x - (0.5f * _BPMLineLength);
-            x2 = transform.position.x + (0.5f * _BPMLineLength);
+            float bps = _songChart.BPM / 60f;
+            int totalBeats = Mathf.CeilToInt(_songChart.Length * bps);
             for (int c = 0; c < totalBeats; c++)
             {
-                y = transform.position.y + _progressor.scrollSpeed * c * (_songChart.BPM / 60f);
-                Gizmos.DrawLine(new(x1, y), new(x2, y));
+                y = playerPosition.y + _progressor.scrollSpeed * c * bps;
+                Gizmos.DrawCube(new(playerPosition.x, y), new(_BPMLineLength, 0.1f));
             }
         }
         // Notes
         if (_showNotes)
         {
             Gizmos.color = _notesColor;
-            x1 = transform.position.x - (0.5f * _notesLineLength);
-            x2 = transform.position.x + (0.5f * _notesLineLength);
             foreach (var note in _songChart.Notes.Where(n => !n.IsRest))
             {
-                y = transform.position.y + _progressor.scrollSpeed * note.NoteTime;
-                Gizmos.DrawLine(new(x1, y), new(x2, y));
+                y = playerPosition.y + _progressor.scrollSpeed * note.NoteTime;
+                Gizmos.DrawWireCube(new(playerPosition.x, y), new(_notesLineLength, 0));
             }
         }
     }
