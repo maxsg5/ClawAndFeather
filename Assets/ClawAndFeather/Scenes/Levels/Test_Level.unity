@@ -1319,9 +1319,10 @@ MonoBehaviour:
   _showBPM: 1
   _BPMColor: {r: 0, g: 0, b: 0, a: 1}
   _BPMLineLength: 10
-  _addedLength: 2
+  _addedLength: 10
   _showNotes: 1
-  _notesColor: {r: 1, g: 1, b: 1, a: 1}
+  _notesColor: {r: 0, g: 1, b: 0, a: 1}
+  _restNotesColor: {r: 1, g: 0, b: 0, a: 1}
   _notesLineLength: 5
   _keepChartUpdated: 1
 --- !u!1001 &1752993327
@@ -2096,6 +2097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lvl_3_Mars
+      objectReference: {fileID: 0}
+    - target: {fileID: 2313640585147120612, guid: 974c4e9975622d6408939505e7e23113,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5186901998878658407, guid: 974c4e9975622d6408939505e7e23113,
         type: 3}
