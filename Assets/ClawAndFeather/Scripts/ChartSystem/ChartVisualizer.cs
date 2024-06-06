@@ -53,7 +53,7 @@ public class ChartVisualizer : MonoBehaviour
                 Gizmos.DrawLine(new(x1, y), new(x2, y));
             }
         }
-        //  Notes
+        // Notes
         if (_showNotes)
         {
             Gizmos.color = _notesColor;

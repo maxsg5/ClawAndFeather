@@ -925,7 +925,7 @@ GameObject:
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -974,9 +974,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 774b9259911dd3b4fb731994bb9cd5e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chart: {fileID: 0}
-  _ShowChart: 0
-  _showBPM: 1
+  _chart: {fileID: 4900000, guid: 5ea966f4436491344825fa5461112b54, type: 3}
+  _showChart: 0
+  _showBPM: 0
   _BPMColor: {r: 1, g: 0, b: 0, a: 1}
   _BPMLineLength: 5
   _showNotes: 1
