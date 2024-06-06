@@ -17,17 +17,20 @@ public class ProjectileSpawner : MonoBehaviour
     public bool flipX = false;
 
     [Header("Warning Settings")]
-    public GameObject warningObject;
+    public WarningSign warningObject;
     [Min(0)] public float warningTimeBeforeSpawn;
     [Min(0)] public float warningLifeSpan;
 
     [Header("Gizmo Settings")]
-    [SerializeField] private Color _color = Color.yellow;
+    [SerializeField] Color _color = Color.yellow;
     [Space]
-    [SerializeField] private bool _showLaunchVelocity = false;
+    [SerializeField] bool _showLaunchVelocity = false;
     [Space]
-    [SerializeField] private bool _showTrajectory = true;
-    [SerializeField, Range(1, 100)] private int _resolution = 25;
+    [SerializeField] bool _showTrajectory = true;
+    [SerializeField, Range(1, 100)] int _resolution = 25;
+    [Space]
+    [SerializeField] bool _showFinalPosition = true;
+    [SerializeField, Range(0,1)] float _radius = 0.2f;
     #endregion
 
     private PrefabPool _projectilePool;
@@ -59,7 +62,7 @@ public class ProjectileSpawner : MonoBehaviour
 
             if (warningObject != null)
             {
-                warningObject.SetActive(false);
+                warningObject.gameObject.SetActive(false);
             }
 
             if (spawnOnStart)
@@ -96,10 +99,10 @@ public class ProjectileSpawner : MonoBehaviour
             {
                 currentTime += Time.deltaTime;
                 if (currentTime >= spawnDelay - warningTimeBeforeSpawn)
-                { warningObject.SetActive(true); }
+                { warningObject.gameObject.SetActive(true); }
                 yield return null;
             }
-            warningObject.SetActive(false); 
+            warningObject.gameObject.SetActive(false);
         }
         else
         {
@@ -142,7 +145,11 @@ public class ProjectileSpawner : MonoBehaviour
                 Gizmos.DrawLine(previousPosition, position);
                 previousPosition = position;
             }
-            Gizmos.DrawWireSphere(previousPosition, 0.2f);
+        }
+
+        if (_showFinalPosition)
+        {
+            Gizmos.DrawWireSphere(Projectile.ProjectileMotion(lifeTime, velocity, transform.position, projectile), _radius); 
         }
     }
 }
