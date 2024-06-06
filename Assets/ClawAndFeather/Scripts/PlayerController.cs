@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    // TODO: Animate the player when they take damage. set InvulnerableTime to the animation length
                     StartCoroutine(TakeDamage(InvulnerableTime));
                 } 
             }
