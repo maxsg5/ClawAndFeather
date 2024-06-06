@@ -978,7 +978,7 @@ MonoBehaviour:
   _showChart: 0
   _showBPM: 1
   _BPMColor: {r: 1, g: 0, b: 0, a: 1}
-  _BPMLineLength: 6.25
+  _BPMLineLength: 6
   _showNotes: 1
   _notesColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   _notesLineLength: 5
