@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D)), AddComponentMenu("Scripts/Claw and Feather/Entities/Projectile")]
@@ -44,7 +45,18 @@ public class Projectile : MonoBehaviour
     /// </summary>
     public static Vector3 ProjectileMotion(float time, Vector2 initialVelocity, Vector2 initialPosition, Projectile projectile)
     {
-        Vector2 G = Physics2D.gravity * (projectile == null ? 1 : projectile.Body.gravityScale); 
-        return (time * time * 0.5f * G) + (initialVelocity * time) + initialPosition;
+        Vector2 F = Vector2.zero;
+        Vector2 G = Physics2D.gravity;
+        if (projectile != null)
+        {
+            var forces = projectile.GetComponents<ConstantForce2D>();
+            F = new Vector2(
+                forces.Sum(f => f.force.x) + forces.Sum(f => f.relativeForce.x),
+                forces.Sum(f => f.force.y) + forces.Sum(f => f.relativeForce.y) / projectile.Body.mass;
+            G *= projectile.Body.gravityScale;
+        }
+
+        Vector2 A = G + F;
+        return (time * time * 0.5f * A) + (initialVelocity * time) + initialPosition;
     }
 }

@@ -113,7 +113,12 @@ public class ProjectileSpawner : MonoBehaviour
         if (projectileObject != null && projectileObject.TryGetComponent(out Projectile projectile))
         {
             projectile.gameObject.SetActive(true);
-            projectile.transform.position = transform.position;
+            projectile.transform.SetPositionAndRotation(
+                transform.position,
+                Quaternion.Euler(
+                    projectile.transform.rotation.eulerAngles.x,
+                    projectile.transform.rotation.eulerAngles.y,
+                    projectile.transform.rotation.eulerAngles.z + launchAngle * (flipX ? -1 : 1)));
             projectile.Body.AddForce(LaunchDirection * launchForce, ForceMode2D.Impulse);
             projectile.Despawn(lifeTime);
         }
