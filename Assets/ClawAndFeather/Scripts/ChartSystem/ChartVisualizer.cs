@@ -45,12 +45,14 @@ public class ChartVisualizer : MonoBehaviour
         if (_showBPM)
         {
             Gizmos.color = _BPMColor;
-            float bps = _songChart.BPM / 60f;
+
+            float bps = 60f / _songChart.BPM;
             int totalBeats = Mathf.CeilToInt(_songChart.Length * bps);
+
             for (int c = 0; c <= totalBeats; c++)
             {
-                y = _playerPosition.y + (_progressor.scrollSpeed * (c * bps));
-                Gizmos.DrawCube(new(_playerPosition.x, y), new(_BPMLineLength, 0.05f));
+                y = transform.position.y + (_progressor.scrollSpeed * c * bps);
+                Gizmos.DrawCube(new(transform.position.x, y), new(_BPMLineLength, 0.05f));
             }
         }
         // Notes
@@ -59,8 +61,8 @@ public class ChartVisualizer : MonoBehaviour
             Gizmos.color = _notesColor;
             foreach (var note in _songChart.Notes.Where(n => !n.IsRest))
             {
-                y = _playerPosition.y + _progressor.scrollSpeed * note.NoteTime;
-                Gizmos.DrawWireCube(new(_playerPosition.x, y), new(_notesLineLength, 0));
+                y = transform.position.y + _progressor.scrollSpeed * note.NoteTime;
+                Gizmos.DrawWireCube(new(transform.position.x, y), new(_notesLineLength, 0));
             }
         }
     }
