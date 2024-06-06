@@ -1,6 +1,5 @@
 ﻿BPM,EarlyTolerance,LateTolerance
-60,0.2,0.3
-NumberOfBeats,Notes/Beats
-8,8/1
-8,4/1
-4,4/2
+91,0.2,0.3
+NumberOfNotes,Notes/Beats
+08,4/1
+128,4/4
