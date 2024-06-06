@@ -981,7 +981,7 @@ MonoBehaviour:
   _BPMLineLength: 11.25
   _showNotes: 1
   _notesColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _notesLineLength: 5
+  _notesLineLength: 7
 --- !u!1001 &1752993327
 PrefabInstance:
   m_ObjectHideFlags: 0
