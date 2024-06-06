@@ -75,7 +75,7 @@ public class ChartVisualizer : MonoBehaviour
             foreach (var note in _songChart.Notes.Where(n => !n.IsRest))
             {
                 y = _position.y + transform.position.y + _progressor.scrollSpeed * note.NoteTime;
-                Gizmos.DrawWireCube(new(transform.position.x, y), new(_notesLineLength, 0));
+                Gizmos.DrawWireCube(new(_position.x, y), new(_notesLineLength, 0));
             }
         }
     }
