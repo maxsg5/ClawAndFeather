@@ -18,6 +18,7 @@ public class ChartVisualizer : MonoBehaviour
     [Space]
     [SerializeField] bool _showNotes = true;
     [SerializeField] Color _notesColor = Color.yellow;
+    [SerializeField] Color _restNotesColor = Color.cyan;
     [SerializeField, Min(0)] float _notesLineLength = 5.0f;
     [Space]
     [Tooltip("Constantly updates the current chart. Useful when making the chart, not recommended otherwise.")]
@@ -72,9 +73,9 @@ public class ChartVisualizer : MonoBehaviour
         // Notes
         if (_showNotes)
         {
-            Gizmos.color = _notesColor;
-            foreach (var note in _songChart.Notes.Where(n => !n.IsRest))
+            foreach (var note in _songChart.Notes)
             {
+                Gizmos.color = note.IsRest ? _restNotesColor : _notesColor;
                 y = _position.y + transform.position.y + _progressor.scrollSpeed * note.NoteTime;
                 Gizmos.DrawWireCube(new(_position.x, y), new(_notesLineLength, 0));
             }
