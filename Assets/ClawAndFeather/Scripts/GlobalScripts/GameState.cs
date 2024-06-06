@@ -49,6 +49,11 @@ public class GameState : MonoBehaviour
         Paused = !Paused;
         Time.timeScale = Paused ? 0.0f : 1.0f;
     }
+    public void LimitedPause(bool time)
+    {
+        Paused = time;
+        Time.timeScale = Paused ? 0.0f : 1.0f;
+    }
 
     /// <summary>
     /// Give the <see cref="SceneManager"/> build index to choose what <paramref name="ID"/> to change to.
