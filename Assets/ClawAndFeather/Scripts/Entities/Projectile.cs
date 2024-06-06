@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
             var forces = projectile.GetComponents<ConstantForce2D>();
             F = new Vector2(
                 forces.Sum(f => f.force.x) + forces.Sum(f => f.relativeForce.x),
-                forces.Sum(f => f.force.y) + forces.Sum(f => f.relativeForce.y) / projectile.Body.mass;
+                forces.Sum(f => f.force.y) + forces.Sum(f => f.relativeForce.y)) / projectile.Body.mass;
             G *= projectile.Body.gravityScale;
         }
 
