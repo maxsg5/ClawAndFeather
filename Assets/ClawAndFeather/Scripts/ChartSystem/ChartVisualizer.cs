@@ -47,10 +47,10 @@ public class ChartVisualizer : MonoBehaviour
             Gizmos.color = _BPMColor;
             float bps = _songChart.BPM / 60f;
             int totalBeats = Mathf.CeilToInt(_songChart.Length * bps);
-            for (int c = 0; c < totalBeats; c++)
+            for (int c = 0; c <= totalBeats; c++)
             {
-                y = _playerPosition.y + _progressor.scrollSpeed * c * bps;
-                Gizmos.DrawCube(new(_playerPosition.x, y), new(_BPMLineLength, 0.1f));
+                y = _playerPosition.y + (_progressor.scrollSpeed * (c * bps));
+                Gizmos.DrawCube(new(_playerPosition.x, y), new(_BPMLineLength, 0.05f));
             }
         }
         // Notes
