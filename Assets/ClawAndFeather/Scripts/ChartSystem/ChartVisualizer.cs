@@ -100,8 +100,7 @@ public class ChartVisualizer : MonoBehaviour
                 throw new System.Exception("due to a file parsing error.");
             }
 
-            _progressor =
-            _progressor != null ? _progressor : GetComponent<PrefabProgressor>();
+            _progressor = _progressor != null ? _progressor : GetComponent<PrefabProgressor>();
 
             if (logSuccess)
             {
