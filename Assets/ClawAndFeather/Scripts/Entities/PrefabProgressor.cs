@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PrefabProgressor : MonoBehaviour
 {
-    public float scrollSpeed;
+    [Min(0)] public float scrollSpeed;
 
     private void Update()
     {
