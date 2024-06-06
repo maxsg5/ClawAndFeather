@@ -7,25 +7,28 @@ public class ChartVisualizer : MonoBehaviour
 {
     private enum ShowGizmo { Always, [InspectorName("When Selected")] Selected, }
     #region Inspector
-    [SerializeField] private TextAsset _chart;
-    [SerializeField] private ShowGizmo _showChart;
+    [SerializeField] TextAsset _chart;
+    [SerializeField] Vector2 _position;
+    [SerializeField] ShowGizmo _showChart;
     [Space]
-    [SerializeField] private bool _showBPM = true;
-    [SerializeField] private Color _BPMColor = Color.red;
-    [SerializeField, Min(0)] private float _BPMLineLength = 6.0f;
+    [SerializeField] bool _showBPM = true;
+    [SerializeField] Color _BPMColor = Color.red;
+    [SerializeField, Min(0)] float _BPMLineLength = 6.0f;
     [Space]
-    [SerializeField] private bool _showNotes = true;
-    [SerializeField] private Color _notesColor = Color.yellow;
-    [SerializeField, Min(0)] private float _notesLineLength = 5.0f;
+    [SerializeField] bool _showNotes = true;
+    [SerializeField] Color _notesColor = Color.yellow;
+    [SerializeField, Min(0)] float _notesLineLength = 5.0f;
+    [Space]
+    [Tooltip("Constantly updates the current chart. Useful when making the chart, not recommended otherwise.")]
+    [SerializeField] bool _keepChartUpdated = false;
     #endregion
 
     private SongChart _songChart;
     private PrefabProgressor _progressor;
-    private Vector2 _playerPosition;
 
     private void Awake()
     {
-        ParseChart();
+        ParseChart(logSuccess: false);
     }
 
     private void OnDrawGizmos()
@@ -37,6 +40,11 @@ public class ChartVisualizer : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
+        if (_keepChartUpdated)
+        {
+            ParseChart(logSuccess: false);
+        }
+
         if (_showChart == ShowGizmo.Selected && _songChart != null)
         {
             DrawLines();
@@ -56,8 +64,8 @@ public class ChartVisualizer : MonoBehaviour
 
             for (int c = 0; c <= totalBeats; c++)
             {
-                y = transform.position.y + (_progressor.scrollSpeed * c * bps);
-                Gizmos.DrawCube(new(transform.position.x, y), new(_BPMLineLength, 0.05f));
+                y = _position.y + transform.position.y + (_progressor.scrollSpeed * c * bps);
+                Gizmos.DrawCube(new(_position.x, y), new(_BPMLineLength, 0.05f));
             }
         }
         // Notes
@@ -66,14 +74,15 @@ public class ChartVisualizer : MonoBehaviour
             Gizmos.color = _notesColor;
             foreach (var note in _songChart.Notes.Where(n => !n.IsRest))
             {
-                y = transform.position.y + _progressor.scrollSpeed * note.NoteTime;
+                y = _position.y + transform.position.y + _progressor.scrollSpeed * note.NoteTime;
                 Gizmos.DrawWireCube(new(transform.position.x, y), new(_notesLineLength, 0));
             }
         }
     }
 
     [ContextMenu("Update Chart")]
-    private void ParseChart()
+    private void ParseChart() => ParseChart(true);
+    private void ParseChart(bool logSuccess)
     {
         try
         {
@@ -94,9 +103,10 @@ public class ChartVisualizer : MonoBehaviour
             _progressor =
             _progressor != null ? _progressor : GetComponent<PrefabProgressor>();
 
-            _playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-
-            Debug.Log("Chart was successfully updated!");
+            if (logSuccess)
+            {
+                Debug.Log("Chart was successfully updated!");
+            }
         }
         catch (System.Exception ex)
         {
