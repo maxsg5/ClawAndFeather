@@ -14,6 +14,7 @@ public class ChartVisualizer : MonoBehaviour
     [SerializeField] bool _showBPM = true;
     [SerializeField] Color _BPMColor = Color.red;
     [SerializeField, Min(0)] float _BPMLineLength = 6.0f;
+    [SerializeField, Min(1)] float _addedLength = 1.0f;
     [Space]
     [SerializeField] bool _showNotes = true;
     [SerializeField] Color _notesColor = Color.yellow;
@@ -62,7 +63,7 @@ public class ChartVisualizer : MonoBehaviour
             float bps = 60f / _songChart.BPM;
             int totalBeats = Mathf.CeilToInt(_songChart.Length * bps);
 
-            for (int c = 0; c <= totalBeats; c++)
+            for (int c = 0; c <= totalBeats * _addedLength; c++)
             {
                 y = _position.y + transform.position.y + (_progressor.scrollSpeed * c * bps);
                 Gizmos.DrawCube(new(_position.x, y), new(_BPMLineLength, 0.05f));
