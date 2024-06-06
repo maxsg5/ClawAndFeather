@@ -23,6 +23,11 @@ public class ChartVisualizer : MonoBehaviour
     private PrefabProgressor _progressor;
     private Vector2 _playerPosition;
 
+    private void Awake()
+    {
+        ParseChart();
+    }
+
     private void OnDrawGizmos()
     {
         if (_showChart == ShowGizmo.Always && _songChart != null)
