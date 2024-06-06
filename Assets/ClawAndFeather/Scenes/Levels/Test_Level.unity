@@ -413,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 4983135594019610812, guid: 46cd7ab4fcd504c418794ba608309ca6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0369854
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 4983135594019610812, guid: 46cd7ab4fcd504c418794ba608309ca6,
         type: 3}
@@ -813,11 +813,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 545154443380866097, guid: 3fbfaa533b84e614caba10f174a9c2be,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3372247417068920172, guid: 3fbfaa533b84e614caba10f174a9c2be,
         type: 3}
       propertyPath: _pausedMenu
       value: 
       objectReference: {fileID: 270167221}
+    - target: {fileID: 4700568995594075446, guid: 3fbfaa533b84e614caba10f174a9c2be,
+        type: 3}
+      propertyPath: filesToParse.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6468561070502468930, guid: 3fbfaa533b84e614caba10f174a9c2be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -867,6 +877,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8454842406487978928, guid: 3fbfaa533b84e614caba10f174a9c2be,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8604895965728744034, guid: 3fbfaa533b84e614caba10f174a9c2be,
         type: 3}
@@ -1265,7 +1280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3835e9e58cd47104192c8899f9539705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 2
+  scrollSpeed: 4
 --- !u!4 &1739965231
 Transform:
   m_ObjectHideFlags: 0
@@ -1302,12 +1317,13 @@ MonoBehaviour:
   _position: {x: 0, y: 0}
   _showChart: 0
   _showBPM: 1
-  _BPMColor: {r: 1, g: 0, b: 0, a: 1}
+  _BPMColor: {r: 0, g: 0, b: 0, a: 1}
   _BPMLineLength: 10
+  _addedLength: 2
   _showNotes: 1
-  _notesColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _notesColor: {r: 1, g: 1, b: 1, a: 1}
   _notesLineLength: 5
-  _keepChartUpdated: 0
+  _keepChartUpdated: 1
 --- !u!1001 &1752993327
 PrefabInstance:
   m_ObjectHideFlags: 0
