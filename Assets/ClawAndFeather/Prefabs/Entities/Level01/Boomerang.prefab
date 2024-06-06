@@ -139,7 +139,7 @@ ConstantForce2D:
   m_GameObject: {fileID: 5077574472980961119}
   m_Enabled: 1
   m_Force: {x: 0, y: 0}
-  m_RelativeForce: {x: 10, y: 0}
+  m_RelativeForce: {x: 10, y: 5}
   m_Torque: 90
 --- !u!58 &9073789572107791663
 CircleCollider2D:
