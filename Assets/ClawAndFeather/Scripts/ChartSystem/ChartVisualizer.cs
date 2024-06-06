@@ -21,6 +21,7 @@ public class ChartVisualizer : MonoBehaviour
 
     private SongChart _songChart;
     private PrefabProgressor _progressor;
+    private Vector2 _playerPosition;
 
     private void OnDrawGizmos()
     {
@@ -40,7 +41,6 @@ public class ChartVisualizer : MonoBehaviour
     private void DrawLines()
     {
         float y;
-        Vector2 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         // BPM
         if (_showBPM)
         {
@@ -49,8 +49,8 @@ public class ChartVisualizer : MonoBehaviour
             int totalBeats = Mathf.CeilToInt(_songChart.Length * bps);
             for (int c = 0; c < totalBeats; c++)
             {
-                y = playerPosition.y + _progressor.scrollSpeed * c * bps;
-                Gizmos.DrawCube(new(playerPosition.x, y), new(_BPMLineLength, 0.1f));
+                y = _playerPosition.y + _progressor.scrollSpeed * c * bps;
+                Gizmos.DrawCube(new(_playerPosition.x, y), new(_BPMLineLength, 0.1f));
             }
         }
         // Notes
@@ -59,8 +59,8 @@ public class ChartVisualizer : MonoBehaviour
             Gizmos.color = _notesColor;
             foreach (var note in _songChart.Notes.Where(n => !n.IsRest))
             {
-                y = playerPosition.y + _progressor.scrollSpeed * note.NoteTime;
-                Gizmos.DrawWireCube(new(playerPosition.x, y), new(_notesLineLength, 0));
+                y = _playerPosition.y + _progressor.scrollSpeed * note.NoteTime;
+                Gizmos.DrawWireCube(new(_playerPosition.x, y), new(_notesLineLength, 0));
             }
         }
     }
@@ -86,6 +86,8 @@ public class ChartVisualizer : MonoBehaviour
 
             _progressor =
             _progressor != null ? _progressor : GetComponent<PrefabProgressor>();
+
+            _playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
 
             Debug.Log("Chart was successfully updated!");
         }

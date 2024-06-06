@@ -20,7 +20,7 @@ public class SongParser : MonoBehaviour
     public static bool ReadCSVFile(TextAsset file, out SongChart chart)
     {
         chart = null; // what it returns if it returns false
-        string[] dataLines = file.text.Split('\n'); // split by each new line
+        string[] dataLines = file.text.Trim().Split('\n'); // split by each new line
         string[] nonRepeatingData = dataLines[1].Split(',');
         if (nonRepeatingData.Length != 3)
         {
