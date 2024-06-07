@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private SongParser _parser;
     private readonly List<SongChart> _songCharts = new();
     private int _currentSongID = 0;
+    [SerializeField] private int _pauseSongID;
     private int _currentBuildID = 0;
 
     [field:SerializeField] public float CurrentVolume { get; private set; } = 1.0f;
@@ -33,19 +34,26 @@ public class AudioManager : MonoBehaviour
         _currentBuildID = scene.buildIndex;
         switch (scene.buildIndex)
         {
+            case 0: // intro
+                PlayerPrefs.SetFloat("Volume", CurrentVolume);
+                CurrentChart = null;
+                break;
             case 1: // main menu
                 PlayerPrefs.SetFloat("Volume", CurrentVolume);
+                Songs[_pauseSongID].Play();
                 CurrentChart = null;
                 break;
             case 2: // level one
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 0;
+                Songs[_pauseSongID].Pause();
                 Songs[_currentSongID].Play();
                 CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
             case 3: // level two
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 1;
+                Songs[_pauseSongID].Pause();
                 Songs[_currentSongID].Play();
                 CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
@@ -109,8 +117,14 @@ public class AudioManager : MonoBehaviour
     public void PauseSong(bool pause)
     {
         if (pause)
-        { Songs[_currentSongID].Pause(); }
+        {
+            Songs[_currentSongID].Pause();
+            Songs[_pauseSongID].Play();
+        }
         else
-        { Songs[_currentSongID].Play(); }
+        { 
+            Songs[_currentSongID].Play();
+            Songs[_pauseSongID].Pause();
+        }
     }
 }
