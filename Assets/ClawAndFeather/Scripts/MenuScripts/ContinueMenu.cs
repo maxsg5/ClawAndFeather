@@ -17,6 +17,7 @@ public class ContinueMenu : MenuController
     private void NextScene()
     {
         Singleton.Global.State.LimitedPause(false);
+        Singleton.Global.Audio.PauseSong(true);
         GameState.ChangeScene(nextSceneBuildIndex);
     }
 }
