@@ -53,7 +53,7 @@ public class Alien : MonoBehaviour
                     turnSpeed);
 
                 // move
-                _rb.AddForce(moveSpeed * Time.fixedDeltaTime * transform.right);
+                _rb.AddForce(moveSpeed * transform.right);
                 _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, maxSpeed);
             }
             _pursuitTimer += Time.fixedDeltaTime;
