@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
             if (obstacle != null && obstacle.colliders.Contains(collider))
             {
                 Lives--;
+                _animator.SetInteger("Lives", Lives);
                 if (Lives <= 0)
                 {
                     _animator.SetTrigger("Falling");
