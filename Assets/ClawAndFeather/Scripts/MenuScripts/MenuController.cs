@@ -18,12 +18,15 @@ public abstract class MenuController : MonoBehaviour
     public Color submittedButtonColor;
     public Color selectedButtonColor;
     public Color unselectedButtonColor;
+
+    protected PlayerInput _playerInput;
     
     internal virtual void Awake()
     {
         _buttons = new Button[_buttonObjects.Length];
         _buttonImages = new Image[_buttonObjects.Length];
         _buttonAnimations = new Animator[_buttonObjects.Length];
+        _playerInput = GetComponent<PlayerInput>();
 
         for (int i = 0; i < _buttonObjects.Length; i++)
         {
@@ -35,6 +38,7 @@ public abstract class MenuController : MonoBehaviour
     }
     internal void OnEnable()
     {
+        _playerInput.ActivateInput();
         StartCoroutine(Initialize(1.5f));
     }
     internal IEnumerator Initialize(float waitTime)

@@ -1832,9 +1832,10 @@ MonoBehaviour:
   _showBPM: 1
   _BPMColor: {r: 1, g: 0, b: 0, a: 1}
   _BPMLineLength: 10
-  _addedLength: 1
+  _addedLength: 10
   _showNotes: 1
   _notesColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _restNotesColor: {r: 0, g: 1, b: 1, a: 1}
   _notesLineLength: 5
   _keepChartUpdated: 1
 --- !u!114 &1844897561

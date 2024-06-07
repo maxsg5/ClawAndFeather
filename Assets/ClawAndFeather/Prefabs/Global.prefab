@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da942d50d4db1314abc37eb9788c7425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseSongID: 2
   <CurrentVolume>k__BackingField: 1
 --- !u!114 &4700568995594075446
 MonoBehaviour:
