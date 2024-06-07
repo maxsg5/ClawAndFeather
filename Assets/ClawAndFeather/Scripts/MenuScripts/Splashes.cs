@@ -38,12 +38,13 @@ public class Splashes : MonoBehaviour
     {
         if (_currentSplashActive == Splash.None)
         {
-            if (Singleton.Global.Audio.SongProgress > 1)
-            {
-                _currentSplashActive = Splash.Continue;
-                StartCoroutine(ContinueSplash(_continueFadeInTime));
-            }
-            else if (Singleton.Global.State.Player.Lives < 1)
+            //if (Singleton.Global.Audio.SongProgress > 1)
+            //{
+            //    _currentSplashActive = Splash.Continue;
+            //    StartCoroutine(ContinueSplash(_continueFadeInTime));
+            //}
+            //else 
+            if (Singleton.Global.State.Player.Lives <= 0)
             {
                 _currentSplashActive = Splash.GameOver;
                 StartCoroutine(GameOverSplash(_gameOverFadeInTime));

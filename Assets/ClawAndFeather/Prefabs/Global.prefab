@@ -136,8 +136,8 @@ GameObject:
   - component: {fileID: 5691279898408565431}
   - component: {fileID: 4700568995594075446}
   - component: {fileID: 8454842406487978928}
-  - component: {fileID: 8785522568438133117}
   - component: {fileID: 545154443380866097}
+  - component: {fileID: 8785522568438133117}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -284,7 +284,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &8785522568438133117
+--- !u!82 &545154443380866097
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,7 +294,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3c309aacfad681d4d96b1553357411fa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7cfa9f98fce7dc044b7826e5b02c6da8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -380,7 +380,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &545154443380866097
+--- !u!82 &8785522568438133117
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,8 +390,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7cfa9f98fce7dc044b7826e5b02c6da8, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 3c309aacfad681d4d96b1553357411fa, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
