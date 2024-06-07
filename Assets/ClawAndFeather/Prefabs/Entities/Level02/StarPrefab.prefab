@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 12476550895669217}
   - component: {fileID: 669200405195314416}
   - component: {fileID: 8170351363458409740}
-  - component: {fileID: 1714487332658201208}
   m_Layer: 0
   m_Name: star
   m_TagString: Untagged
@@ -338,31 +337,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!233 &1714487332658201208
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5767472072869810527}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: -1.81, y: 0.8}
-  m_ConnectedAnchor: {x: 10.620001, y: 1.99}
-  m_UseMotor: 1
-  m_Motor:
-    m_MotorSpeed: -5
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
 --- !u!1 &6062170255520973175
 GameObject:
   m_ObjectHideFlags: 0
