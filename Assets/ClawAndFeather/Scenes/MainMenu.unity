@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150.00002}
-  m_SizeDelta: {x: -100, y: -500}
+  m_AnchoredPosition: {x: 0, y: -160}
+  m_SizeDelta: {x: -100, y: -480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36265956
 MonoBehaviour:
@@ -2090,15 +2090,20 @@ MonoBehaviour:
     -> Shayla
     Cymbaluk
 
+    -> Jessy
+
 
     Programmers:
 
     -> Kael Kostiuk
 
-    -> Jonathan Dodds
+    -> Jonathan
+    Dodds
 
-    ->
-    Jeff Sabandal'
+    -> Jeff Sabandal
+
+
+    Music -> GoodKid'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cadd0afe6ee788741a04dda2d7698848, type: 2}
   m_sharedMaterial: {fileID: 6789447257834119285, guid: cadd0afe6ee788741a04dda2d7698848,
