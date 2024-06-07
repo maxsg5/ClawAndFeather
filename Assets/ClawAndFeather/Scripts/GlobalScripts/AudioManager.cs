@@ -14,17 +14,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private int _pauseSongID;
     private int _currentBuildID = 0;
 
-    [field: SerializeField] public float CurrentVolume { get; private set; } = 1.0f;
+    [field:SerializeField] public float CurrentVolume { get; private set; } = 1.0f;
 
     public AudioSource[] Songs { get; private set; }
-
+    
     void Awake()
     {
         _parser = GetComponent<SongParser>();
         for (int i = 0; i < _parser.filesToParse.Length; i++)
         {
             if (SongParser.ReadCSVFile(_parser.filesToParse[i], out SongChart chart))
-            { _songCharts.Add(chart); }
+            { _songCharts.Add(chart); }  
         }
         Songs = GetComponents<AudioSource>();
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -47,22 +47,19 @@ public class AudioManager : MonoBehaviour
             case 2: // level one
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 0;
-                SetSongAndChart(_currentSongID);
+                if (Songs[_pauseSongID].isPlaying)
+                { Songs[_pauseSongID].Pause(); }
+                Songs[_currentSongID].Play();
+                CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
             case 3: // level two
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 1;
-                SetSongAndChart(_currentSongID);
+                Songs[_pauseSongID].Pause();
+                Songs[_currentSongID].Play();
+                CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
         }
-    }
-
-    private void SetSongAndChart(int songID)
-    {
-        if (Songs[_pauseSongID].isPlaying)
-        { Songs[_pauseSongID].Pause(); }
-        Songs[songID].Play();
-        CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[songID].clip.name).FirstOrDefault();
     }
 
     /// <summary>
@@ -85,7 +82,7 @@ public class AudioManager : MonoBehaviour
     /// The <paramref name="volumeModifier"/> is the modifier to the existing volume.
     /// </summary>
     /// <param name="volumeModifier"></param>
-    public void ChangeVolume(float volumeModifier)
+    public void ChangeVolume(float volumeModifier)  
     {
         CurrentVolume = Mathf.Clamp01(CurrentVolume + volumeModifier);
         PlayerPrefs.SetFloat("Volume", CurrentVolume);
@@ -127,7 +124,7 @@ public class AudioManager : MonoBehaviour
             Songs[_pauseSongID].Play();
         }
         else
-        {
+        { 
             Songs[_currentSongID].Play();
             Songs[_pauseSongID].Pause();
         }
