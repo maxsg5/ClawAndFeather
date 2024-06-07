@@ -31,6 +31,7 @@ public class PrefabPool : MonoBehaviour
             for (int c = 0; c < poolSize; c++)
             {
                 Pool[c] = Instantiate(prefab, prefabParent);
+                DontDestroyOnLoad(Pool[c]);
                 Pool[c].SetActive(false);
             }
         }

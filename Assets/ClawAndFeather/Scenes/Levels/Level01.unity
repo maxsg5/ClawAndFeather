@@ -2251,17 +2251,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 558054861801884790, guid: 3fbfaa533b84e614caba10f174a9c2be,
-        type: 3}
-      propertyPath: _activePrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 558054861801884790, guid: 3fbfaa533b84e614caba10f174a9c2be,
-        type: 3}
-      propertyPath: _activePrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 5077574472980961119, guid: 16f3cb0c322fc064884c1406c66c118d,
-        type: 3}
     - target: {fileID: 3372247417068920172, guid: 3fbfaa533b84e614caba10f174a9c2be,
         type: 3}
       propertyPath: _pausedMenu
