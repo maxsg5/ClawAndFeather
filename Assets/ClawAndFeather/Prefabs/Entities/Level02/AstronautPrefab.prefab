@@ -191,7 +191,7 @@ MonoBehaviour:
   moveTime: 7
   timeOffset: 0
   reverse: 0
-  endAction: 0
+  endAction: 2
   rotationMode: 0
 --- !u!1 &2658572997389113829
 GameObject:

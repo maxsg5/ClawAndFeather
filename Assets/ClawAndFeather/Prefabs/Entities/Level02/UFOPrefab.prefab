@@ -164,7 +164,7 @@ MonoBehaviour:
   moveTime: 7
   timeOffset: 0
   reverse: 0
-  endAction: 2
+  endAction: 1
   rotationMode: 0
 --- !u!60 &3740620507941960710
 PolygonCollider2D:
