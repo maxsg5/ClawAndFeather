@@ -40,13 +40,15 @@ public class AudioManager : MonoBehaviour
                 break;
             case 1: // main menu
                 PlayerPrefs.SetFloat("Volume", CurrentVolume);
-                Songs[_pauseSongID].Play();
+                if (!Songs[_pauseSongID].isPlaying)
+                { Songs[_pauseSongID].Play(); }
                 CurrentChart = null;
                 break;
             case 2: // level one
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 0;
-                Songs[_pauseSongID].Pause();
+                if (Songs[_pauseSongID].isPlaying)
+                { Songs[_pauseSongID].Pause(); }
                 Songs[_currentSongID].Play();
                 CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
