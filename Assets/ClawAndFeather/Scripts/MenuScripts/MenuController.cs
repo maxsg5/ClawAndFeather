@@ -38,9 +38,7 @@ public abstract class MenuController : MonoBehaviour
     }
     internal void OnEnable()
     {
-        // Necessary to get the player inputs. because fuck.
-        _playerInput.enabled = false;
-        _playerInput.enabled = true;
+        _playerInput.ActivateInput();
         StartCoroutine(Initialize(1.5f));
     }
     internal IEnumerator Initialize(float waitTime)
