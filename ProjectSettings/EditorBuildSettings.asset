@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/ClawAndFeather/Scenes/MainMenu.unity
     guid: 79457f96052882b4cb4dd689826430bb
   - enabled: 1
+    path: Assets/ClawAndFeather/Scenes/Levels/Level01.unity
+    guid: b143e8d3ffc26e0458ea2849e1b8cb2e
+  - enabled: 1
+    path: Assets/ClawAndFeather/Scenes/Levels/Level02.unity
+    guid: e0d63ebb910800e49ae66ae9459dc19c
+  - enabled: 0
     path: Assets/ClawAndFeather/Scenes/Levels/Test_Level.unity
     guid: 5c88a41528ea25d4c83b158e0cc27c91
   m_configObjects:
