@@ -5,6 +5,6 @@ public class IntroScene : MonoBehaviour
 {
     public void EndScene()
     {
-        GameState.ChangeScene(1);
+        GameState.ChangeScene(2);
     }
 }

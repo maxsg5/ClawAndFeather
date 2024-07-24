@@ -36,14 +36,17 @@ public class AudioManager : MonoBehaviour
         {
             case 0: // intro
                 PlayerPrefs.SetFloat("Volume", CurrentVolume);
-                CurrentChart = null;
-                break;
-            case 1: // main menu
-                PlayerPrefs.SetFloat("Volume", CurrentVolume);
                 if (!Songs[_pauseSongID].isPlaying)
                 { Songs[_pauseSongID].Play(); }
                 CurrentChart = null;
                 break;
+            case 1: // main menu
+                PlayerPrefs.SetFloat("Volume", CurrentVolume);
+                if (Songs[_pauseSongID].isPlaying)
+                { Songs[_pauseSongID].Pause(); }
+                CurrentChart = null;
+                break;
+                
             case 2: // level one
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 0;

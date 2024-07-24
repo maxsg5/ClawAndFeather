@@ -1310,6 +1310,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameWin
       objectReference: {fileID: 0}
+    - target: {fileID: 5949087778666243151, guid: f0db4d169c6b73e4a851dd9ac468fe03,
+        type: 3}
+      propertyPath: nextSceneBuildIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7077574558496135175, guid: f0db4d169c6b73e4a851dd9ac468fe03,
         type: 3}
       propertyPath: nextSceneBuildIndex
