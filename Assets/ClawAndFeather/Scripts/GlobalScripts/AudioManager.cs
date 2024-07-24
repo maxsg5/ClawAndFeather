@@ -49,6 +49,7 @@ public class AudioManager : MonoBehaviour
                 _currentSongID = 0;
                 if (Songs[_pauseSongID].isPlaying)
                 { Songs[_pauseSongID].Pause(); }
+                Songs[_currentSongID].Stop();
                 Songs[_currentSongID].Play();
                 CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
@@ -56,6 +57,7 @@ public class AudioManager : MonoBehaviour
                 AudioListener.volume = PlayerPrefs.GetFloat("Volume");
                 _currentSongID = 1;
                 Songs[_pauseSongID].Pause();
+                Songs[_currentSongID].Stop();
                 Songs[_currentSongID].Play();
                 CurrentChart = _songCharts.Where(sc => sc.SongName == Songs[_currentSongID].clip.name).FirstOrDefault();
                 break;
